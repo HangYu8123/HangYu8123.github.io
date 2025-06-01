@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name – Tagline</title>
+  <!-- Tailwind (play CDN) for quick customisation -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for social icons -->
+  <script src="https://kit.fontawesome.com/a2b7c7d2c6.js" crossorigin="anonymous"></script>
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Optional: subtle fade‑in for sections */
+    section {opacity:0;transform:translateY(40px);transition:all .6s ease-in-out;}
+    section.show {opacity:1;transform:none;}
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+  <!-- =========== Navigation =========== -->
+  <nav class="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur shadow-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <a href="#home" class="text-xl font-semibold">Your Name</a>
+      <ul class="hidden md:flex gap-6 text-sm">
+        <li><a href="#about" class="hover:text-blue-600">About</a></li>
+        <li><a href="#latest" class="hover:text-blue-600">Latest</a></li>
+        <li><a href="#experience" class="hover:text-blue-600">Experience</a></li>
+        <li><a href="#blog" class="hover:text-blue-600">Blog</a></li>
+        <li><a href="#awards" class="hover:text-blue-600">Awards</a></li>
+        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========= Hero ========== -->
+  <header id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image:url('https://source.unsplash.com/1600x900?robotics');">
+    <div class="absolute inset-0 bg-white/80 md:bg-white/60 backdrop-blur-md"></div>
+    <div class="relative z-10 max-w-3xl text-center px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Name</h1>
+      <p class="text-lg md:text-2xl leading-relaxed">Brief tagline or research interest goes here.</p>
+      <div class="mt-6 flex justify-center gap-4 text-2xl">
+        <a href="#" aria-label="GitHub" class="hover:text-gray-600"><i class="fab fa-github"></i></a>
+        <a href="mailto:you@email.com" aria-label="Mail" class="hover:text-gray-600"><i class="fas fa-envelope"></i></a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
+        <a href="#" aria-label="X" class="hover:text-gray-600"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========= About ========== -->
+  <section id="about" class="max-w-4xl mx-auto px-6 py-24">
+    <h2 class="text-3xl font-semibold mb-4">About</h2>
+    <p class="text-lg leading-relaxed">Write a concise bio. Mention your current position, advisors, research focus, and what drives your work.</p>
+  </section>
+
+  <!-- ========= Latest ========== -->
+  <section id="latest" class="bg-white py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-8">Latest Highlights</h2>
+      <ul class="space-y-4">
+        <!-- Repeat list items as needed -->
+        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[05/2025]</span> Your latest news headline here.</li>
+        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[04/2025]</span> Another update or publication.</li>
+        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[01/2025]</span> Conference acceptance, award, etc.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========= Experience ========== -->
+  <section id="experience" class="max-w-5xl mx-auto px-6 py-24">
+    <h2 class="text-3xl font-semibold mb-8">Experience</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Card -->
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold">Research Intern, Awesome Lab</h3>
+        <p class="text-sm text-gray-500 mb-2">May 2025 – Aug 2025</p>
+        <p>Brief description of your work and supervisors.</p>
+      </div>
+      <!-- Duplicate cards as needed -->
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="text-xl font-semibold">Graduate Researcher, University XYZ</h3>
+        <p class="text-sm text-gray-500 mb-2">Aug 2023 – May 2024</p>
+        <p>Outline of responsibilities and achievements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= Blog ========== -->
+  <section id="blog" class="bg-white py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-semibold mb-8">Featured Blog Post</h2>
+      <article class="bg-gray-100 p-8 rounded-xl shadow">
+        <h3 class="text-2xl font-bold mb-2">Blog Title Here</h3>
+        <p class="text-sm text-gray-500 mb-4">Author – Date</p>
+        <p class="leading-relaxed mb-4">Add a short excerpt of your post to entice readers.</p>
+        <a href="#" class="text-blue-600 hover:underline">Read more →</a>
+      </article>
+      <p class="mt-6 text-right"><a href="#" class="text-blue-600 hover:underline">See all posts</a></p>
+    </div>
+  </section>
+
+  <!-- ========= Awards ========== -->
+  <section id="awards" class="max-w-4xl mx-auto px-6 py-24">
+    <h2 class="text-3xl font-semibold mb-6">Awards & Honors</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li>[2025] Prestigious Award Name</li>
+      <li>[2024] Scholarship or Fellowship</li>
+      <li>[2023] Competition Placement</li>
+    </ul>
+  </section>
+
+  <!-- ========= Contact / Footer ========== -->
+  <footer id="contact" class="bg-gray-900 text-gray-100 py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="mb-4 text-lg">Let’s connect!</p>
+      <div class="flex justify-center gap-6 text-2xl mb-6">
+        <a href="#" aria-label="GitHub" class="hover:text-white"><i class="fab fa-github"></i></a>
+        <a href="mailto:you@email.com" aria-label="Mail" class="hover:text-white"><i class="fas fa-envelope"></i></a>
+        <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-x-twitter"></i></a>
+      </div>
+      <p class="text-sm">© <span id="year"></span> Your Name</p>
+    </div>
+  </footer>
+
+  <script>
+    // Update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal sections on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('show');}
+      });
+    }, {threshold:0.15});
+    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+  </script>
+</body>
+</html>
