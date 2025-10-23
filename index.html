@@ -1,141 +1,225 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name – Tagline</title>
-  <!-- Tailwind (play CDN) for quick customisation -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for social icons -->
-  <script src="https://kit.fontawesome.com/a2b7c7d2c6.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hang Yu | Tufts University</title>
+  <meta name="description" content="Hang Yu — Human-Robot Interaction & Robot Learning at Tufts University" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --bg: #0b0c10;
+      --panel: #111317;
+      --muted: #9aa3b2;
+      --text: #e6edf3;
+      --accent: #66e0a3;
+      --link: #7dc4ff;
+      --ring: rgba(125,196,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --maxw: 1000px;
     }
-    /* Optional: subtle fade‑in for sections */
-    section {opacity:0;transform:translateY(40px);transition:all .6s ease-in-out;}
-    section.show {opacity:1;transform:none;}
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 18px 20px; }
+    .top { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#1f2937,#111827); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.06); }
+    .name { font-weight: 800; letter-spacing: .2px; font-size: 1.25rem; }
+    .tag { color: var(--muted); font-size: .95rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a { padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+
+    main { max-width: var(--maxw); margin: 28px auto; padding: 0 20px 60px; display: grid; grid-template-columns: 1fr; gap: 26px; }
+    @media (min-width: 960px){ main { grid-template-columns: 280px 1fr; align-items: start; } }
+
+    .panel { background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .panel .inner { padding: 22px; }
+
+    .hero { display: grid; gap: 6px; }
+    .hero h1 { font-size: clamp(1.4rem, 1.2rem + 1.2vw, 2rem); margin: 0; }
+    .hero p { margin: 0; color: var(--muted); }
+
+    .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .pill { font-size: .9rem; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); }
+
+    h2 { font-size: 1.15rem; letter-spacing: .3px; margin: 0 0 10px 0; text-transform: uppercase; color: #d6dee6; }
+    section + section { margin-top: 18px; }
+    .items { display: grid; gap: 16px; }
+    .item { padding: 16px; border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); border-radius: 14px; }
+    .item h3 { margin: 0 0 6px; font-size: 1rem; }
+    .item .meta { color: var(--muted); font-size: .92rem; }
+
+    .kicker { font-weight: 700; color: var(--accent); letter-spacing: .4px; text-transform: uppercase; font-size: .9rem; }
+    .footer { text-align: center; color: var(--muted); padding: 40px 0 30px; font-size: .92rem; }
+
+    /* badges / callouts */
+    .callout { border: 1px dashed rgba(255,255,255,.18); padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.03); }
+
+    /* small utilities */
+    .muted { color: var(--muted); }
+    .grid-2 { display: grid; gap: 16px; }
+    @media (min-width: 700px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    .latest-list li { margin: 6px 0; }
   </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50">
-  <!-- =========== Navigation =========== -->
-  <nav class="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur shadow-sm">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-      <a href="#home" class="text-xl font-semibold">Your Name</a>
-      <ul class="hidden md:flex gap-6 text-sm">
-        <li><a href="#about" class="hover:text-blue-600">About</a></li>
-        <li><a href="#latest" class="hover:text-blue-600">Latest</a></li>
-        <li><a href="#experience" class="hover:text-blue-600">Experience</a></li>
-        <li><a href="#blog" class="hover:text-blue-600">Blog</a></li>
-        <li><a href="#awards" class="hover:text-blue-600">Awards</a></li>
-        <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ========= Hero ========== -->
-  <header id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image:url('https://source.unsplash.com/1600x900?robotics');">
-    <div class="absolute inset-0 bg-white/80 md:bg-white/60 backdrop-blur-md"></div>
-    <div class="relative z-10 max-w-3xl text-center px-6">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Name</h1>
-      <p class="text-lg md:text-2xl leading-relaxed">Brief tagline or research interest goes here.</p>
-      <div class="mt-6 flex justify-center gap-4 text-2xl">
-        <a href="#" aria-label="GitHub" class="hover:text-gray-600"><i class="fab fa-github"></i></a>
-        <a href="mailto:you@email.com" aria-label="Mail" class="hover:text-gray-600"><i class="fas fa-envelope"></i></a>
-        <a href="#" aria-label="LinkedIn" class="hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
-        <a href="#" aria-label="X" class="hover:text-gray-600"><i class="fab fa-x-twitter"></i></a>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <div class="name">Hang Yu</div>
+          <div class="tag">Ph.D. Candidate • Tufts University — HRI & Robot Learning</div>
+        </div>
       </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#latest">Latest</a>
+        <a href="#publications">Publications</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- ========= About ========== -->
-  <section id="about" class="max-w-4xl mx-auto px-6 py-24">
-    <h2 class="text-3xl font-semibold mb-4">About</h2>
-    <p class="text-lg leading-relaxed">Write a concise bio. Mention your current position, advisors, research focus, and what drives your work.</p>
-  </section>
+  <main>
+    <!-- Sidebar -->
+    <aside class="panel">
+      <div class="inner">
+        <div class="hero">
+          <h1>Hang Yu (余航)</h1>
+          <p>Ph.D. Candidate, <strong>Tufts University</strong>. My research explores <em>Human–Robot Interaction</em> (HRI) and <em>human-in-the-loop robot learning</em>, with a focus on learning from human feedback and demonstrations to enable natural and expressive interactions.</p>
+        </div>
 
-  <!-- ========= Latest ========== -->
-  <section id="latest" class="bg-white py-24">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-8">Latest Highlights</h2>
-      <ul class="space-y-4">
-        <!-- Repeat list items as needed -->
-        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[05/2025]</span> Your latest news headline here.</li>
-        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[04/2025]</span> Another update or publication.</li>
-        <li class="bg-gray-100 p-4 rounded-lg shadow"><span class="font-mono text-sm text-gray-500">[01/2025]</span> Conference acceptance, award, etc.</li>
-      </ul>
-    </div>
-  </section>
+        <div class="social">
+          <a class="pill" href="mailto:Hang.Yu625917@tufts.edu">Email</a>
+          <a class="pill" href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="pill" href="https://hangyu.netlify.app/" target="_blank" rel="noopener">Personal (alt) site</a>
+          <a class="pill" href="#">CV (PDF)</a>
+        </div>
 
-  <!-- ========= Experience ========== -->
-  <section id="experience" class="max-w-5xl mx-auto px-6 py-24">
-    <h2 class="text-3xl font-semibold mb-8">Experience</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Card -->
-      <div class="bg-white shadow rounded-xl p-6">
-        <h3 class="text-xl font-semibold">Research Intern, Awesome Lab</h3>
-        <p class="text-sm text-gray-500 mb-2">May 2025 – Aug 2025</p>
-        <p>Brief description of your work and supervisors.</p>
+        <section style="margin-top:18px">
+          <h2>Research Interests</h2>
+          <div class="items">
+            <div class="item">
+              <div><span class="kicker">Topics</span></div>
+              <div class="meta">Interactive RL • Learning from Human Feedback • Learning from Demonstrations • Human modeling for robot learning • Evaluation & datasets for HRI</div>
+            </div>
+            <div class="item">
+              <div><span class="kicker">Keywords</span></div>
+              <div class="meta">HRI, RLHF/RLAIF, IntRL, Preference learning, Human factors</div>
+            </div>
+          </div>
+        </section>
       </div>
-      <!-- Duplicate cards as needed -->
-      <div class="bg-white shadow rounded-xl p-6">
-        <h3 class="text-xl font-semibold">Graduate Researcher, University XYZ</h3>
-        <p class="text-sm text-gray-500 mb-2">Aug 2023 – May 2024</p>
-        <p>Outline of responsibilities and achievements.</p>
+    </aside>
+
+    <!-- Main column -->
+    <div class="panel">
+      <div class="inner">
+        <section id="about">
+          <h2>About</h2>
+          <p>I am a Ph.D. candidate in Computer Science at Tufts University, advised by faculty in <a href="https://aabl.cs.tufts.edu/" target="_blank" rel="noopener">Accessible and Applied Robotics Lab (AABL)</a>. I study how people teach robots and how robots can learn effectively from rich, scalar, and structured feedback. My long-term goal is to make robot learning from everyday people robust, sample-efficient, and accessible.</p>
+          <div class="callout muted">Actively open to research collaborations in HRI, RLHF for robots, and human data collection methodology.</div>
+        </section>
+
+        <section id="latest" style="margin-top:20px">
+          <h2>Latest</h2>
+          <ul class="latest-list">
+            <li><strong>Jun 2025</strong> — Preprint: <em>CHARM: Considering Human Attributes for Reinforcement Modeling</em>.</li>
+            <li><strong>Jun 2025</strong> — Preprint: <em>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</em>.</li>
+            <li><strong>Aug 2024</strong> — Conference: <em>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</em>.</li>
+            <li><strong>Oct 2023</strong> — Conference: <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>.</li>
+          </ul>
+        </section>
+
+        <section id="publications" style="margin-top:20px">
+          <h2>Selected Publications</h2>
+          <div class="items">
+            <div class="item">
+              <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
+              <div class="meta">Qidi Fang, <strong>Hang Yu</strong>, Shijie Fang, …, Elaine S. Short. Preprint, 2025.</div>
+              <div class="meta"><a href="#">PDF</a> · <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
+            </div>
+            <div class="item">
+              <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
+              <div class="meta">Shijie Fang, <strong>Hang Yu</strong>, Qidi Fang, …, Elaine S. Short. Preprint, 2025.</div>
+              <div class="meta"><a href="#">PDF</a> · <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
+            </div>
+            <div class="item">
+              <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
+              <div class="meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, …, Elaine S. Short. Conference, 2024. Preprint 2024.</div>
+              <div class="meta"><a href="#">PDF</a></div>
+            </div>
+            <div class="item">
+              <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
+              <div class="meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine Allen, Elaine S. Short. Conference, 2023.</div>
+              <div class="meta"><a href="#">PDF</a></div>
+            </div>
+            <div class="item">
+              <h3>Active Feedback Learning with Rich Feedback</h3>
+              <div class="meta"><strong>Hang Yu</strong>, Elaine S. Short. Conference, 2021.</div>
+              <div class="meta"><a href="#">PDF</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="education" style="margin-top:20px">
+          <h2>Education</h2>
+          <div class="grid-2">
+            <div class="item">
+              <div class="kicker">Tufts University</div>
+              <div class="meta">Ph.D., Computer Science — Human–Robot Interaction</div>
+            </div>
+            <div class="item">
+              <div class="kicker">(Add your prior degrees)</div>
+              <div class="meta">B.S./M.S., Institution — Major, Years</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" style="margin-top:20px">
+          <h2>Experience</h2>
+          <div class="items">
+            <div class="item">
+              <div class="kicker">Tufts University</div>
+              <div class="meta">Graduate Researcher — Human–Robot Interaction</div>
+            </div>
+            <div class="item">
+              <div class="kicker">(Add internships / industry)</div>
+              <div class="meta">Role — Team — Dates</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" style="margin-top:20px">
+          <h2>Contact</h2>
+          <p>Email: <a href="mailto:Hang.Yu625917@tufts.edu">Hang.Yu625917@tufts.edu</a></p>
+          <p>Google Scholar: <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Profile</a></p>
+        </section>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- ========= Blog ========== -->
-  <section id="blog" class="bg-white py-24">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold mb-8">Featured Blog Post</h2>
-      <article class="bg-gray-100 p-8 rounded-xl shadow">
-        <h3 class="text-2xl font-bold mb-2">Blog Title Here</h3>
-        <p class="text-sm text-gray-500 mb-4">Author – Date</p>
-        <p class="leading-relaxed mb-4">Add a short excerpt of your post to entice readers.</p>
-        <a href="#" class="text-blue-600 hover:underline">Read more →</a>
-      </article>
-      <p class="mt-6 text-right"><a href="#" class="text-blue-600 hover:underline">See all posts</a></p>
-    </div>
-  </section>
-
-  <!-- ========= Awards ========== -->
-  <section id="awards" class="max-w-4xl mx-auto px-6 py-24">
-    <h2 class="text-3xl font-semibold mb-6">Awards & Honors</h2>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>[2025] Prestigious Award Name</li>
-      <li>[2024] Scholarship or Fellowship</li>
-      <li>[2023] Competition Placement</li>
-    </ul>
-  </section>
-
-  <!-- ========= Contact / Footer ========== -->
-  <footer id="contact" class="bg-gray-900 text-gray-100 py-12">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <p class="mb-4 text-lg">Let’s connect!</p>
-      <div class="flex justify-center gap-6 text-2xl mb-6">
-        <a href="#" aria-label="GitHub" class="hover:text-white"><i class="fab fa-github"></i></a>
-        <a href="mailto:you@email.com" aria-label="Mail" class="hover:text-white"><i class="fas fa-envelope"></i></a>
-        <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
-        <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-x-twitter"></i></a>
-      </div>
-      <p class="text-sm">© <span id="year"></span> Your Name</p>
+  <footer class="footer">
+    <div class="wrap">
+      © <span id="y"></span> Hang Yu. Built with vanilla HTML/CSS. Theme inspired by <a href="https://haoruxue.github.io/" target="_blank" rel="noopener">Haoru Xue</a>.
     </div>
   </footer>
 
   <script>
-    // Update copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Reveal sections on scroll
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){entry.target.classList.add('show');}
-      });
-    }, {threshold:0.15});
-    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
