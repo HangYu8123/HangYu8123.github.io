@@ -10,16 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0c10;
-      --panel: #111317;
-      --muted: #9aa3b2;
-      --text: #e6edf3;
-      --accent: #66e0a3;
-      --link: #7dc4ff;
-      --ring: rgba(125,196,255,.35);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg: #ffffff;
+      --panel: #f8fafc;
+      --muted: #4b5563;
+      --text: #0f172a;
+      --accent: #065f46;
+      --link: #0b6bcb;
+      --ring: rgba(11,107,203,.18);
+      --shadow: 0 8px 24px rgba(2,6,23,.08);
       --radius: 18px;
       --maxw: 1000px;
+      --border: rgba(15,23,42,.08);
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -28,20 +29,20 @@
     a:hover { text-decoration: underline; }
 
     /* Layout */
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid rgba(255,255,255,.06); }
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 18px 20px; }
     .top { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
     .brand { display: flex; align-items: center; gap: 14px; }
-    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#1f2937,#111827); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.06); }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#e5e7eb,#cbd5e1); box-shadow: var(--shadow); border: 1px solid var(--border); }
     .name { font-weight: 800; letter-spacing: .2px; font-size: 1.25rem; }
     .tag { color: var(--muted); font-size: .95rem; }
     nav { display: flex; flex-wrap: wrap; gap: 10px; }
-    nav a { padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02); }
+    nav a { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; }
 
     main { max-width: var(--maxw); margin: 28px auto; padding: 0 20px 60px; display: grid; grid-template-columns: 1fr; gap: 26px; }
-    @media (min-width: 960px){ main { grid-template-columns: 280px 1fr; align-items: start; } }
+    @media (min-width: 960px){ main { grid-template-columns: 300px 1fr; align-items: start; } }
 
-    .panel { background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
     .panel .inner { padding: 22px; }
 
     .hero { display: grid; gap: 6px; }
@@ -49,12 +50,12 @@
     .hero p { margin: 0; color: var(--muted); }
 
     .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .pill { font-size: .9rem; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); }
+    .pill { font-size: .9rem; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: #fff; }
 
-    h2 { font-size: 1.15rem; letter-spacing: .3px; margin: 0 0 10px 0; text-transform: uppercase; color: #d6dee6; }
+    h2 { font-size: 1.15rem; letter-spacing: .3px; margin: 0 0 10px 0; text-transform: uppercase; color: #0f172a; }
     section + section { margin-top: 18px; }
     .items { display: grid; gap: 16px; }
-    .item { padding: 16px; border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); border-radius: 14px; }
+    .item { padding: 16px; border: 1px solid var(--border); background: #fff; border-radius: 14px; }
     .item h3 { margin: 0 0 6px; font-size: 1rem; }
     .item .meta { color: var(--muted); font-size: .92rem; }
 
@@ -62,7 +63,7 @@
     .footer { text-align: center; color: var(--muted); padding: 40px 0 30px; font-size: .92rem; }
 
     /* badges / callouts */
-    .callout { border: 1px dashed rgba(255,255,255,.18); padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.03); }
+    .callout { border: 1px dashed var(--border); padding: 14px 16px; border-radius: 12px; background: #fff; }
 
     /* small utilities */
     .muted { color: var(--muted); }
@@ -70,6 +71,11 @@
     @media (min-width: 700px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
 
     .latest-list li { margin: 6px 0; }
+
+    /* Publication layout with image placeholder */
+    .pub-grid { display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: start; }
+    @media (max-width: 560px){ .pub-grid { grid-template-columns: 1fr; } }
+    .thumb { width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; border: 1px dashed var(--border); background: repeating-linear-gradient(45deg,#f3f4f6 0 12px,#e5e7eb 12px 24px); display: grid; place-items: center; color: var(--muted); font-size: .85rem; }
   </style>
 </head>
 <body>
@@ -103,13 +109,12 @@
         </div>
 
         <div class="social">
-          <a class="pill" href="mailto:Hang.Yu625917@tufts.edu">Email</a>
+          <a class="pill" href="mailto:hyu08@tufts.edu">Email</a>
           <a class="pill" href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="pill" href="https://hangyu.netlify.app/" target="_blank" rel="noopener">Personal (alt) site</a>
+          <a class="pill" href="https://github.com/HangYu8123" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://www.linkedin.com/in/hang-yu-0343b2273/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="pill" href="#">CV (PDF)</a>
-        </div>
-
-        <section style="margin-top:18px">
+        </div>  <section style="margin-top:18px">
           <h2>Research Interests</h2>
           <div class="items">
             <div class="item">
@@ -148,34 +153,77 @@
           <h2>Selected Publications</h2>
           <div class="items">
             <div class="item">
-              <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
-              <div class="meta">Qidi Fang, <strong>Hang Yu</strong>, Shijie Fang, …, Elaine S. Short. Preprint, 2025.</div>
-              <div class="meta"><a href="#">PDF</a> · <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>CHARM</div>
+                <div>
+                  <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
+                  <div class="meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, the Netherlands.</div>
+                  <div class="meta"><a href="https://www.arxiv.org/abs/2407.06459" target="_blank" rel="noopener">ArXiv</a> · <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>Demonstration Sidetracks</div>
+                <div>
+                  <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
+                  <div class="meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, the Netherlands.</div>
+                  <div class="meta"><a href="#" target="_blank" rel="noopener">PDF</a> · <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>How Much Progress</div>
+                <div>
+                  <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
+                  <div class="meta"><strong>IEEE RO-MAN 2024</strong>, Pasadena, USA. Authors: <strong>Hang Yu</strong>, Qidi Fang, Sh<section id="education" style="margin-top:20px">
+          <h2>Education</h2>
+          <div class="items">
+            <div class="item">
+              <div class="kicker">Tufts University</div>
+              <div class="meta"><strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction), GPA 4.0/4.0 — <em>Expected Mar. 2026</em>. Advisor: Dr. Elaine Schaertl Short.</div>
             </div>
             <div class="item">
-              <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
-              <div class="meta">Shijie Fang, <strong>Hang Yu</strong>, Qidi Fang, …, Elaine S. Short. Preprint, 2025.</div>
-              <div class="meta"><a href="#">PDF</a> · <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
-            </div>
-            <div class="item">
-              <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
-              <div class="meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, …, Elaine S. Short. Conference, 2024. Preprint 2024.</div>
-              <div class="meta"><a href="#">PDF</a></div>
-            </div>
-            <div class="item">
-              <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
-              <div class="meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine Allen, Elaine S. Short. Conference, 2023.</div>
-              <div class="meta"><a href="#">PDF</a></div>
-            </div>
-            <div class="item">
-              <h3>Active Feedback Learning with Rich Feedback</h3>
-              <div class="meta"><strong>Hang Yu</strong>, Elaine S. Short. Conference, 2021.</div>
-              <div class="meta"><a href="#">PDF</a></div>
+              <div class="kicker">Tufts University</div>
+              <div class="meta"><strong>M.S.E.</strong> in Computer Science, GPA 3.95/4.0 — <em>Jan. 2021</em>. Advisor: Dr. Elaine Schaertl Short.</div>
             </div>
           </div>
         </section>
 
-        <section id="education" style="margin-top:20px">
+        <section id="experience" style="margin-top:20px">   <div class="meta"><strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA. Authors: <strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short.</div>
+                  <div class="meta"><a href="https://arxiv.org/abs/2311.10284" target="_blank" rel="noopener">ArXiv</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>PHIRL (under review)</div>
+                <div>
+                  <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
+                  <div class="meta"><strong>AAAI 2026 (under review, phase two)</strong>. Authors: <strong>Hang Yu</strong>, James Staley, Shijie Fang, Jindan Huang, Wenchang Gao, Reuben M. Aronson, E. Short.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>Active Feedback Learning</div>
+                <div>
+                  <h3>Active Feedback Learning with Rich Feedback</h3>
+                  <div class="meta">In <strong>HRI '21 Companion</strong>. Authors: <strong>Hang Yu</strong>, Elaine S. Short.</div>
+                  <div class="meta"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="education" style="margin-top:20px"> style="margin-top:20px">
           <h2>Education</h2>
           <div class="grid-2">
             <div class="item">
@@ -190,22 +238,26 @@
         </section>
 
         <section id="experience" style="margin-top:20px">
-          <h2>Experience</h2>
+          <h2>Experience & Service</h2>
           <div class="items">
             <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta">Graduate Researcher — Human–Robot Interaction</div>
+              <div class="kicker">Teaching Assistant</div>
+              <div class="meta">Ethics for AI, Robotics, and HRI — Spring 2024, Spring 2025; Human–Robot Interaction — Fall 2022; Human–Computer Interaction — Spring 2021; C++ Programming — Fall 2016.</div>
             </div>
             <div class="item">
-              <div class="kicker">(Add internships / industry)</div>
-              <div class="meta">Role — Team — Dates</div>
+              <div class="kicker">Reviewer / Program Committee</div>
+              <div class="meta">HRI (2021–2024), ICRA (2023–2025), CoRL (2025), AAAI (2026 PC), AAMAS (2026 PC).</div>
+            </div>
+            <div class="item">
+              <div class="kicker">Honors & Awards</div>
+              <div class="meta">ICRA Doctoral Consortium (2025); RO-MAN Travel Grant (2024); Yantai University Outstanding Student Scholarship (2017); Lanqiao Programming Competition National First Prize (2016).</div>
             </div>
           </div>
         </section>
 
-        <section id="contact" style="margin-top:20px">
+        <section id="contact" style="margin-top:20px"> style="margin-top:20px">
           <h2>Contact</h2>
-          <p>Email: <a href="mailto:Hang.Yu625917@tufts.edu">Hang.Yu625917@tufts.edu</a></p>
+          <p>Email: <a href="mailto:hyu08@tufts.edu">hyu08@tufts.edu</a></p>
           <p>Google Scholar: <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Profile</a></p>
         </section>
       </div>
