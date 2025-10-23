@@ -19,7 +19,7 @@
       --ring: rgba(11,107,203,.18);
       --shadow: 0 8px 24px rgba(2,6,23,.08);
       --radius: 18px;
-      --maxw: 1000px;
+      --maxw: 1280px;
       --border: rgba(15,23,42,.08);
     }
     * { box-sizing: border-box; }
@@ -40,7 +40,7 @@
     nav a { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; }
 
     main { max-width: var(--maxw); margin: 28px auto; padding: 0 20px 60px; display: grid; grid-template-columns: 1fr; gap: 26px; }
-    @media (min-width: 960px){ main { grid-template-columns: 300px 1fr; align-items: start; } }
+    @media (min-width: 960px){ main { grid-template-columns: 340px 1fr; align-items: start; } }
 
     .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
     .panel .inner { padding: 22px; }
@@ -114,7 +114,9 @@
           <a class="pill" href="https://github.com/HangYu8123" target="_blank" rel="noopener">GitHub</a>
           <a class="pill" href="https://www.linkedin.com/in/hang-yu-0343b2273/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="pill" href="#">CV (PDF)</a>
-        </div>  <section style="margin-top:18px">
+        </div>
+
+        <section style="margin-top:18px">
           <h2>Research Interests</h2>
           <div class="items">
             <div class="item">
@@ -142,10 +144,9 @@
         <section id="latest" style="margin-top:20px">
           <h2>Latest</h2>
           <ul class="latest-list">
-            <li><strong>Jun 2025</strong> — Preprint: <em>CHARM: Considering Human Attributes for Reinforcement Modeling</em>.</li>
-            <li><strong>Jun 2025</strong> — Preprint: <em>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</em>.</li>
-            <li><strong>Aug 2024</strong> — Conference: <em>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</em>.</li>
-            <li><strong>Oct 2023</strong> — Conference: <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>.</li>
+            <li><strong>Jun 2025</strong> — <em>Three papers accepted to <strong>IEEE RO-MAN 2025</strong></em> (Eindhoven): CHARM; Demonstration Sidetracks; See What I Mean? Expressiveness & Clarity in Robot Display Design.</li>
+            <li><strong>Aug 2024</strong> — Presented at <strong>IEEE RO-MAN 2024</strong> (Pasadena): <em>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</em>.</li>
+            <li><strong>Oct 2023</strong> — Presented at <strong>IEEE/RSJ IROS 2023</strong> (Detroit): <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>.</li>
           </ul>
         </section>
 
@@ -158,7 +159,7 @@
                 <div>
                   <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
                   <div class="meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, the Netherlands.</div>
-                  <div class="meta"><a href="https://www.arxiv.org/abs/2407.06459" target="_blank" rel="noopener">ArXiv</a> · <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
+                  <div class="meta"><span class="muted">PDF coming soon</span></div>
                 </div>
               </div>
             </div>
@@ -169,7 +170,18 @@
                 <div>
                   <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
                   <div class="meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, the Netherlands.</div>
-                  <div class="meta"><a href="#" target="_blank" rel="noopener">PDF</a> · <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
+                  <div class="meta"><span class="muted">PDF coming soon</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>Expressiveness & Clarity</div>
+                <div>
+                  <h3>See What I Mean? Expressiveness and Clarity in Robot Display Design</h3>
+                  <div class="meta">Matthew Ebisu*, <strong>Hang Yu*</strong>, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, the Netherlands.</div>
+                  <div class="meta"><span class="muted">PDF coming soon</span></div>
                 </div>
               </div>
             </div>
@@ -179,32 +191,27 @@
                 <div class="thumb">Upload figure<br>How Much Progress</div>
                 <div>
                   <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
-                  <div class="meta"><strong>IEEE RO-MAN 2024</strong>, Pasadena, USA. Authors: <strong>Hang Yu</strong>, Qidi Fang, Sh<section id="education" style="margin-top:20px">
-          <h2>Education</h2>
-          <div class="items">
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta"><strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction), GPA 4.0/4.0 — <em>Expected Mar. 2026</em>. Advisor: Dr. Elaine Schaertl Short.</div>
-            </div>
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta"><strong>M.S.E.</strong> in Computer Science, GPA 3.95/4.0 — <em>Jan. 2021</em>. Advisor: Dr. Elaine Schaertl Short.</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" style="margin-top:20px">   <div class="meta"><strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA. Authors: <strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short.</div>
-                  <div class="meta"><a href="https://arxiv.org/abs/2311.10284" target="_blank" rel="noopener">ArXiv</a></div>
+                  <div class="meta"><strong>IEEE RO-MAN 2024</strong>, Pasadena, USA. Authors: <strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short.</div>
                 </div>
               </div>
             </div>
 
             <div class="item">
               <div class="pub-grid">
-                <div class="thumb">Upload figure<br>PHIRL (under review)</div>
+                <div class="thumb">Upload figure<br>Scalar Feedback in IRL</div>
+                <div>
+                  <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
+                  <div class="meta"><strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA. Authors: <strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="pub-grid">
+                <div class="thumb">Upload figure<br>PHIRL</div>
                 <div>
                   <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
-                  <div class="meta"><strong>AAAI 2026 (under review, phase two)</strong>. Authors: <strong>Hang Yu</strong>, James Staley, Shijie Fang, Jindan Huang, Wenchang Gao, Reuben M. Aronson, E. Short.</div>
+                  <div class="meta"><strong>AAAI 2026</strong> (under review, phase two). Authors: <strong>Hang Yu</strong>, James Staley, Shijie Fang, Jindan Huang, Wenchang Gao, Reuben M. Aronson, E. Short.</div>
                 </div>
               </div>
             </div>
@@ -214,8 +221,7 @@
                 <div class="thumb">Upload figure<br>Active Feedback Learning</div>
                 <div>
                   <h3>Active Feedback Learning with Rich Feedback</h3>
-                  <div class="meta">In <strong>HRI '21 Companion</strong>. Authors: <strong>Hang Yu</strong>, Elaine S. Short.</div>
-                  <div class="meta"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
+                  <div class="meta">In <strong>HRI ’21 Companion</strong>. Authors: <strong>Hang Yu</strong>, Elaine S. Short.</div>
                 </div>
               </div>
             </div>
@@ -223,16 +229,16 @@
           </div>
         </section>
 
-        <section id="education" style="margin-top:20px"> style="margin-top:20px">
+        <section id="education" style="margin-top:20px">
           <h2>Education</h2>
-          <div class="grid-2">
+          <div class="items">
             <div class="item">
               <div class="kicker">Tufts University</div>
-              <div class="meta">Ph.D., Computer Science — Human–Robot Interaction</div>
+              <div class="meta"><strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction), GPA 4.0/4.0 — <em>Expected Mar. 2026</em>. Advisor: Dr. Elaine Schaertl Short.</div>
             </div>
             <div class="item">
-              <div class="kicker">(Add your prior degrees)</div>
-              <div class="meta">B.S./M.S., Institution — Major, Years</div>
+              <div class="kicker">Tufts University</div>
+              <div class="meta"><strong>M.S.E.</strong> in Computer Science, GPA 3.95/4.0 — <em>Jan. 2021</em>. Advisor: Dr. Elaine Schaertl Short.</div>
             </div>
           </div>
         </section>
@@ -255,7 +261,7 @@
           </div>
         </section>
 
-        <section id="contact" style="margin-top:20px"> style="margin-top:20px">
+        <section id="contact" style="margin-top:20px">
           <h2>Contact</h2>
           <p>Email: <a href="mailto:hyu08@tufts.edu">hyu08@tufts.edu</a></p>
           <p>Google Scholar: <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Profile</a></p>
