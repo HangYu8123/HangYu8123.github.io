@@ -68,7 +68,7 @@
     .callout { border: 1px dashed rgba(0,0,0,.14); padding: 14px 16px; border-radius: 12px; background: rgba(0,0,0,.02); }
 
     /* publications layout */
-    .pub-grid { display: grid; grid-template-columns: 360px 1fr; gap: 18px; align-items: start; }
+    .pub-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; align-items: start; }
     @media (max-width: 900px){ .pub-grid { grid-template-columns: 1fr; } }
     .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 14px; display: block; object-fit: cover; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 0; }
@@ -81,6 +81,9 @@
 
     .latest-list li { margin: 6px 0; }
 
+    /* Research Interests figures */
+    .ri-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .ri-figs img { width: 100%; aspect-ratio: 4/3; border-radius: 12px; object-fit: cover; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
     
   </style>
 </head>
@@ -134,6 +137,12 @@
               <div class="meta">HRI, RLHF/RLAIF, IntRL, Preference learning, Human factors</div>
             </div>
           </div>
+
+          <!-- NEW: two small figures spanning the full section width -->
+          <div class="ri-figs">
+            <img src="assets/img/interests-1.jpg" alt="Human teaching a robot with demonstrations" loading="lazy">
+            <img src="assets/img/interests-2.jpg" alt="Robot learning from rich human feedback interface" loading="lazy">
+          </div>
         </section>
       </div>
     </aside>
@@ -150,11 +159,11 @@
         <section id="latest" style="margin-top:20px">
           <h2>Latest</h2>
           <ul class="latest-list">
-            <li><strong>Aug 2025</strong> — Conference: <em>See What I Mean? Expressiveness and Clarity in Robot Display Design</em>, <strong>IEEE RO‑MAN 2025</strong>.</li>
-            <li><strong>Aug 2025</strong> — Conference: <em>CHARM: Considering Human Attributes for Reinforcement Modeling</em>, <strong>IEEE RO‑MAN 2025</strong>.</li>
-            <li><strong>Aug 2025</strong> — Conference: <em>Demonstration Sidetracks: Categorizing Systematic Non‑Optimality in Human Demonstrations</em>, <strong>IEEE RO‑MAN 2025</strong>.</li>
-            <li><strong>Aug 2024</strong> — Conference: <em>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</em>, <strong>IEEE RO‑MAN 2024</strong>.</li>
-            <li><strong>Oct 2023</strong> — Conference: <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>, <strong>IEEE/RSJ IROS 2023</strong>.</li>
+            <li><strong>Aug 2025</strong> — Conference: <em>See What I Mean? Expressiveness and Clarity in Robot Display Design</em>, <strong>IEEE RO-MAN 2025</strong>.</li>
+            <li><strong>Aug 2025</strong> — Conference: <em>CHARM: Considering Human Attributes for Reinforcement Modeling</em>, <strong>IEEE RO-MAN 2025</strong>.</li>
+            <li><strong>Aug 2025</strong> — Conference: <em>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</em>, <strong>IEEE RO-MAN 2025</strong>.</li>
+            <li><strong>Aug 2024</strong> — Conference: <em>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</em>, <strong>IEEE RO-MAN 2024</strong>.</li>
+            <li><strong>Oct 2023</strong> — Conference: <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>, <strong>IEEE/RSJ IROS 2023</strong>.</li>
           </ul>
         </section>
 
@@ -169,7 +178,7 @@
                 <img class="thumb" src="assets/img/papers/charm.png" alt="Paper figure" loading="lazy">
                 <div>
                   <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
-                  <div class="meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO‑MAN 2025</strong>, Eindhoven, NL.</div>
+                  <div class="meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
                   <div class="links"><a href="https://arxiv.org/abs/2506.13079" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.13079" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
                 </div>
               </div>
@@ -180,8 +189,8 @@
               <div class="pub-grid">
                 <img class="thumb" src="assets/img/papers/sidetrack.jpg" alt="Paper figure" loading="lazy">
                 <div>
-                  <h3>Demonstration Sidetracks: Categorizing Systematic Non‑Optimality in Human Demonstrations</h3>
-                  <div class="meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO‑MAN 2025</strong>, Eindhoven, NL.</div>
+                  <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
+                  <div class="meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
                   <div class="links"><a href="https://arxiv.org/abs/2506.11262" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.11262" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/AABL-Lab/Human-Demonstration-Sidetracks" target="_blank" rel="noopener">Dataset/Code</a></div>
                 </div>
               </div>
@@ -193,7 +202,7 @@
                 <img class="thumb" src="assets/img/papers/eyes.png"pg"g"s.jpg"detracks.jpg"lt="Paper figure" loading="lazy">
                 <div>
                   <h3>See What I Mean? Expressiveness and Clarity in Robot Display Design</h3>
-                  <div class="meta">Matthew Ebisu, <strong>Hang Yu</strong>, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO‑MAN 2025</strong>, Eindhoven, NL.</div>
+                  <div class="meta">Matthew Ebisu, <strong>Hang Yu</strong>, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
                   <div class="links"><a href="https://arxiv.org/abs/2506.16643" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.16643" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/mattufts/huamn_Cozmo_interaction" target="_blank" rel="noopener">Code</a></div>
                 </div>
               </div>
@@ -204,7 +213,7 @@
                 <img class="thumb" src="assets/img/papers/progress.jpg" alt="Paper figure" loading="lazy">
                 <div>
                   <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO‑MAN 2024</strong>, Pasadena, USA.</div>
+                  <div class="meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2024</strong>, Pasadena, USA.</div>
                   <div class="links"><a href="https://arxiv.org/abs/2407.06459" target="_blank" rel="noopener">arXiv</a>· <a href="https://aabl.cs.tufts.edu/papers/roman2024_hang.pdf" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
                 </div>
               </div>
@@ -216,7 +225,7 @@
                 <img class="thumb" src="assets/img/papers/steady.png" alt="Paper figure" loading="lazy">
                 <div>
                   <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short. <strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA.</div>
+                  <div class="meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short. <strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA.</div>
                   <div class="links"><a href="https://arxiv.org/abs/2311.10284" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2311.10284" target="_blank" rel="noopener">PDF</a></div>
                 </div>
               </div>
@@ -226,8 +235,8 @@
               <div class="pub-grid">
                 <img class="thumb" src="assets/img/papers/phirl.png" alt="Paper figure" loading="lazy">
                 <div>
-                  <h3>PHIRL: Progress‑Heuristicized Inverse Reinforcement Learning</h3>
-                  <div class="meta"><strong>AAAI 2026</strong> (under review). Hang Yu, James Staley, Shijie Fang, Jindan Huang, Wenchang Gao, Reuben M. Aronson, Elaine S. Short.</div>
+                  <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
+                  <div class="meta"><strong>AAAI 2026</strong> (under review). Hang Yu, James Staley, Shijie Fang, Jindan Huang, Wenchang Gao, Reuben M. Aronson, Elaine S. Short.</div>
                 </div>
               </div>
             </div>
@@ -239,8 +248,8 @@
               <div class="pub-grid">
                <img class="thumb" src="assets/img/papers/placeholder.jpg" alt="Paper figure" loading="lazy">
                 <div>
-                  <h3>Top‑K Interesting Preference Rules Mining Based on MaxClique</h3>
-                  <div class="meta">Zheng Tan, Jing‑lei Liu, <strong>Hang Yu</strong>, Wei Wei. <em>Expert Systems with Applications</em> 143 (2020) 113043.</div>
+                  <h3>Top-K Interesting Preference Rules Mining Based on MaxClique</h3>
+                  <div class="meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>, Wei Wei. <em>Expert Systems with Applications</em> 143 (2020) 113043.</div>
                   <div class="links"><a href="https://doi.org/10.1016/j.eswa.2019.113043" target="_blank" rel="noopener">DOI</a>· <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417419307602" target="_blank" rel="noopener">ScienceDirect</a></div>
                 </div>
               </div>
@@ -250,7 +259,7 @@
                <img class="thumb" src="assets/img/papers/placeholder.jpg" alt="Paper figure" loading="lazy">
                 <div>
                   <h3>Contextual Preference Collaborative Measure Framework Based on Belief System</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Wei Wei, Zheng Tan, Jing‑lei Liu. <em>Computer Science (计算机科学)</em> 47(4):74–84, 2020.</div>
+                  <div class="meta"><strong>Hang Yu</strong>, Wei Wei, Zheng Tan, Jing-lei Liu. <em>Computer Science (计算机科学)</em> 47(4):74–84, 2020.</div>
                   <div class="links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1" target="_blank" rel="noopener">Journal</a></div>
                 </div>
               </div>
@@ -260,7 +269,7 @@
                 <img class="thumb" src="assets/img/papers/placeholder.jpg" alt="Paper figure" loading="lazy">
                 <div>
                   <h3>Conditional Preference Mining Based on MaxClique</h3>
-                  <div class="meta">Zheng Tan, Jing‑lei Liu, <strong>Hang Yu</strong>. <em>Journal of Computer Applications (计算机应用)</em> 37(11):3107–3114, 2017.</div>
+                  <div class="meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>. <em>Journal of Computer Applications (计算机应用)</em> 37(11):3107–3114, 2017.</div>
                   <div class="links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732" target="_blank" rel="noopener">Journal</a></div>
                 </div>
               </div>
@@ -273,17 +282,17 @@
               <div class="pub-grid">
                 <img class="thumb" src="assets/img/papers/placeholder.jpg" alt="Paper figure" loading="lazy">
                 <div>
-                  <h3>Doctoral Consortium: Human‑Robot Interaction via Expressive Human Feedback</h3>
-                  <div class="meta"><strong>ICRA 2025 Doctoral Consortium</strong>.</div>
+                  <h3>Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback</h3>
+                  <div class="meta"><strong>ICRA 2025 Doctoral Consortium</strong>.</div>
                 </div>
               </div>
             </div>
             <div class="item">
               <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/phirl.png" alt="PHIRL: Progress‑Heuristicized Inverse Reinforcement Learning — RSS Workshop 2025" loading="lazy">
+                <img class="thumb" src="assets/img/papers/phirl.png" alt="PHIRL: Progress-Heuristicized Inverse Reinforcement Learning — RSS Workshop 2025" loading="lazy">
                 <div>
-                  <h3>PHIRL: Progress‑Heuristicized Inverse Reinforcement Learning</h3>
-                  <div class="meta"><strong>RSS Workshop 2025</strong>.</div>
+                  <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
+                  <div class="meta"><strong>RSS Workshop 2025</strong>.</div>
                 </div>
               </div>
             </div>
@@ -293,7 +302,7 @@
                 <div>
                   <h3>Active Feedback Learning with Rich Feedback</h3>
                   <div class="meta"><strong>HRI ’21 Companion</strong>.</div>
-                  <div class="links"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
+                  <div class="links"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
                 </div>
               </div>
             </div>
@@ -343,7 +352,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      © <span id="y"></span> Hang Yu. Built with vanilla HTML/CSS. Theme inspired by <a href="https://haoruxue.github.io/" target="_blank" rel="noopener">Haoru Xue</a>.
+      © <span id="y"></span> Hang Yu. Built with vanilla HTML/CSS. Theme inspired by <a href="https://haoruxue.github.io/" target="_blank" rel="noopener">Haoru Xue</a>.
     </div>
   </footer>
 
