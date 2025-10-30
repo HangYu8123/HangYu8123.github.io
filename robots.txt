@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hangyu8123.github.io/sitemap.xml
