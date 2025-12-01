@@ -201,17 +201,145 @@
           <div class="callout muted">Actively open to research collaborations in HRI, RLHF for robots, and human data collection methodology.</div>
         </section>
 
-        <section id="latest" style="margin-top:20px">
-          <h2>Latest</h2>
-          <ul class="latest-list">
-            <!-- <li><strong>Aug 2025</strong> — Conference: <em>See What I Mean? Expressiveness and Clarity in Robot Display Design</em>, <strong>IEEE RO-MAN 2025</strong>.</li> -->
-            <li><strong>Aug 2025</strong> — Mentoring: <em> I published <strong>THREE PAPERS</strong> with my mentees </em>, <strong>IEEE RO-MAN 2025</strong>.</li>
-            <!-- <li><strong>Aug 2025</strong> — Conference: <em>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</em>, <strong>IEEE RO-MAN 2025</strong>.</li> -->
-            <li><strong>May 2025</strong> — Awards: <em>My paper Enabling Robust Learning from Non-Experts by Leveraging Human Demonstrations and Human Feedback was selected forthe  Doctoral Consortium by </em>, <strong>IEEE ICRA 2025</strong>.</li>
-            <li><strong>Aug 2024</strong> — Awards: <em>I was granted to Student Travel Awards by</em>, <strong>IEEE RO-MAN 2024</strong>.</li>
-            <li><strong>Oct 2023</strong> — Conference: <em>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</em>, <strong>IEEE/RSJ IROS 2023</strong>.</li>
-          </ul>
-        </section>
+<style>
+  /* Container Styling */
+  .news-section {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px; /* Adjust width as needed */
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .news-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eaeaea;
+    margin: 0;
+    background-color: #f9f9f9;
+    border-radius: 8px 8px 0 0;
+  }
+
+  /* The Sliding Bar (Scrollable Area) */
+  .scroll-container {
+    max-height: 250px; /* Adjust height to control when scrollbar appears */
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Custom Scrollbar Styling (Webkit browsers) */
+  .scroll-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .scroll-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  .scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+
+  /* List Items */
+  .news-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .news-item:last-child {
+    border-bottom: none;
+  }
+
+  .news-item:hover {
+    background-color: #fcfcfc;
+  }
+
+  /* Date Styling */
+  .news-date {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* The "Signboys" (Badges) */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* Badge Colors */
+  .badge-conf { background-color: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; } /* Blue */
+  .badge-award { background-color: #fff8e1; color: #f57f17; border: 1px solid #ffecb3; } /* Gold */
+  .badge-mentor { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; } /* Green */
+
+  /* Text Content */
+  .news-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .venue {
+    font-weight: 700;
+    color: #000;
+  }
+</style>
+
+<section id="latest" class="news-section">
+  <h2 class="news-header">Latest News</h2>
+  
+  <ul class="scroll-container">
+    
+    <li class="news-item">
+      <div class="news-date">Aug 2025</div>
+      <div class="news-content">
+        <span class="badge badge-mentor">Mentoring</span>
+        Co-first-authored <strong>THREE PAPERS</strong> with my mentees at <span class="venue">IEEE RO-MAN 2025</span>.
+      </div>
+    </li>
+
+    <li class="news-item">
+      <div class="news-date">May 2025</div>
+      <div class="news-content">
+        <span class="badge badge-award">Award</span>
+        Selected for the <strong>Doctoral Consortium</strong>: <em>"Enabling Robust Learning from Non-Experts by Leveraging Human Demonstrations and Human Feedback"</em> at <span class="venue">IEEE ICRA 2025</span>.
+      </div>
+    </li>
+
+    <li class="news-item">
+      <div class="news-date">Aug 2024</div>
+      <div class="news-content">
+        <span class="badge badge-award">Award</span>
+        Recipient of the <strong>Student Travel Award</strong> at <span class="venue">IEEE RO-MAN 2024</span>.
+      </div>
+    </li>
+
+    <li class="news-item">
+      <div class="news-date">Oct 2023</div>
+      <div class="news-content">
+        <span class="badge badge-conf">Conference</span>
+        Published <em>"From 'Thumbs Up' to '10 out of 10': Reconsidering Scalar Feedback in Interactive Reinforcement Learning"</em> at <span class="venue">IEEE/RSJ IROS 2023</span>.
+      </div>
+    </li>
+
+  </ul>
+</section>
 
         <section id="publications" style="margin-top:20px">
           <h2>Publications</h2>
