@@ -43,7 +43,14 @@
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 18px 20px; }
     .top { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
     .brand { display: flex; align-items: center; gap: 14px; }
-    .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#e5e7eb,#cbd5e1); box-shadow: var(--shadow); border: 1px solid var(--border); }
+    .avatar { 
+  width: 56px; 
+  height: 56px; 
+  border-radius: 50%; 
+  object-fit: cover; /* This prevents the image from squishing */
+  box-shadow: var(--shadow); 
+  border: 1px solid var(--border); 
+}
     aside.panel { grid-area: aside; }
     .panel.main { grid-area: content; }
     .name { font-weight: 800; letter-spacing: .2px; font-size: 1.25rem; }
@@ -183,7 +190,7 @@
   <header>
     <div class="wrap top">
       <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
+        <img class="avatar" src="assets/img/profile.jpg" alt="Photo of Hang Yu">
         <div>
           <div class="name">Hang Yu</div>
           <div class="tag">Ph.D. Candidate • Tufts University — HRI & Robot Learning</div>
