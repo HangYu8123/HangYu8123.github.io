@@ -1,4 +1,4 @@
-</html><!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,173 +16,242 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
    
   <style>
     :root {
-      --bg: #ffffff;
-      --panel: #f8fafc;
-      --muted: #4b5563;
-      --text: #0f172a;
-      --accent: #065f46;
-      --link: #0b6bcb;
-      --ring: rgba(11,107,203,.18);
-      --shadow: 0 8px 24px rgba(2,6,23,.08);
-      --radius: 18px;
-      --maxw: 1440px;
-      --border: rgba(15,23,42,.08);
+      /* Deep cinematic dark theme with high-energy neon accent */
+      --bg: #050507;
+      --surface: rgba(20, 20, 25, 0.4);
+      --surface-hover: rgba(40, 40, 50, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(212, 255, 53, 0.4);
+      --text: #F4F4F5;
+      --muted: #A1A1AA;
+      --accent: #D4FF35; /* Electric Lime */
+      --radius: 24px;
+      --maxw: 1280px;
     }
+
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); line-height: 1.6; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+    
+    body { 
+      font-family: 'Outfit', sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none; /* Custom cursor */
+    }
+
+    /* Cinematic Noise Overlay */
+    .noise {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 9999; opacity: 0.04;
+      background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
+
+    /* Atmospheric Glows */
+    .glow {
+      position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1;
+      opacity: 0.4; pointer-events: none;
+    }
+    .glow-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(212,255,53,0.15) 0%, transparent 70%); }
+    .glow-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(60,20,180,0.2) 0%, transparent 70%); }
+
+    /* Typography */
+    h1, h2, h3, .brand-name { font-family: 'Unbounded', sans-serif; }
+    h1 { font-size: clamp(3rem, 8vw, 7rem); line-height: 0.9; margin: 0; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+    h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin: 0 0 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; text-transform: uppercase; letter-spacing: -0.02em; }
+    h3 { font-size: 1.4rem; font-weight: 400; margin: 0 0 0.5rem; color: var(--text); }
+    a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; cursor: none; }
+    a:hover { text-shadow: 0 0 12px var(--border-glow); }
+
+    /* Custom Cursor */
+    .cursor-dot, .cursor-outline {
+      position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+      border-radius: 50%; pointer-events: none; z-index: 10000;
+    }
+    .cursor-dot { width: 8px; height: 8px; background: var(--accent); transition: transform 0.1s; }
+    .cursor-outline { width: 40px; height: 40px; border: 1px solid var(--accent); transition: width 0.2s, height 0.2s, background 0.2s; }
+    body:has(a:hover) .cursor-outline { width: 60px; height: 60px; background: rgba(212,255,53,0.1); border-color: transparent; }
+    body:has(a:hover) .cursor-dot { transform: translate(-50%, -50%) scale(0.5); }
 
     /* Layout */
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 18px 20px; }
-    .top { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .avatar { 
-      width: 56px; 
-      height: 56px; 
-      border-radius: 50%; 
-      object-fit: cover;
-      box-shadow: var(--shadow); 
-      border: 1px solid var(--border); 
-    }
-    aside.panel { grid-area: aside; }
-    .panel.main { grid-area: content; }
-    .name { font-weight: 800; letter-spacing: .2px; font-size: 1.25rem; }
-    .tag { color: var(--muted); font-size: .95rem; }
-    nav { display: flex; flex-wrap: wrap; gap: 10px; }
-    nav a { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; }
-
-    main { max-width: var(--maxw); margin: 28px auto; padding: 0 20px 28px; display: grid; grid-template-columns: 1fr; grid-template-areas: "content"; gap: 26px; }
-    @media (min-width: 960px){ main { grid-template-columns: 380px 1fr; grid-template-areas: "aside content"; align-items: start; } }
-
-    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .panel .inner { padding: 28px; }
-
-    .hero { display: grid; gap: 6px; }
-    .hero h1 { font-size: clamp(1.4rem, 1.2rem + 1.2vw, 2rem); margin: 0; }
-    .hero p { margin: 0; color: var(--muted); }
-
-    .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .pill { font-size: .9rem; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: #fff; }
-
-    h2 { font-size: 1.15rem; letter-spacing: .3px; margin: 0 0 10px 0; text-transform: uppercase; color: #0f172a; }
-    section + section { margin-top: 18px; }
-    .items { display: grid; gap: 22px; }
-    .item { padding: 16px; border: 1px solid var(--border); background: #fff; border-radius: 14px; }
-    .item h3 { margin: 0 0 6px; font-size: 1rem; }
-    .item .meta { color: var(--muted); font-size: .92rem; }
-
-    .kicker { font-weight: 700; color: var(--accent); letter-spacing: .4px; text-transform: uppercase; font-size: .9rem; }
-    .footer { text-align: center; color: var(--muted); padding: 40px 0 30px; font-size: .92rem; }
-
-    /* badges / callouts */
-    .callout { border: 1px dashed rgba(0,0,0,.14); padding: 14px 16px; border-radius: 12px; background: rgba(0,0,0,.02); }
-
-    /* publications layout */
-    .pub-grid { display: grid; grid-template-columns: 360px 1fr; gap: 18px; align-items: start; }
-    @media (max-width: 900px){ .pub-grid { grid-template-columns: 1fr; } }
-    .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 14px; display: block; object-fit: cover; }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 0; }
-    .links a { margin-right: 10px; }
-
-    /* small utilities */
-    .muted { color: var(--muted); }
-    .grid-2 { display: grid; gap: 16px; }
-    @media (min-width: 700px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
-
-    .latest-list li { margin: 6px 0; }
-
-    /* Research Interests figures */
-    .ri-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-    .ri-figs img { width: 100%; aspect-ratio: 4/3; border-radius: 12px; object-fit: cover; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
     
-    /* --- News / Badges Styles --- */
-    .news-static-container {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 920px; 
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px; 
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      margin-top: 20px;
+    /* Floating Dock Navigation */
+    .dock-container {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+      z-index: 100; pointer-events: none; display: flex; justify-content: center; width: 100%;
     }
-    .news-header {
-      background-color: #f9f9f9;
-      padding: 15px 20px;
-      border-bottom: 1px solid #eaeaea;
-      margin: 0;
-      font-size: 1.25rem;
-      color: #333;
-      border-radius: 8px 8px 0 0;
+    nav.dock {
+      background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px; padding: 8px;
+      display: flex; gap: 4px; pointer-events: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      flex-wrap: wrap; justify-content: center;
     }
-    .news-list-static { list-style: none; padding: 0; margin: 0; }
-    .news-item {
-      padding: 18px 20px;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: background-color 0.2s ease;
+    nav.dock a {
+      padding: 10px 20px; border-radius: 100px; font-weight: 500; font-size: 0.9rem;
+      color: var(--text); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .news-item:last-child { border-bottom: none; }
-    .news-item:hover { background-color: #fafafa; }
-    .news-date { font-size: 0.85rem; color: #888; font-weight: 600; letter-spacing: 0.5px; }
-    .news-content { font-size: 0.95rem; line-height: 1.5; color: #222; }
-    .venue { font-weight: 700; color: #000; }
+    nav.dock a:hover { background: var(--text); color: var(--bg); }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      position: relative; padding: 120px 0 80px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
+    }
+    @media(min-width: 960px) { .hero-grid { grid-template-columns: 1.5fr 1fr; } }
+    
+    .avatar-wrapper { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1; margin: 0 auto; }
+    .avatar {
+      width: 100%; height: 100%; object-fit: cover;
+      /* Organic, morphing shape */
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      animation: morph 8s ease-in-out infinite both alternate;
+      border: 2px solid var(--border); box-shadow: 0 0 60px rgba(0,0,0,0.5);
+      filter: grayscale(20%) contrast(110%);
+    }
+    @keyframes morph {
+      0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+      100% { border-radius: 60% 40% 30% 70% / 60% 50% 40% 50%; }
+    }
+    
+    .hero-content p { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--muted); max-width: 600px; margin: 24px 0; font-weight: 300; }
+    .hero-content strong { color: var(--text); font-weight: 500; }
+    .hero-content em { color: var(--accent); font-style: normal; }
+    
+    .hero-tags { font-family: 'Unbounded', sans-serif; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-top: 12px; display: block; text-transform: uppercase; }
+
+    .social-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+    .social-pills a {
+      padding: 12px 24px; border-radius: 100px; border: 1px solid var(--border);
+      color: var(--text); font-weight: 500; background: var(--surface);
+      backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px;
+    }
+    .social-pills a:hover { border-color: var(--accent); background: rgba(212,255,53,0.05); color: var(--accent); transform: translateY(-3px); }
+
+    /* Sections */
+    section { padding: 80px 0; position: relative; }
+    
+    /* BOLD Callout */
+    .callout {
+      background: var(--surface); border-left: 4px solid var(--accent);
+      padding: 30px; border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 1.2rem; font-weight: 300; color: var(--text); margin-top: 40px;
+    }
+
+    /* Bento-style News */
+    .news-grid { display: grid; gap: 16px; }
+    .news-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 30px; display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+      transition: all 0.4s ease;
+    }
+    @media(max-width: 600px) { .news-card { grid-template-columns: 1fr; gap: 12px; } }
+    .news-card:hover { background: var(--surface-hover); border-color: var(--border-glow); transform: scale(1.01); }
+    .news-date { font-family: 'Unbounded', sans-serif; color: var(--muted); font-size: 0.9rem; }
+    .news-content { font-size: 1.1rem; }
+    .venue { color: var(--accent); font-weight: 600; }
+    
     .badge {
-      display: inline-flex; align-items: center; padding: 3px 8px;
-      border-radius: 4px; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; margin-right: 8px; white-space: nowrap;
+      display: inline-block; padding: 4px 12px; border-radius: 100px;
+      font-size: 0.7rem; font-family: 'Unbounded', sans-serif; text-transform: uppercase;
+      margin-right: 12px; margin-bottom: 8px; letter-spacing: 0.05em;
+      border: 1px solid currentColor;
     }
-    .bg-mentor { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-    .bg-award { background-color: #fff8e1; color: #f57f17; border: 1px solid #ffecb3; }
-    .bg-conf { background-color: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+    .bg-mentor { color: #A78BFA; } /* Soft purple */
+    .bg-award { color: var(--accent); }
+    .bg-conf { color: #60A5FA; } /* Soft blue */
 
-    /* --- Outside Research Grid Layout --- */
-    .personal-grid {
-      display: grid;
-      gap: 12px;
-      /* Mobile default: stack everything */
-      grid-template-columns: 1fr; 
+    /* Advanced Publications Grid */
+    .pub-masonry {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px;
     }
+    @media(max-width: 500px) { .pub-masonry { grid-template-columns: 1fr; } }
     
-    .pg-item {
-      border-radius: 12px;
-      overflow: hidden;
+    .pub-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pub-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    
+    .pub-thumb { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; border-bottom: 1px solid var(--border); }
+    .pub-thumb img { 
+      width: 100%; height: 100%; object-fit: cover; 
+      filter: grayscale(100%) contrast(1.2); transition: all 0.5s ease;
+    }
+    .pub-card:hover .pub-thumb img { filter: grayscale(0%) contrast(1); transform: scale(1.05); }
+    
+    .pub-info { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+    .pub-meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+    .pub-meta strong { color: var(--text); }
+    
+    .pub-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
+    .pub-links a {
+      font-family: 'Unbounded', sans-serif; font-size: 0.75rem; text-transform: uppercase;
+      padding: 8px 16px; border: 1px solid var(--border); border-radius: 100px;
+      color: var(--text); transition: all 0.3s;
+    }
+    .pub-links a:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+    /* Research Interests Bento */
+    .interest-bento {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;
+    }
+    @media(max-width: 768px) { .interest-bento { grid-template-columns: 1fr; } }
+    .bento-box {
+      background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: var(--radius);
+    }
+    .bento-box .kicker { font-family: 'Unbounded', sans-serif; color: var(--accent); font-size: 0.8rem; margin-bottom: 12px; display: block; text-transform: uppercase; }
+    .ri-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .ri-figs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; border: 1px solid var(--border); filter: grayscale(80%); transition: filter 0.4s; }
+    .ri-figs img:hover { filter: grayscale(0%); }
+
+    /* Simple Lists for Education/Experience */
+    .list-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: var(--radius);
+      margin-bottom: 16px; transition: border-color 0.3s;
+    }
+    .list-card:hover { border-color: var(--border-glow); }
+    .list-card .kicker { font-family: 'Unbounded', sans-serif; font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+    .list-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+    .list-card ul li { margin-bottom: 8px; }
+
+    /* Personal Life Mosaic */
+    .personal-mosaic {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 250px;
+    }
+    @media(max-width: 900px) { .personal-mosaic { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 500px) { .personal-mosaic { grid-template-columns: 1fr; grid-auto-rows: 300px; } }
+    
+    .mosaic-item {
+      border-radius: var(--radius); overflow: hidden; position: relative;
       border: 1px solid var(--border);
-      background: #fff;
     }
+    .mosaic-item img, .mosaic-item video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mosaic-item:hover img, .mosaic-item:hover video { transform: scale(1.05); }
+    .mosaic-video { grid-column: span 2; grid-row: span 2; }
+    @media(max-width: 500px) { .mosaic-video { grid-column: span 1; grid-row: span 1; } }
 
-    .pg-item img, .pg-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    /* Footer */
+    .footer { text-align: center; padding: 60px 0; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 80px; }
 
-    /* Desktop Layout (Images flanking video) */
-    @media (min-width: 768px) {
-      .personal-grid {
-        grid-template-columns: 1fr 2fr 1fr; /* Left Img - Center Video (Double Width) - Right Img */
-        grid-template-rows: 1fr 1fr; /* Two equal height rows */
-        aspect-ratio: 16 / 9; /* General aspect ratio for the whole block */
-      }
-      
-      .pg-video {
-        grid-column: 2; /* Middle column */
-        grid-row: 1 / span 2; /* Span both rows */
-      }
-      .pg-img1 { grid-column: 1; grid-row: 1; }
-      .pg-img2 { grid-column: 3; grid-row: 1; }
-      .pg-img3 { grid-column: 1; grid-row: 2; }
-      .pg-img4 { grid-column: 3; grid-row: 2; }
-    }
+    /* Reveal Animations */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
   </style>
 
   <script type="application/ld+json">
@@ -227,412 +296,362 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="wrap top">
-      <div class="brand">
-        <img class="avatar" src="assets/img/profile.jpg" alt="Photo of Hang Yu">
-        <div>
-          <div class="name">Hang Yu</div>
-          <div class="tag">Ph.D. Candidate • Tufts University — HRI & Robot Learning</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#latest">Latest</a>
-        <a href="#publications">Publications</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <aside class="panel">
-      <div class="inner">
-        <div class="hero">
+  <div class="noise"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
 
-          <h1>
-          Hang Yu (余航)
-          <span style="display:block; font-size:0.6em; font-weight:400; color:var(--muted); margin-top:6px; line-height:1.3;">
-            Tufts University Robot Learning RLHF Reinforcement Learning LfD GenAI
-          </span>
-        </h1>
+  <div class="dock-container">
+    <nav class="dock">
+      <a href="#about">About</a>
+      <a href="#latest">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#personal">Life</a>
+    </nav>
+  </div>
+
+  <main class="container">
+    
+    <section class="hero-section reveal">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-tags">Tufts University • Robot Learning • RLHF • Reinforcement Learning • LfD • GenAI</span>
+          <h1>Hang Yu <span style="font-size: 0.3em; vertical-align: middle; color: var(--muted);">(余航)</span></h1>
           <p>Ph.D. Candidate, <strong>Tufts University</strong>. My research focuses on <em>Human–Robot Interaction</em> (HRI), <em>human-in-the-loop learning</em>, <em>RLHF</em>, and <em>Imitation Learning</em>.</p>
-        </div>
-
-        <div class="social">
-          <a class="pill" href="mailto:hyu08@tufts.edu">Email</a>
-          <a class="pill" href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="pill" href="https://github.com/HangYu8123" target="_blank" rel="noopener">GitHub</a>
-          <a class="pill" href="https://www.linkedin.com/in/hang-yu-0343b2273/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="pill" href="assets/cv.pdf" target="_blank" rel="noopener" type="application/pdf">CV (PDF)</a>
-        </div>
-
-        <section style="margin-top:18px">
-          <h2>Research Interests</h2>
-          <div class="items">
-            <div class="item">
-              <div><span class="kicker">Topics</span></div>
-              <div class="meta">Interactive RL • Learning from Human Feedback • Learning from Demonstrations • Human modeling for robot learning • Evaluation & datasets for HRI</div>
-            </div>
-            <div class="item">
-              <div><span class="kicker">Keywords</span></div>
-              <div class="meta">HRI, RLHF/RLAIF, IntRL, Preference learning, Human factors</div>
-            </div>
-          </div>
-
-          <div class="ri-figs" style="margin-top: 3rem;">
-            <img src="assets/img/interests-1.png" alt="Human teaching a robot using kinesthetic teaching demonstrations for imitation learning" loading="lazy">
-            <img src="assets/img/interests-2.jpg" alt="Interface for robot learning from rich human feedback showing scalar and directional inputs" loading="lazy">
-          </div>
-        </section>
-      </div>
-    </aside>
-
-    <div class="panel main">
-      <div class="inner">
-        <section id="about">
-          <h2>About</h2>
-          <p>I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the <a href="https://aabl.cs.tufts.edu/" target="_blank" rel="noopener">Assistive Agent and Behavior Learning lab (AABL)</a>. I work on improving robot learning from multi-modular human teaching, including human feedback, human demonstrations, and outputs from VLM/LLM. Most of my data is open-sourced and collected from public spaces with real-world non-expert users.</p>
-          <div class="callout muted">Actively open to research collaborations in HRI, RLHF for robots, and human data collection methodology.</div>
-        </section>
-
-        <section id="latest" class="news-static-container">
-          <h2 class="news-header">News</h2>
-          <ul class="news-list-static">
-            <li class="news-item">
-              <div class="news-date">Aug 2025</div>
-              <div class="news-content">
-                <span class="badge bg-mentor">🎓 Mentoring</span>
-                Co-authored <strong>three papers</strong> with my mentees at <span class="venue">IEEE RO-MAN 2025</span>.
-              </div>
-            </li>
-            <li class="news-item">
-              <div class="news-date">May 2025</div>
-              <div class="news-content">
-                <span class="badge bg-award">🏆 Award</span>
-                Selected for the <strong>Doctoral Consortium</strong>: <em>"Enabling Robust Learning from Non-Experts"</em> at <span class="venue">IEEE ICRA 2025</span>.
-              </div>
-            </li>
-            <li class="news-item">
-              <div class="news-date">Aug 2024</div>
-              <div class="news-content">
-                <span class="badge bg-award">🏆 Award</span>
-                Recipient of the <strong>Student Travel Award</strong> at <span class="venue">IEEE RO-MAN 2024</span>.
-              </div>
-            </li>
-            <li class="news-item">
-              <div class="news-date">Oct 2023</div>
-              <div class="news-content">
-                <span class="badge bg-conf">📄 Paper</span>
-                Published <em>"From 'Thumbs Up' to '10 out of 10'"</em> at <span class="venue">IEEE/RSJ IROS 2023</span>.
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <section id="publications" style="margin-top:20px">
-          <h2>Publications</h2>
-
-          <h3 style="margin:18px 0 8px">Conference Papers</h3>
-
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/charm.png" alt="CHARM framework diagram showing human attribute modeling for reinforcement learning" loading="lazy">
-                <div>
-                  <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
-                  <div class="meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
-                  <div class="links"><a href="https://arxiv.org/abs/2506.13079" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.13079" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/sidetrack.jpg" alt="Visual examples of systematic non-optimality in human demonstrations from the Sidetracks dataset" loading="lazy">
-                <div>
-                  <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
-                  <div class="meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
-                  <div class="links"><a href="https://arxiv.org/abs/2506.11262" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.11262" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/AABL-Lab/Human-Demonstration-Sidetracks" target="_blank" rel="noopener">Dataset/Code</a></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="items">
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/eyes.png" alt="Cozmo robot face display designs testing expressiveness and clarity for HRI" loading="lazy">
-                <div>
-                  <h3>See What I Mean? Expressiveness and Clarity in Robot Display Design</h3>
-                  <div class="meta">Matthew Ebisu, <strong>Hang Yu</strong>, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
-                  <div class="links"><a href="https://arxiv.org/abs/2506.16643" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2506.16643" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/mattufts/huamn_Cozmo_interaction" target="_blank" rel="noopener">Code</a></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/progress.jpg" alt="Human feedback signal interface showing progress bars for teaching robots" loading="lazy">
-                <div>
-                  <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short. <strong>IEEE RO-MAN 2024</strong>, Pasadena, USA.</div>
-                  <div class="links"><a href="https://arxiv.org/abs/2407.06459" target="_blank" rel="noopener">arXiv</a>· <a href="https://aabl.cs.tufts.edu/papers/roman2024_hang.pdf" target="_blank" rel="noopener">PDF</a>· <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/steady.png" alt="Comparison of scalar feedback versus '10 out of 10' feedback scales in interactive reinforcement learning" loading="lazy">
-                <div>
-                  <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short. <strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA.</div>
-                  <div class="links"><a href="https://arxiv.org/abs/2311.10284" target="_blank" rel="noopener">arXiv</a>· <a href="https://arxiv.org/pdf/2311.10284" target="_blank" rel="noopener">PDF</a></div>
-                </div>
-              </div>
-            </div>
-
-          <h3 style="margin:22px 0 8px">Journal Publications</h3>
-          <div class="items">
-            <div class="item">
-              <div class="pub-grid">
-               <img class="thumb" src="assets/img/papers/top-k.png" alt="Diagram illustrating Top-K Interesting Preference Rules Mining Based on MaxClique" loading="lazy">
-                <div>
-                  <h3>Top-K Interesting Preference Rules Mining Based on MaxClique</h3>
-                  <div class="meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>, Wei Wei. <em>Expert Systems with Applications</em> 143 (2020) 113043.</div>
-                  <div class="links"><a href="https://doi.org/10.1016/j.eswa.2019.113043" target="_blank" rel="noopener">DOI</a>· <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417419307602" target="_blank" rel="noopener">ScienceDirect</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="pub-grid">
-               <img class="thumb" src="assets/img/papers/belief.png" alt="Framework for Contextual Preference Collaborative Measure Based on Belief System" loading="lazy">
-                <div>
-                  <h3>Contextual Preference Collaborative Measure Framework Based on Belief System</h3>
-                  <div class="meta"><strong>Hang Yu</strong>, Wei Wei, Zheng Tan, Jing-lei Liu. <em>Computer Science (计算机科学)</em> 47(4):74–84, 2020.</div>
-                  <div class="links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1" target="_blank" rel="noopener">Journal</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/maxclique.png" alt="MaxClique based Conditional Preference Mining diagram" loading="lazy">
-                <div>
-                  <h3>Conditional Preference Mining Based on MaxClique</h3>
-                  <div class="meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>. <em>Journal of Computer Applications (计算机应用)</em> 37(11):3107–3114, 2017.</div>
-                  <div class="links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732" target="_blank" rel="noopener">Journal</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h3 style="margin:22px 0 8px">Workshops & Doctoral Consortium</h3>
-          <div class="items">
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/icra_dc.jpg" alt="Diagram for Human-Robot Interaction via Expressive Human Feedback" loading="lazy">
-                <div>
-                  <h3>Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback</h3>
-                  <div class="meta"><strong>ICRA 2025 Doctoral Consortium</strong>.</div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/phirl.png" alt="PHIRL framework for Progress-Heuristicized Inverse Reinforcement Learning" loading="lazy">
-                <div>
-                  <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
-                  <div class="meta"><strong>RSS Workshop 2025</strong>.</div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="pub-grid">
-                <img class="thumb" src="assets/img/papers/active.jpg" alt="Active Feedback Learning interface" loading="lazy">
-                <div>
-                  <h3>Active Feedback Learning with Rich Feedback</h3>
-                  <div class="meta"><strong>HRI ’21 Companion</strong>.</div>
-                  <div class="links"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-<!-- <section id="education" style="margin-top:20px">
-          <h2>Education</h2>
-          <div class="items">
-            
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta">
-                <strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction)<br>
-                GPA 4.0/4.0 — <em>Expected Mar. 2026</em><br>
-                Advisor: Dr. Elaine Schaertl Short
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta">
-                <strong>M.S.E.</strong> in Computer Science<br>
-                GPA 3.95/4.0 — <em>Jan. 2021</em><br>
-                Advisor: Dr. Elaine Schaertl Short
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <section id="experience" style="margin-top:20px">
-          <h2>Experience & Service</h2>
-          <div class="items">
-            
-            <div class="item">
-              <div class="kicker">Teaching Assistant</div>
-              <ul>
-                <li>Ethics for AI, Robotics, and HRI — Spring 2024, Spring 2025</li>
-                <li>Human–Robot Interaction — Fall 2022</li>
-                <li>Human–Computer Interaction — Spring 2021</li>
-                <li>C++ Programming — Fall 2016</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Reviewer / Program Committee</div>
-              <ul>
-                <li>HRI (2021–2024)</li>
-                <li>ICRA (2023–2025)</li>
-                <li>CoRL (2025)</li>
-                <li>AAAI (2026 PC)</li>
-                <li>AAMAS (2026 PC)</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Honors & Awards</div>
-              <ul>
-                <li><strong>2025:</strong> ICRA Doctoral Consortium</li>
-                <li><strong>2024:</strong> RO-MAN Travel Grant</li>
-                <li><strong>2017:</strong> Yantai University Outstanding Student Scholarship</li>
-                <li><strong>2016:</strong> Lanqiao Programming Competition National First Prize</li>
-              </ul>
-            </div>
-
-          </div> -->
-        </section><section id="education" style="margin-top:20px">
-          <h2>Education</h2>
-          <div class="items">
-            
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta">
-                <strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction)<br>
-                GPA 4.0/4.0 — <em>Expected Mar. 2026</em><br>
-                Advisor: Dr. Elaine Schaertl Short
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Tufts University</div>
-              <div class="meta">
-                <strong>M.S.E.</strong> in Computer Science<br>
-                GPA 3.95/4.0 — <em>Jan. 2021</em><br>
-                Advisor: Dr. Elaine Schaertl Short
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <section id="experience" style="margin-top:20px">
-          <h2>Experience & Service</h2>
-          <div class="items">
-            
-            <div class="item">
-              <div class="kicker">Teaching Assistant</div>
-              <ul>
-                <li>Ethics for AI, Robotics, and HRI — Spring 2024, Spring 2025</li>
-                <li>Human–Robot Interaction — Fall 2022</li>
-                <li>Human–Computer Interaction — Spring 2021</li>
-                <li>C++ Programming — Fall 2016</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Reviewer / Program Committee</div>
-              <ul>
-                <li>HRI (2021–2024)</li>
-                <li>ICRA (2023–2025)</li>
-                <li>CoRL (2025)</li>
-                <li>AAAI (2026 PC)</li>
-                <li>AAMAS (2026 PC)</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="kicker">Honors & Awards</div>
-              <ul>
-                <li><strong>2025:</strong> ICRA Doctoral Consortium</li>
-                <li><strong>2024:</strong> RO-MAN Travel Grant</li>
-                <li><strong>2017:</strong> Yantai University Outstanding Student Scholarship</li>
-                <li><strong>2016:</strong> Lanqiao Programming Competition National First Prize</li>
-              </ul>
-            </div>
-
-          </div>
-        </section>
-
-        <section id="contact" style="margin-top:20px">
-          <h2>Contact</h2>
-          <p>Email: <a href="mailto:hyu08@tufts.edu">hyu08@tufts.edu</a></p>
-          <p>Google Scholar: <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Profile</a></p>
-        </section>
-      </div>
-    </div>
-  </main>
-  
-  <div class="wrap">
-    <section id="personal" class="panel">
-      <div class="inner">
-        <h2 style="text-align: center; font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 30px; text-transform: none;">A Little More about Me</h2>
-        <div class="personal-grid">
-          <div class="pg-item pg-img1">
-            <img src="assets/img/life/img1.jpg" alt="Outside research photo 1" loading="lazy">
-          </div>
           
-          <div class="pg-item pg-video">
-            <video controls muted loop playsinline>
-              <source src="assets/img/life/video.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div class="social-pills">
+            <a href="mailto:hyu08@tufts.edu">Email</a>
+            <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="https://github.com/HangYu8123" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/hang-yu-0343b2273/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="assets/cv.pdf" target="_blank" rel="noopener" type="application/pdf" style="border-color: var(--accent); color: var(--accent);">CV (PDF)</a>
           </div>
+        </div>
+        <div class="avatar-wrapper">
+          <img class="avatar" src="assets/img/profile.jpg" alt="Photo of Hang Yu">
+        </div>
+      </div>
+    </section>
 
-          <div class="pg-item pg-img2">
-            <img src="assets/img/life/img2.jpg" alt="Outside research photo 2" loading="lazy">
+    <section id="about" class="reveal">
+      <h2>About & Interests</h2>
+      
+      <div class="interest-bento">
+        <div class="bento-box">
+          <span class="kicker">Topics</span>
+          <p style="margin:0; font-size: 1.1rem;">Interactive RL • Learning from Human Feedback • Learning from Demonstrations • Human modeling for robot learning • Evaluation & datasets for HRI</p>
+        </div>
+        <div class="bento-box">
+          <span class="kicker">Keywords</span>
+          <p style="margin:0; font-size: 1.1rem;">HRI, RLHF/RLAIF, IntRL, Preference learning, Human factors</p>
+        </div>
+      </div>
+
+      <p style="font-size: 1.3rem; max-width: 900px; color: var(--muted);">
+        I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the <a href="https://aabl.cs.tufts.edu/" target="_blank" rel="noopener">Assistive Agent and Behavior Learning lab (AABL)</a>. I work on improving robot learning from multi-modular human teaching, including human feedback, human demonstrations, and outputs from VLM/LLM. Most of my data is open-sourced and collected from public spaces with real-world non-expert users.
+      </p>
+
+      <div class="callout">
+        Actively open to research collaborations in HRI, RLHF for robots, and human data collection methodology.
+      </div>
+
+      <div class="ri-figs" style="margin-top: 40px;">
+        <img src="assets/img/interests-1.png" alt="Human teaching a robot using kinesthetic teaching demonstrations for imitation learning" loading="lazy">
+        <img src="assets/img/interests-2.jpg" alt="Interface for robot learning from rich human feedback showing scalar and directional inputs" loading="lazy">
+      </div>
+    </section>
+
+    <section id="latest" class="reveal">
+      <h2>News</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-date">Aug 2025</div>
+          <div class="news-content">
+            <span class="badge bg-mentor">🎓 Mentoring</span><br>
+            Co-authored <strong>three papers</strong> with my mentees at <span class="venue">IEEE RO-MAN 2025</span>.
           </div>
-
-          <div class="pg-item pg-img3">
-            <img src="assets/img/life/img3.jpg" alt="Outside research photo 3" loading="lazy">
+        </div>
+        <div class="news-card">
+          <div class="news-date">May 2025</div>
+          <div class="news-content">
+            <span class="badge bg-award">🏆 Award</span><br>
+            Selected for the <strong>Doctoral Consortium</strong>: <em>"Enabling Robust Learning from Non-Experts"</em> at <span class="venue">IEEE ICRA 2025</span>.
           </div>
-
-          <div class="pg-item pg-img4">
-            <img src="assets/img/life/img4.jpg" alt="Outside research photo 4" loading="lazy">
+        </div>
+        <div class="news-card">
+          <div class="news-date">Aug 2024</div>
+          <div class="news-content">
+            <span class="badge bg-award">🏆 Award</span><br>
+            Recipient of the <strong>Student Travel Award</strong> at <span class="venue">IEEE RO-MAN 2024</span>.
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-date">Oct 2023</div>
+          <div class="news-content">
+            <span class="badge bg-conf">📄 Paper</span><br>
+            Published <em>"From 'Thumbs Up' to '10 out of 10'"</em> at <span class="venue">IEEE/RSJ IROS 2023</span>.
           </div>
         </div>
       </div>
     </section>
-  </div>
+
+    <section id="publications" class="reveal">
+      <h2>Publications</h2>
+
+      <h3 style="margin: 40px 0 20px; color: var(--accent); font-family: 'Unbounded', sans-serif;">Conference Papers</h3>
+      <div class="pub-masonry">
+        
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/charm.png" alt="CHARM framework diagram showing human attribute modeling for reinforcement learning" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>CHARM: Considering Human Attributes for Reinforcement Modeling</h3>
+            <div class="pub-meta">Qidi Fang*, <strong>Hang Yu*</strong>, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. <br><strong style="color: var(--accent);">IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2506.13079" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2506.13079" target="_blank" rel="noopener">PDF</a>
+              <a href="https://github.com/AABL-Lab/CHARM" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/sidetrack.jpg" alt="Visual examples of systematic non-optimality in human demonstrations from the Sidetracks dataset" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations</h3>
+            <div class="pub-meta">Shijie Fang*, <strong>Hang Yu*</strong>, Qidi Fang, Reuben M. Aronson, Elaine S. Short. <br><strong style="color: var(--accent);">IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2506.11262" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2506.11262" target="_blank" rel="noopener">PDF</a>
+              <a href="https://github.com/AABL-Lab/Human-Demonstration-Sidetracks" target="_blank" rel="noopener">Data/Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/eyes.png" alt="Cozmo robot face display designs testing expressiveness and clarity for HRI" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>See What I Mean? Expressiveness and Clarity in Robot Display Design</h3>
+            <div class="pub-meta">Matthew Ebisu, <strong>Hang Yu</strong>, Reuben M. Aronson, Elaine S. Short. <br><strong>IEEE RO-MAN 2025</strong>, Eindhoven, NL.</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2506.16643" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2506.16643" target="_blank" rel="noopener">PDF</a>
+              <a href="https://github.com/mattufts/huamn_Cozmo_interaction" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/progress.jpg" alt="Human feedback signal interface showing progress bars for teaching robots" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots</h3>
+            <div class="pub-meta"><strong>Hang Yu</strong>, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short. <br><strong>IEEE RO-MAN 2024</strong>, Pasadena, USA.</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2407.06459" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://aabl.cs.tufts.edu/papers/roman2024_hang.pdf" target="_blank" rel="noopener">PDF</a>
+              <a href="https://github.com/TeachingwithProgress/Non-Expert_Demonstrations" target="_blank" rel="noopener">Dataset</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/steady.png" alt="Comparison of scalar feedback versus '10 out of 10' feedback scales in interactive reinforcement learning" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning</h3>
+            <div class="pub-meta"><strong>Hang Yu</strong>, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short. <br><strong>IEEE/RSJ IROS 2023</strong>, Detroit, USA.</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2311.10284" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2311.10284" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 60px 0 20px; color: var(--accent); font-family: 'Unbounded', sans-serif;">Journal Publications</h3>
+      <div class="pub-masonry">
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/top-k.png" alt="Diagram illustrating Top-K Interesting Preference Rules Mining Based on MaxClique" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Top-K Interesting Preference Rules Mining Based on MaxClique</h3>
+            <div class="pub-meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>, Wei Wei. <br><em>Expert Systems with Applications</em> 143 (2020) 113043.</div>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1016/j.eswa.2019.113043" target="_blank" rel="noopener">DOI</a>
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417419307602" target="_blank" rel="noopener">ScienceDirect</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/belief.png" alt="Framework for Contextual Preference Collaborative Measure Based on Belief System" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Contextual Preference Collaborative Measure Framework Based on Belief System</h3>
+            <div class="pub-meta"><strong>Hang Yu</strong>, Wei Wei, Zheng Tan, Jing-lei Liu. <br><em>Computer Science (计算机科学)</em> 47(4):74–84, 2020.</div>
+            <div class="pub-links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1" target="_blank" rel="noopener">Journal</a></div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/maxclique.png" alt="MaxClique based Conditional Preference Mining diagram" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Conditional Preference Mining Based on MaxClique</h3>
+            <div class="pub-meta">Zheng Tan, Jing-lei Liu, <strong>Hang Yu</strong>. <br><em>Journal of Computer Applications (计算机应用)</em> 37(11):3107–3114, 2017.</div>
+            <div class="pub-links"><a href="https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732" target="_blank" rel="noopener">Journal</a></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 60px 0 20px; color: var(--accent); font-family: 'Unbounded', sans-serif;">Workshops & Doctoral Consortium</h3>
+      <div class="pub-masonry">
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/icra_dc.jpg" alt="Diagram for Human-Robot Interaction via Expressive Human Feedback" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback</h3>
+            <div class="pub-meta"><strong>ICRA 2025 Doctoral Consortium</strong>.</div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/phirl.png" alt="PHIRL framework for Progress-Heuristicized Inverse Reinforcement Learning" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>PHIRL: Progress-Heuristicized Inverse Reinforcement Learning</h3>
+            <div class="pub-meta"><strong>RSS Workshop 2025</strong>.</div>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-thumb"><img src="assets/img/papers/active.jpg" alt="Active Feedback Learning interface" loading="lazy"></div>
+          <div class="pub-info">
+            <h3>Active Feedback Learning with Rich Feedback</h3>
+            <div class="pub-meta"><strong>HRI ’21 Companion</strong>.</div>
+            <div class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3434074.3447207" target="_blank" rel="noopener">ACM DL</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
+      <section id="education" class="reveal" style="padding-bottom: 0;">
+        <h2>Education</h2>
+        <div class="list-card">
+          <div class="kicker">Tufts University</div>
+          <div style="color: var(--muted);">
+            <strong>Ph.D.</strong> in Computer Science (Human–Robot Interaction)<br>
+            GPA 4.0/4.0 — <em style="color: var(--text);">Expected Mar. 2026</em><br>
+            Advisor: Dr. Elaine Schaertl Short
+          </div>
+        </div>
+        <div class="list-card">
+          <div class="kicker">Tufts University</div>
+          <div style="color: var(--muted);">
+            <strong>M.S.E.</strong> in Computer Science<br>
+            GPA 3.95/4.0 — <em style="color: var(--text);">Jan. 2021</em><br>
+            Advisor: Dr. Elaine Schaertl Short
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="reveal" style="padding-bottom: 0;">
+        <h2>Experience & Service</h2>
+        <div class="list-card">
+          <div class="kicker">Teaching Assistant</div>
+          <ul>
+            <li>Ethics for AI, Robotics, and HRI — Spring 2024, Spring 2025</li>
+            <li>Human–Robot Interaction — Fall 2022</li>
+            <li>Human–Computer Interaction — Spring 2021</li>
+            <li>C++ Programming — Fall 2016</li>
+          </ul>
+        </div>
+        <div class="list-card">
+          <div class="kicker">Reviewer / Program Committee</div>
+          <ul>
+            <li>HRI (2021–2024)</li>
+            <li>ICRA (2023–2025)</li>
+            <li>CoRL (2025)</li>
+            <li>AAAI (2026 PC)</li>
+            <li>AAMAS (2026 PC)</li>
+          </ul>
+        </div>
+        <div class="list-card">
+          <div class="kicker">Honors & Awards</div>
+          <ul>
+            <li><strong style="color:var(--text)">2025:</strong> ICRA Doctoral Consortium</li>
+            <li><strong style="color:var(--text)">2024:</strong> RO-MAN Travel Grant</li>
+            <li><strong style="color:var(--text)">2017:</strong> Yantai University Outstanding Student Scholarship</li>
+            <li><strong style="color:var(--text)">2016:</strong> Lanqiao Programming Competition National First Prize</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <section id="personal" class="reveal">
+      <h2>A Little More about Me</h2>
+      <div class="personal-mosaic">
+        <div class="mosaic-item"><img src="assets/img/life/img1.jpg" alt="Outside research photo 1" loading="lazy"></div>
+        
+        <div class="mosaic-item mosaic-video">
+          <video controls muted loop playsinline>
+            <source src="assets/img/life/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="mosaic-item"><img src="assets/img/life/img2.jpg" alt="Outside research photo 2" loading="lazy"></div>
+        <div class="mosaic-item"><img src="assets/img/life/img3.jpg" alt="Outside research photo 3" loading="lazy"></div>
+        <div class="mosaic-item"><img src="assets/img/life/img4.jpg" alt="Outside research photo 4" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal" style="text-align: center; padding-bottom: 40px;">
+      <h2>Contact</h2>
+      <p style="font-size: 1.5rem;">
+        Email: <a href="mailto:hyu08@tufts.edu">hyu08@tufts.edu</a><br>
+        Google Scholar: <a href="https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Profile</a>
+      </p>
+    </section>
+  </main>
 
   <footer class="footer">
-    <div class="wrap">
-      © <span id="y"></span> Hang Yu. Built with vanilla HTML/CSS.
+    <div class="container">
+      © <span id="y"></span> Hang Yu. Designed with intentionality. Built with vanilla HTML/CSS.
     </div>
   </footer>
 
   <script>
+    // Set Year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Custom Cursor Logic
+    const dot = document.querySelector('.cursor-dot');
+    const outline = document.querySelector('.cursor-outline');
+    
+    window.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      
+      // Delay outline slightly for smooth fluid feel
+      setTimeout(() => {
+        outline.style.left = e.clientX + 'px';
+        outline.style.top = e.clientY + 'px';
+      }, 50);
+    });
+
+    // Reveal on Scroll
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
