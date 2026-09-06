@@ -102,20 +102,41 @@ def generate(source):
     social = list(first(bio, cls="social").find("a"))
     profiles = [n.attrs["href"] for n in social if n.attrs["href"].startswith("https:")]
     person_id, page_id = base + "#person", base + "#profile"
+    books = list(doc.find("article", "book"))
+    by_id = {b.attrs["id"]: b for b in books}
+    # Research topics and keywords come from the About book; honors from the Experience book.
+    knows = []
+    for meta_node in by_id["about"].find("div", "meta"):
+        for part in re.split(r"\s*[•,]\s*", clean(meta_node.text())):
+            if part and part not in knows:
+                knows.append(part)
+    awards = [clean(li.text()) for entry in by_id["experience"].find("div", "entry")
+              if clean(first(entry, cls="kicker").text()).startswith("Honors") for li in entry.find("li")]
+    cn = clean(first(bio, cls="cn").text())
+    tufts = {"@type": "CollegeOrUniversity", "name": "Tufts University", "url": "https://www.tufts.edu/",
+             "sameAs": "https://en.wikipedia.org/wiki/Tufts_University"}
+    lab = {"@type": "ResearchOrganization", "name": "Assistive Agent and Behavior Learning Lab (AABL)", "alternateName": "AABL Lab",
+           "url": "https://aabl.cs.tufts.edu/", "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Tufts University"}}
     person = {
-        "@type": "Person", "@id": person_id, "name": "Hang Yu",
-        "alternateName": clean(first(bio, cls="cn").text()), "url": base,
+        "@type": "Person", "@id": person_id, "name": "Hang Yu", "givenName": "Hang", "familyName": "Yu",
+        "alternateName": [cn, "Hang Yu ({})".format(cn), "H. Yu"], "url": base,
         "image": urljoin(base, first(first(doc, cls="portrait"), "img").attrs["src"]),
         "description": clean(first(bio, cls="text").text()),
-        "jobTitle": "Ph.D. Candidate",
-        "affiliation": {"@type": "CollegeOrUniversity", "name": "Tufts University"},
+        "jobTitle": "Ph.D. Candidate in Computer Science",
+        # The current role and affiliations are stated on the page; update these when they change.
+        "affiliation": [tufts, lab],
+        "memberOf": lab,
+        "worksFor": [{"@type": "Organization", "name": "ABB Robotics", "url": "https://new.abb.com/products/robotics"}, tufts],
+        "alumniOf": tufts,
+        "knowsAbout": knows,
+        "knowsLanguage": ["en", "zh"],
+        "award": awards,
         "email": next(n.attrs["href"] for n in social if n.attrs["href"].startswith("mailto:")),
         "sameAs": profiles,
         "mainEntityOfPage": {"@id": page_id},
         "subjectOf": {"@type": "DigitalDocument", "name": "Hang Yu — Curriculum Vitae", "url": urljoin(base, "assets/cv.pdf"), "encodingFormat": "application/pdf"},
     }
-    books = list(doc.find("article", "book"))
-    publications = []
+    publications, resources = [], []
     for pub in doc.find("li", "pub"):
         name = clean(first(pub, "h4").text())
         links = list(pub.find("a"))
@@ -139,15 +160,40 @@ def generate(source):
         year = re.search(r"\b(?:19|20)\d{2}\b", venue.text())
         if year:
             item["datePublished"] = year.group()
+        identifiers, same_as = [], []
         for link in links:
             href = link.attrs["href"]
+            label = clean(link.text())
             if "doi.org/" in href or "dl.acm.org/doi/" in href:
                 doi = href.split("doi.org/")[-1] if "doi.org/" in href else href.split("/doi/")[-1]
-                item["identifier"] = {"@type": "PropertyValue", "propertyID": "DOI", "value": doi}
-            if clean(link.text()) == "PDF":
+                identifiers.append({"@type": "PropertyValue", "propertyID": "DOI", "value": doi})
+                same_as.append("https://doi.org/" + doi)
+            elif "arxiv.org/abs/" in href:
+                identifiers.append({"@type": "PropertyValue", "propertyID": "arXiv", "value": href.split("arxiv.org/abs/")[-1]})
+                same_as.append(href)
+            if label == "PDF":
                 item["encoding"] = {"@type": "MediaObject", "contentUrl": href, "encodingFormat": "application/pdf"}
-            elif clean(link.text()) in {"Code", "Dataset", "Dataset / Code"}:
-                item.setdefault("subjectOf", []).append({"@type": "WebPage", "name": clean(link.text()), "url": href})
+            elif label in {"Code", "Dataset", "Dataset / Code"}:
+                # Datasets and code get their own nodes; Google Dataset Search reads Dataset markup.
+                is_data = label.startswith("Dataset")
+                resource = {
+                    "@type": "Dataset" if is_data else "SoftwareSourceCode",
+                    "@id": item["@id"] + ("-dataset" if is_data else "-code"),
+                    "name": "{} ({})".format(name, "dataset" if is_data else "code"),
+                    "description": '{} released with the paper "{}" ({}).'.format(
+                        "Dataset and code" if label == "Dataset / Code" else label, name, clean(venue.text()).rstrip(".")),
+                    "url": href, "isAccessibleForFree": True, "citation": {"@id": item["@id"]},
+                }
+                if is_data:
+                    resource["creator"] = item.get("author", [{"@id": person_id}])
+                else:
+                    resource["codeRepository"] = href
+                resources.append(resource)
+                item.setdefault("subjectOf", []).append({"@id": resource["@id"]})
+        if identifiers:
+            item["identifier"] = identifiers if len(identifiers) > 1 else identifiers[0]
+        if same_as:
+            item["sameAs"] = same_as
         publications.append(item)
 
     sections = [{"@type": "WebPageElement", "@id": base + "#" + b.attrs["id"], "name": clean(first(b, cls="c-title").text())} for b in books]
@@ -155,35 +201,59 @@ def generate(source):
         "@type": "ProfilePage", "@id": page_id, "url": base, "name": title,
         "description": description, "inLanguage": "en", "mainEntity": {"@id": person_id},
         "isPartOf": {"@id": base + "#website"}, "hasPart": sections,
-        "mentions": [{"@id": p["@id"]} for p in publications],
+        "mentions": [{"@id": p["@id"]} for p in publications + resources],
     }
     graph = {"@context": "https://schema.org", "@graph": [
-        {"@type": "WebSite", "@id": base + "#website", "url": base, "name": "Hang Yu", "inLanguage": "en", "publisher": {"@id": person_id}},
+        {"@type": "WebSite", "@id": base + "#website", "url": base, "name": "Hang Yu", "inLanguage": "en",
+         "author": {"@id": person_id}, "publisher": {"@id": person_id}},
         page, person,
-    ] + publications}
+    ] + publications + resources}
     data = json.dumps(graph, ensure_ascii=False, indent=2) + "\n"
 
     # Replace only metadata; retain the title, all styles, and the entire body.
     head_start = source.index('  <meta name="description"')
     head_end = source.index('  <link rel="preconnect"', head_start)
+    # Link-preview card: a 1200x630 crop of assets/img/icon.jpg (the original is 11 MB, which preview scrapers reject).
+    card = urljoin(base, "assets/img/og-image.jpg")
+    card_alt = "Hang Yu standing next to a robot; Ph.D. candidate in Human-Robot Interaction and Robot Learning at Tufts University"
     meta = [
         '<meta name="description" content="{}">'.format(escape(description, quote=True)),
         '<meta name="author" content="Hang Yu">',
+        '<meta name="keywords" content="Hang Yu, {}, Tufts University, Human-Robot Interaction, HRI, Robot Learning, RLHF, Interactive Reinforcement Learning, Learning from Demonstration, Vision-Language-Action, VLA, Agentic Robotics, AABL Lab, ABB Robotics">'.format(cn),
         '<link rel="canonical" href="{}">'.format(base),
         '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">',
         '<meta name="theme-color" content="#cbd6dd">',
+        '<meta name="application-name" content="Hang Yu">',
         '<link rel="sitemap" type="application/xml" href="{}sitemap.xml">'.format(base),
         '<link rel="describedby" type="text/plain" href="{}llms.txt" title="Information for agents">'.format(base),
         '<link rel="alternate" type="text/plain" href="{}llms-full.txt" title="Plain-text profile and publications">'.format(base),
         '<link rel="alternate" type="application/ld+json" href="{}profile.jsonld" title="Structured profile and publications">'.format(base),
+        '<link rel="alternate" type="application/rss+xml" href="{}feed.xml" title="Hang Yu — News">'.format(base),
+        '<link rel="alternate" type="application/json" href="{}resume.json" title="JSON Resume">'.format(base),
+        '<link rel="alternate" type="application/x-bibtex" href="{}publications.bib" title="Publications (BibTeX)">'.format(base),
+        '<link rel="alternate" type="text/vcard" href="{}hang-yu.vcf" title="vCard">'.format(base),
+        '<link rel="author" href="{}humans.txt">'.format(base),
+        '<link rel="icon" href="{}favicon.ico" sizes="16x16 32x32 48x48">'.format(base),
+        '<link rel="icon" type="image/png" sizes="96x96" href="{}assets/img/favicon-96.png">'.format(base),
+        '<link rel="icon" type="image/png" sizes="32x32" href="{}assets/img/favicon-32.png">'.format(base),
+        '<link rel="apple-touch-icon" sizes="180x180" href="{}assets/img/apple-touch-icon.png">'.format(base),
+        '<link rel="manifest" href="{}manifest.webmanifest">'.format(base),
     ]
-    values = {"og:type": "profile", "og:site_name": "Hang Yu", "og:locale": "en_US", "og:title": title,
-              "og:description": description, "og:url": base, "og:image": person["image"],
-              "og:image:alt": "Photo of Hang Yu", "og:image:type": "image/jpeg",
-              "twitter:card": "summary", "twitter:title": title, "twitter:description": description,
-              "twitter:image": person["image"], "twitter:image:alt": "Photo of Hang Yu"}
+    # rel="me" ties the page to the profiles it links (IndieWeb identity; GitHub verifies it back).
+    meta += ['<link rel="me" href="{}">'.format(escape(href, quote=True)) for href in profiles + [person["email"]]]
+    for key, value in [("DC.title", title), ("DC.creator", "Hang Yu"), ("DC.description", description),
+                       ("DC.subject", "; ".join(knows)), ("DC.language", "en"), ("DC.identifier", base), ("DC.type", "Text")]:
+        meta.append('<meta name="{}" content="{}">'.format(key, escape(value, quote=True)))
+    values = {"og:type": "profile", "profile:first_name": "Hang", "profile:last_name": "Yu", "profile:username": "HangYu8123",
+              "og:site_name": "Hang Yu", "og:locale": "en_US", "og:title": title,
+              "og:description": description, "og:url": base,
+              "og:image": card, "og:image:secure_url": card, "og:image:type": "image/jpeg",
+              "og:image:width": "1200", "og:image:height": "630", "og:image:alt": card_alt,
+              "twitter:card": "summary_large_image", "twitter:title": title, "twitter:description": description,
+              "twitter:image": card, "twitter:image:alt": card_alt}
     for key, value in values.items():
-        meta.append('<meta {}="{}" content="{}">'.format("property" if key.startswith("og:") else "name", key, escape(value, quote=True)))
+        attr = "property" if key.startswith(("og:", "profile:")) else "name"
+        meta.append('<meta {}="{}" content="{}">'.format(attr, key, escape(value, quote=True)))
     updated = source[:head_start] + "".join("  " + line + "\n" for line in meta) + "\n" + source[head_end:]
     embedded = '  <script type="application/ld+json">\n' + data.replace("</", "<\\/") + "  </script>"
     updated, count = re.subn(r'  <script type="application/ld\+json">.*?</script>', lambda m: embedded, updated, flags=re.S)
@@ -202,21 +272,49 @@ def generate(source):
     full = re.sub(r"[ \t]+\n", "\n", full)
     full = re.sub(r"\n{3,}", "\n\n", full).strip() + "\n"
 
-    llms = "# Hang Yu (余航)\n\n> " + description + "\n\n"
+    facts = ["Name: Hang Yu ({}); also cited as H. Yu".format(cn),
+             "Role: " + clean(first(bio, cls="role").text()),
+             "Email: " + person["email"].replace("mailto:", "")]
+    for entry in by_id["education"].find("div", "entry"):
+        facts.append("Education: {}, {} ({})".format(clean(first(entry, "h4").text()), clean(first(entry, cls="kicker").text()),
+                                                      clean(markdown(first(entry, cls="meta"), base))))
+    facts.append("Research topics: " + "; ".join(knows))
+    facts.append("Open to: " + clean(first(by_id["about"], cls="callout").text()).replace("Actively open to ", "", 1))
+    llms = "# Hang Yu ({})\n\n> ".format(cn) + description + "\n\n"
     llms += "This is Hang Yu's academic website. The HTML page is the source of truth; the text and JSON-LD copies are generated from it. Dates and roles reflect the page as written.\n\n"
-    llms += "## Profile and research\n\n"
+    llms += "## Key facts\n\n" + "".join("- {}\n".format(fact) for fact in facts)
+    llms += "\n## Profile and research\n\n"
     for label, path, note in [
         ("Full profile and publications", "llms-full.txt", "Plain-text biography, education, all listed publications and resource links, service, and contact information."),
-        ("Structured data", "profile.jsonld", "Schema.org JSON-LD with person, profile, and publication records."),
+        ("Structured data", "profile.jsonld", "Schema.org JSON-LD with person, profile, publication, dataset, and code records."),
+        ("Publications (BibTeX)", "publications.bib", "Every paper listed on the site, ready to cite."),
+        ("JSON Resume", "resume.json", "Structured CV following the jsonresume.org schema."),
+        ("vCard", "hang-yu.vcf", "Contact card."),
+        ("News feed (RSS)", "feed.xml", "Talks, papers, awards, and current work."),
         ("Academic homepage", "", "Interactive website with the same public information."),
         ("Curriculum vitae", "assets/cv.pdf", "Downloadable PDF."),
+        ("Sitemap", "sitemap.xml", "Page and image URLs for crawlers."),
     ]:
         llms += "- [{}]({}): {}\n".format(label, urljoin(base, path), note)
     llms += "\n## Profiles\n\n"
     for link in social:
         if link.attrs["href"] in profiles:
             llms += "- [{}]({})\n".format(clean(link.text()), link.attrs["href"])
-    return {"index.html": updated, "profile.jsonld": data, "llms.txt": llms, "llms-full.txt": full}
+
+    # Sitemap: the canonical page with every image it shows, plus the CV. lastmod is omitted on purpose
+    # (a stale date is worse than none); fragments and alternate formats are not separate pages.
+    images = []
+    for img in doc.find("img"):
+        src = urljoin(base, img.attrs["src"])
+        if src not in images:
+            images.append(src)
+    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+               '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
+               '   <url>', '      <loc>{}</loc>'.format(base)]
+    sitemap += ['      <image:image>\n         <image:loc>{}</image:loc>\n      </image:image>'.format(escape(src)) for src in images]
+    sitemap += ['   </url>', '   <url>', '      <loc>{}assets/cv.pdf</loc>'.format(base), '   </url>', '</urlset>', '']
+    return {"index.html": updated, "profile.jsonld": data, "llms.txt": llms, "llms-full.txt": full, "sitemap.xml": "\n".join(sitemap)}
 
 
 def main():

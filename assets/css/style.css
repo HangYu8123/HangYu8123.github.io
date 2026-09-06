@@ -31,10 +31,13 @@ html.no-anim .book, html.no-anim .volume, html.no-anim .hinge { transition: none
 html, body { margin: 0; padding: 0; }
 html.is-reading { overflow: hidden; }
 body {
+  display: flex;
+  flex-direction: column;
   font-family: var(--sans);
   color: var(--ink);
   line-height: 1.55;
   min-height: 100vh;
+  min-height: 100svh;
   background:
     radial-gradient(circle at 50% 12%, rgba(255, 255, 255, .5), transparent 34rem),
     linear-gradient(180deg, #dfe4ec 0%, #cdd8dd 55%, #b7c6bf 100%);
@@ -134,7 +137,10 @@ a:hover { text-decoration: underline; }
 /* --------------------------------------------------------------------------
    Shelf
    -------------------------------------------------------------------------- */
-.shelf-wrap { padding: clamp(64px, 11vh, 130px) 24px 40px; }   /* clear air between the bio card and the shelf */
+.shelf-wrap {
+  margin-top: auto;                    /* keep the books and shelf at the bottom, above the footer */
+  padding: clamp(64px, 11vh, 130px) 24px 40px;
+}
 .shelf {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
   row-gap: calc(64px * var(--u)); margin: 0 auto;

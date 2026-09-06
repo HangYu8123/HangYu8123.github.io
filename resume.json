@@ -1,0 +1,256 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Hang Yu",
+    "label": "Ph.D. Candidate in Computer Science (Human-Robot Interaction & Robot Learning), Tufts University",
+    "image": "https://hangyu8123.github.io/assets/img/profile.jpg",
+    "email": "hyu08@tufts.edu",
+    "url": "https://hangyu8123.github.io/",
+    "summary": "Hang Yu is a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Schaertl Short in the Assistive Agent and Behavior Learning (AABL) lab. Research on Human-Robot Interaction, robot learning from human feedback and demonstrations, Vision-Language-Action (VLA) models, and agentic robotics, with open-sourced datasets collected in public spaces from real-world, non-expert users. Currently a Research Intern at ABB Robotics working on VLA models for bimanual manipulation.",
+    "location": {
+      "city": "Medford",
+      "region": "Massachusetts",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "Google Scholar",
+        "username": "j0qxKQIAAAAJ",
+        "url": "https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao"
+      },
+      {
+        "network": "GitHub",
+        "username": "HangYu8123",
+        "url": "https://github.com/HangYu8123"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "hang-yu-0343b2273",
+        "url": "https://www.linkedin.com/in/hang-yu-0343b2273/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "ABB Robotics",
+      "position": "Research Intern",
+      "url": "https://new.abb.com/products/robotics",
+      "summary": "Building new Vision-Language-Action (VLA) models for bimanual manipulation and exploring agentic robotics for industrial robotics. (Present)"
+    },
+    {
+      "name": "Assistive Agent and Behavior Learning Lab (AABL), Tufts University",
+      "position": "Graduate Researcher",
+      "url": "https://aabl.cs.tufts.edu/",
+      "summary": "Advised by Dr. Elaine Schaertl Short. Improving robot learning from multi-modular human teaching: human feedback, human demonstrations, and outputs from VLMs/LLMs. Most data is open-sourced and collected in public spaces from real-world, non-expert users."
+    },
+    {
+      "name": "Tufts University",
+      "position": "Teaching Assistant",
+      "url": "https://www.tufts.edu/",
+      "summary": "Teaching assistant for computer science courses.",
+      "highlights": [
+        "Ethics for AI, Robotics, and HRI (Spring 2024, Spring 2025)",
+        "Human-Robot Interaction (Fall 2022)",
+        "Human-Computer Interaction (Spring 2021)",
+        "C++ Programming (Fall 2016)"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Tufts University",
+      "url": "https://www.tufts.edu/",
+      "area": "Computer Science (Human-Robot Interaction)",
+      "studyType": "Ph.D. (expected Mar. 2026)",
+      "endDate": "2026-03",
+      "score": "4.0/4.0",
+      "courses": [
+        "Advisor: Dr. Elaine Schaertl Short"
+      ]
+    },
+    {
+      "institution": "Tufts University",
+      "url": "https://www.tufts.edu/",
+      "area": "Computer Science",
+      "studyType": "M.S.E.",
+      "endDate": "2021-01",
+      "score": "3.95/4.0",
+      "courses": [
+        "Advisor: Dr. Elaine Schaertl Short"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Doctoral Consortium",
+      "date": "2025-05",
+      "awarder": "IEEE ICRA 2025",
+      "summary": "Selected for the ICRA 2025 Doctoral Consortium: \"Enabling Robust Learning from Non-Experts\"."
+    },
+    {
+      "title": "Student Travel Award",
+      "date": "2024-08",
+      "awarder": "IEEE RO-MAN 2024"
+    },
+    {
+      "title": "Outstanding Student Scholarship",
+      "date": "2017",
+      "awarder": "Yantai University"
+    },
+    {
+      "title": "National First Prize",
+      "date": "2016",
+      "awarder": "Lanqiao Programming Competition"
+    }
+  ],
+  "publications": [
+    {
+      "name": "CHARM: Considering Human Attributes for Reinforcement Modeling",
+      "publisher": "IEEE RO-MAN 2025",
+      "releaseDate": "2025-08",
+      "url": "https://arxiv.org/abs/2506.13079",
+      "summary": "Qidi Fang, Hang Yu, Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short. IEEE RO-MAN 2025, Eindhoven, The Netherlands."
+    },
+    {
+      "name": "Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations",
+      "publisher": "IEEE RO-MAN 2025",
+      "releaseDate": "2025-08",
+      "url": "https://arxiv.org/abs/2506.11262",
+      "summary": "Shijie Fang, Hang Yu, Qidi Fang, Reuben M. Aronson, Elaine S. Short. IEEE RO-MAN 2025, Eindhoven, The Netherlands."
+    },
+    {
+      "name": "See What I Mean? Expressiveness and Clarity in Robot Display Design",
+      "publisher": "IEEE RO-MAN 2025",
+      "releaseDate": "2025-08",
+      "url": "https://arxiv.org/abs/2506.16643",
+      "summary": "Matthew Ebisu, Hang Yu, Reuben M. Aronson, Elaine S. Short. IEEE RO-MAN 2025, Eindhoven, The Netherlands."
+    },
+    {
+      "name": "How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots",
+      "publisher": "IEEE RO-MAN 2024",
+      "releaseDate": "2024-08",
+      "url": "https://arxiv.org/abs/2407.06459",
+      "summary": "Hang Yu, Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short. IEEE RO-MAN 2024, Pasadena, CA, USA."
+    },
+    {
+      "name": "From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning",
+      "publisher": "IEEE/RSJ IROS 2023",
+      "releaseDate": "2023-10",
+      "url": "https://arxiv.org/abs/2311.10284",
+      "summary": "Hang Yu, Reuben M. Aronson, Katherine H. Allen, Elaine S. Short. IEEE/RSJ IROS 2023, Detroit, MI, USA."
+    },
+    {
+      "name": "Top-K Interesting Preference Rules Mining Based on MaxClique",
+      "publisher": "Expert Systems with Applications",
+      "releaseDate": "2020",
+      "url": "https://doi.org/10.1016/j.eswa.2019.113043",
+      "summary": "Zheng Tan, Jing-lei Liu, Hang Yu, Wei Wei. Expert Systems with Applications."
+    },
+    {
+      "name": "Contextual Preference Collaborative Measure Framework Based on Belief System",
+      "publisher": "Computer Science (计算机科学)",
+      "releaseDate": "2020",
+      "url": "https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1",
+      "summary": "Hang Yu, Wei Wei, Zheng Tan, Jing-lei Liu. Computer Science (计算机科学)."
+    },
+    {
+      "name": "Conditional Preference Mining Based on MaxClique",
+      "publisher": "Journal of Computer Applications (计算机应用)",
+      "releaseDate": "2017",
+      "url": "https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732",
+      "summary": "Zheng Tan, Jing-lei Liu, Hang Yu. Journal of Computer Applications (计算机应用)."
+    },
+    {
+      "name": "Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback",
+      "publisher": "ICRA 2025 Doctoral Consortium",
+      "releaseDate": "2025-05",
+      "summary": "Hang Yu, Elaine Schaertl Short. ICRA 2025 Doctoral Consortium."
+    },
+    {
+      "name": "PHIRL: Progress-Heuristicized Inverse Reinforcement Learning",
+      "publisher": "RSS Workshop 2025",
+      "releaseDate": "2025",
+      "summary": "Hang Yu, James Staley, Shijie Fang, Wenchang Gao, Reuben M. Aronson, Elaine S. Short. RSS Workshop 2025."
+    },
+    {
+      "name": "Active Feedback Learning with Rich Feedback",
+      "publisher": "HRI '21 Companion",
+      "releaseDate": "2021",
+      "url": "https://doi.org/10.1145/3434074.3447207",
+      "summary": "Hang Yu, Elaine Schaertl Short. HRI '21 Companion, New York, NY, USA."
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "ACM/IEEE International Conference on Human-Robot Interaction (HRI)",
+      "position": "Reviewer",
+      "startDate": "2021",
+      "endDate": "2024"
+    },
+    {
+      "organization": "IEEE International Conference on Robotics and Automation (ICRA)",
+      "position": "Reviewer",
+      "startDate": "2023",
+      "endDate": "2025"
+    },
+    {
+      "organization": "Conference on Robot Learning (CoRL)",
+      "position": "Reviewer",
+      "startDate": "2025",
+      "endDate": "2025"
+    },
+    {
+      "organization": "AAAI Conference on Artificial Intelligence (AAAI)",
+      "position": "Program Committee",
+      "startDate": "2026",
+      "endDate": "2026"
+    },
+    {
+      "organization": "International Conference on Autonomous Agents and Multiagent Systems (AAMAS)",
+      "position": "Program Committee",
+      "startDate": "2026",
+      "endDate": "2026"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Research areas",
+      "keywords": [
+        "Human-Robot Interaction",
+        "Robot Learning",
+        "Interactive Reinforcement Learning",
+        "Learning from Human Feedback (RLHF/RLAIF)",
+        "Learning from Demonstrations",
+        "Human modeling for robot learning",
+        "Preference learning",
+        "Human factors",
+        "Evaluation and datasets for HRI",
+        "Vision-Language-Action models (VLA)",
+        "Agentic robotics"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English"
+    },
+    {
+      "language": "Chinese"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Research collaborations",
+      "keywords": [
+        "HRI",
+        "RLHF for robots",
+        "Human data collection methodology"
+      ]
+    }
+  ],
+  "meta": {
+    "canonical": "https://hangyu8123.github.io/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2026-09-06T00:00:00"
+  }
+}

@@ -4,12 +4,27 @@
 
 This is Hang Yu's academic website. The HTML page is the source of truth; the text and JSON-LD copies are generated from it. Dates and roles reflect the page as written.
 
+## Key facts
+
+- Name: Hang Yu (余航); also cited as H. Yu
+- Role: Ph.D. Candidate · Tufts University · HRI & Robot Learning
+- Email: hyu08@tufts.edu
+- Education: Ph.D. in Computer Science (Human–Robot Interaction), Tufts University (GPA 4.0/4.0 — Expected Mar. 2026 Advisor: Dr. Elaine Schaertl Short)
+- Education: M.S.E. in Computer Science, Tufts University (GPA 3.95/4.0 — Jan. 2021 Advisor: Dr. Elaine Schaertl Short)
+- Research topics: Interactive RL; Learning from Human Feedback; Learning from Demonstrations; Human modeling for robot learning; Evaluation & datasets for HRI; HRI; RLHF/RLAIF; IntRL; Preference learning; Human factors
+- Open to: research collaborations in HRI, RLHF for robots, and human data collection methodology.
+
 ## Profile and research
 
 - [Full profile and publications](https://hangyu8123.github.io/llms-full.txt): Plain-text biography, education, all listed publications and resource links, service, and contact information.
-- [Structured data](https://hangyu8123.github.io/profile.jsonld): Schema.org JSON-LD with person, profile, and publication records.
+- [Structured data](https://hangyu8123.github.io/profile.jsonld): Schema.org JSON-LD with person, profile, publication, dataset, and code records.
+- [Publications (BibTeX)](https://hangyu8123.github.io/publications.bib): Every paper listed on the site, ready to cite.
+- [JSON Resume](https://hangyu8123.github.io/resume.json): Structured CV following the jsonresume.org schema.
+- [vCard](https://hangyu8123.github.io/hang-yu.vcf): Contact card.
+- [News feed (RSS)](https://hangyu8123.github.io/feed.xml): Talks, papers, awards, and current work.
 - [Academic homepage](https://hangyu8123.github.io/): Interactive website with the same public information.
 - [Curriculum vitae](https://hangyu8123.github.io/assets/cv.pdf): Downloadable PDF.
+- [Sitemap](https://hangyu8123.github.io/sitemap.xml): Page and image URLs for crawlers.
 
 ## Profiles
 

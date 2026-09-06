@@ -7,6 +7,9 @@
       "url": "https://hangyu8123.github.io/",
       "name": "Hang Yu",
       "inLanguage": "en",
+      "author": {
+        "@id": "https://hangyu8123.github.io/#person"
+      },
       "publisher": {
         "@id": "https://hangyu8123.github.io/#person"
       }
@@ -94,6 +97,18 @@
         },
         {
           "@id": "https://hangyu8123.github.io/#publication-steady"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-charm-code"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-sidetrack-dataset"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-eyes-code"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-progress-dataset"
         }
       ]
     },
@@ -101,15 +116,86 @@
       "@type": "Person",
       "@id": "https://hangyu8123.github.io/#person",
       "name": "Hang Yu",
-      "alternateName": "余航",
+      "givenName": "Hang",
+      "familyName": "Yu",
+      "alternateName": [
+        "余航",
+        "Hang Yu (余航)",
+        "H. Yu"
+      ],
       "url": "https://hangyu8123.github.io/",
       "image": "https://hangyu8123.github.io/assets/img/profile.jpg",
       "description": "I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the Assistive Agent and Behavior Learning lab. My work focus on Human-Robot Interaction, Robot Learning, VLAs, and Agentic Robotics. Most of my datasets are open-sourced and were collected in public spaces with real-world, non-expert users. Right now I am a research intern at ABB Robotics, working on building new VLA models for bimanual manipulation and exploring agentic robotics for industrial robotics.",
-      "jobTitle": "Ph.D. Candidate",
-      "affiliation": {
-        "@type": "CollegeOrUniversity",
-        "name": "Tufts University"
+      "jobTitle": "Ph.D. Candidate in Computer Science",
+      "affiliation": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Tufts University",
+          "url": "https://www.tufts.edu/",
+          "sameAs": "https://en.wikipedia.org/wiki/Tufts_University"
+        },
+        {
+          "@type": "ResearchOrganization",
+          "name": "Assistive Agent and Behavior Learning Lab (AABL)",
+          "alternateName": "AABL Lab",
+          "url": "https://aabl.cs.tufts.edu/",
+          "parentOrganization": {
+            "@type": "CollegeOrUniversity",
+            "name": "Tufts University"
+          }
+        }
+      ],
+      "memberOf": {
+        "@type": "ResearchOrganization",
+        "name": "Assistive Agent and Behavior Learning Lab (AABL)",
+        "alternateName": "AABL Lab",
+        "url": "https://aabl.cs.tufts.edu/",
+        "parentOrganization": {
+          "@type": "CollegeOrUniversity",
+          "name": "Tufts University"
+        }
       },
+      "worksFor": [
+        {
+          "@type": "Organization",
+          "name": "ABB Robotics",
+          "url": "https://new.abb.com/products/robotics"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Tufts University",
+          "url": "https://www.tufts.edu/",
+          "sameAs": "https://en.wikipedia.org/wiki/Tufts_University"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Tufts University",
+        "url": "https://www.tufts.edu/",
+        "sameAs": "https://en.wikipedia.org/wiki/Tufts_University"
+      },
+      "knowsAbout": [
+        "Interactive RL",
+        "Learning from Human Feedback",
+        "Learning from Demonstrations",
+        "Human modeling for robot learning",
+        "Evaluation & datasets for HRI",
+        "HRI",
+        "RLHF/RLAIF",
+        "IntRL",
+        "Preference learning",
+        "Human factors"
+      ],
+      "knowsLanguage": [
+        "en",
+        "zh"
+      ],
+      "award": [
+        "2025: ICRA Doctoral Consortium",
+        "2024: RO-MAN Travel Grant",
+        "2017: Yantai University Outstanding Student Scholarship",
+        "2016: Lanqiao Programming Competition National First Prize"
+      ],
       "email": "mailto:hyu08@tufts.edu",
       "sameAs": [
         "https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao",
@@ -161,7 +247,10 @@
         "@type": "PropertyValue",
         "propertyID": "DOI",
         "value": "10.1016/j.eswa.2019.113043"
-      }
+      },
+      "sameAs": [
+        "https://doi.org/10.1016/j.eswa.2019.113043"
+      ]
     },
     {
       "@type": "ScholarlyArticle",
@@ -270,7 +359,10 @@
         "@type": "PropertyValue",
         "propertyID": "DOI",
         "value": "10.1145/3434074.3447207"
-      }
+      },
+      "sameAs": [
+        "https://doi.org/10.1145/3434074.3447207"
+      ]
     },
     {
       "@type": "ScholarlyArticle",
@@ -322,10 +414,16 @@
       },
       "subjectOf": [
         {
-          "@type": "WebPage",
-          "name": "Code",
-          "url": "https://github.com/AABL-Lab/CHARM"
+          "@id": "https://hangyu8123.github.io/#publication-charm-code"
         }
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "arXiv",
+        "value": "2506.13079"
+      },
+      "sameAs": [
+        "https://arxiv.org/abs/2506.13079"
       ]
     },
     {
@@ -370,10 +468,16 @@
       },
       "subjectOf": [
         {
-          "@type": "WebPage",
-          "name": "Dataset / Code",
-          "url": "https://github.com/AABL-Lab/Human-Demonstration-Sidetracks"
+          "@id": "https://hangyu8123.github.io/#publication-sidetrack-dataset"
         }
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "arXiv",
+        "value": "2506.11262"
+      },
+      "sameAs": [
+        "https://arxiv.org/abs/2506.11262"
       ]
     },
     {
@@ -414,10 +518,16 @@
       },
       "subjectOf": [
         {
-          "@type": "WebPage",
-          "name": "Code",
-          "url": "https://github.com/mattufts/huamn_Cozmo_interaction"
+          "@id": "https://hangyu8123.github.io/#publication-eyes-code"
         }
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "arXiv",
+        "value": "2506.16643"
+      },
+      "sameAs": [
+        "https://arxiv.org/abs/2506.16643"
       ]
     },
     {
@@ -462,10 +572,16 @@
       },
       "subjectOf": [
         {
-          "@type": "WebPage",
-          "name": "Dataset",
-          "url": "https://github.com/TeachingwithProgress/Non-Expert_Demonstrations"
+          "@id": "https://hangyu8123.github.io/#publication-progress-dataset"
         }
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "arXiv",
+        "value": "2407.06459"
+      },
+      "sameAs": [
+        "https://arxiv.org/abs/2407.06459"
       ]
     },
     {
@@ -503,7 +619,103 @@
         "@type": "MediaObject",
         "contentUrl": "https://arxiv.org/pdf/2311.10284",
         "encodingFormat": "application/pdf"
-      }
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "arXiv",
+        "value": "2311.10284"
+      },
+      "sameAs": [
+        "https://arxiv.org/abs/2311.10284"
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://hangyu8123.github.io/#publication-charm-code",
+      "name": "CHARM: Considering Human Attributes for Reinforcement Modeling (code)",
+      "description": "Code released with the paper \"CHARM: Considering Human Attributes for Reinforcement Modeling\" (IEEE RO-MAN 2025, Eindhoven, NL).",
+      "url": "https://github.com/AABL-Lab/CHARM",
+      "isAccessibleForFree": true,
+      "citation": {
+        "@id": "https://hangyu8123.github.io/#publication-charm"
+      },
+      "codeRepository": "https://github.com/AABL-Lab/CHARM"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://hangyu8123.github.io/#publication-sidetrack-dataset",
+      "name": "Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations (dataset)",
+      "description": "Dataset and code released with the paper \"Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations\" (IEEE RO-MAN 2025, Eindhoven, NL).",
+      "url": "https://github.com/AABL-Lab/Human-Demonstration-Sidetracks",
+      "isAccessibleForFree": true,
+      "citation": {
+        "@id": "https://hangyu8123.github.io/#publication-sidetrack"
+      },
+      "creator": [
+        {
+          "@type": "Person",
+          "name": "Shijie Fang"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Qidi Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://hangyu8123.github.io/#publication-eyes-code",
+      "name": "See What I Mean? Expressiveness and Clarity in Robot Display Design (code)",
+      "description": "Code released with the paper \"See What I Mean? Expressiveness and Clarity in Robot Display Design\" (IEEE RO-MAN 2025, Eindhoven, NL).",
+      "url": "https://github.com/mattufts/huamn_Cozmo_interaction",
+      "isAccessibleForFree": true,
+      "citation": {
+        "@id": "https://hangyu8123.github.io/#publication-eyes"
+      },
+      "codeRepository": "https://github.com/mattufts/huamn_Cozmo_interaction"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://hangyu8123.github.io/#publication-progress-dataset",
+      "name": "How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots (dataset)",
+      "description": "Dataset released with the paper \"How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots\" (IEEE RO-MAN 2024, Pasadena, USA).",
+      "url": "https://github.com/TeachingwithProgress/Non-Expert_Demonstrations",
+      "isAccessibleForFree": true,
+      "citation": {
+        "@id": "https://hangyu8123.github.io/#publication-progress"
+      },
+      "creator": [
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Qidi Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Shijie Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ]
     }
   ]
 }

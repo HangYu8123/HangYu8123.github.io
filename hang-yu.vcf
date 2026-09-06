@@ -1,0 +1,28 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Yu;Hang;;;
+FN:Hang Yu
+NICKNAME:余航
+ORG:Tufts University;Computer Science
+TITLE:Ph.D. Candidate in Computer Science
+ROLE:Researcher in Human-Robot Interaction and Robot Learning
+EMAIL;TYPE=INTERNET,WORK,PREF:hyu08@tufts.edu
+ADR;TYPE=WORK:;;Tufts University;Medford;MA;;USA
+URL;TYPE=HOME:https://hangyu8123.github.io/
+URL;TYPE=WORK:https://aabl.cs.tufts.edu/
+X-SOCIALPROFILE;TYPE=github:https://github.com/HangYu8123
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/hang-yu-0343b2273
+ /
+X-SOCIALPROFILE;TYPE=googlescholar:https://scholar.google.com/citations?use
+ r=j0qxKQIAAAAJ&hl=en&oi=ao
+PHOTO;VALUE=URI:https://hangyu8123.github.io/assets/img/profile.jpg
+NOTE:Hang Yu is a Ph.D. candidate in Computer Science at Tufts University\,
+  advised by Dr. Elaine Schaertl Short in the Assistive Agent and Behavior 
+ Learning (AABL) lab. Research on Human-Robot Interaction\, robot learning 
+ from human feedback and demonstrations\, Vision-Language-Action (VLA) mode
+ ls\, and agentic robotics\, with open-sourced datasets collected in public
+  spaces from real-world\, non-expert users. Currently a Research Intern at
+  ABB Robotics working on VLA models for bimanual manipulation.
+CATEGORIES:Researcher,Human-Robot Interaction,Robot Learning
+REV:2026-09-06T00:00:00Z
+END:VCARD

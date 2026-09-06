@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- News feed for https://hangyu8123.github.io/ . pubDate is the date the item was posted on the site;
+     the event date (e.g. "Aug 2025") is given in the description. -->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hang Yu — News</title>
+    <link>https://hangyu8123.github.io/#news</link>
+    <atom:link href="https://hangyu8123.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Talks, papers, awards, and current work of Hang Yu, Ph.D. candidate at Tufts University (Human-Robot Interaction &amp; Robot Learning).</description>
+    <language>en-us</language>
+    <managingEditor>hyu08@tufts.edu (Hang Yu)</managingEditor>
+    <webMaster>hyu08@tufts.edu (Hang Yu)</webMaster>
+    <lastBuildDate>Sun, 06 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://hangyu8123.github.io/assets/img/profile.jpg</url>
+      <title>Hang Yu — News</title>
+      <link>https://hangyu8123.github.io/</link>
+    </image>
+    <item>
+      <title>Research Intern at ABB Robotics, working on VLA for bimanual manipulation</title>
+      <link>https://hangyu8123.github.io/#news</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-abb-internship</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      <category>Internship</category>
+      <description>Present: Hang Yu is a Research Intern at ABB Robotics, working on VLA for bimanual manipulation.</description>
+    </item>
+    <item>
+      <title>Talk at Yale University</title>
+      <link>https://hangyu8123.github.io/#news</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-yale-talk</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+      <category>Talk</category>
+      <description>Present: Hang Yu gave a talk at Yale University.</description>
+    </item>
+    <item>
+      <title>Three papers co-authored with mentees at IEEE RO-MAN 2025</title>
+      <link>https://hangyu8123.github.io/#publications</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-roman-2025-papers</guid>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <category>Mentoring</category>
+      <description>Aug 2025: Co-authored three papers with mentees at IEEE RO-MAN 2025.</description>
+    </item>
+    <item>
+      <title>Selected for the IEEE ICRA 2025 Doctoral Consortium</title>
+      <link>https://hangyu8123.github.io/#news</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-icra-2025-doctoral-consortium</guid>
+      <pubDate>Thu, 23 Oct 2025 00:00:00 +0000</pubDate>
+      <category>Award</category>
+      <description>May 2025: Selected for the Doctoral Consortium, "Enabling Robust Learning from Non-Experts", at IEEE ICRA 2025.</description>
+    </item>
+    <item>
+      <title>Student Travel Award at IEEE RO-MAN 2024</title>
+      <link>https://hangyu8123.github.io/#news</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-roman-2024-travel-award</guid>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <category>Award</category>
+      <description>Aug 2024: Recipient of the Student Travel Award at IEEE RO-MAN 2024.</description>
+    </item>
+    <item>
+      <title>"From Thumbs Up to 10 out of 10" published at IEEE/RSJ IROS 2023</title>
+      <link>https://arxiv.org/abs/2311.10284</link>
+      <guid isPermaLink="false">hangyu8123.github.io/news-iros-2023-paper</guid>
+      <pubDate>Thu, 23 Oct 2025 00:00:00 +0000</pubDate>
+      <category>Paper</category>
+      <description>Oct 2023: Published "From 'Thumbs Up' to '10 out of 10': Reconsidering Scalar Feedback in Interactive Reinforcement Learning" at IEEE/RSJ IROS 2023.</description>
+    </item>
+  </channel>
+</rss>
