@@ -46,9 +46,9 @@
   function setUnit() {
     /* Proportions after the reference shelf: the tallest book (396 units) stands about half the
        viewport tall, and the whole shelf (~888 units) spans at most 80% of the width. */
-    var byHeight = (window.innerHeight * 0.364) / 396;   /* 70% of the earlier half-height shelf */
-    var byWidth = (window.innerWidth * 0.56) / 888;
-    var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.12));
+    var byHeight = (window.innerHeight * 0.546) / 396;   /* tallest book ≈ 55% of the viewport height */
+    var byWidth = (window.innerWidth * 0.84) / 888;       /* shelf ≤ 84% of the viewport width */
+    var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.68));
     html.style.setProperty('--u', u.toFixed(3));
     relocateLeftPages();
   }

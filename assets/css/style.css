@@ -134,7 +134,7 @@ a:hover { text-decoration: underline; }
 /* --------------------------------------------------------------------------
    Shelf
    -------------------------------------------------------------------------- */
-.shelf-wrap { padding: clamp(28px, 6vh, 72px) 24px 40px; }
+.shelf-wrap { padding: clamp(64px, 11vh, 130px) 24px 40px; }   /* clear air between the bio card and the shelf */
 .shelf {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
   row-gap: calc(64px * var(--u)); margin: 0 auto;
