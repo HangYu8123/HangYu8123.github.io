@@ -29,9 +29,11 @@
   var T = reduced ? { open: 0, close: 0, settle: 20 } : { open: 380, close: 520, settle: 900 };
 
   function setUnit() {
-    var byWidth = (window.innerWidth - 48) / 900;         /* the whole shelf is ~888 units wide */
-    var byHeight = (window.innerHeight - 340) / 396;      /* tallest book is 396 units; leave room for header and footer */
-    var u = Math.max(0.56, Math.min(byWidth, byHeight, 2.2));
+    /* Proportions after the reference shelf: the tallest book (396 units) stands about half the
+       viewport tall, and the whole shelf (~888 units) spans at most 80% of the width. */
+    var byHeight = (window.innerHeight * 0.52) / 396;
+    var byWidth = (window.innerWidth * 0.80) / 888;
+    var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.6));
     html.style.setProperty('--u', u.toFixed(3));
   }
 
@@ -53,7 +55,7 @@
     var vw = window.innerWidth, vh = window.innerHeight, mobile = vw < 760;
     var s = mobile
       ? Math.min((vh * 0.88) / H, (vw * 0.94) / W)
-      : Math.min((vh * 0.9) / H, (vw * 0.94) / (2 * W), 2.8);
+      : Math.min((vh * 0.86) / H, (vw * 0.92) / (2 * W), 2.8);
     book.style.setProperty('--s', s.toFixed(4));
     book.style.setProperty('--tx', (vw / 2 - (left + W / 2)).toFixed(2) + 'px');
     book.style.setProperty('--ty', (vh / 2 - (top + H / 2)).toFixed(2) + 'px');
