@@ -46,8 +46,8 @@
   function setUnit() {
     /* Proportions after the reference shelf: the tallest book (396 units) stands about half the
        viewport tall, and the whole shelf (~888 units) spans at most 80% of the width. */
-    var byHeight = (window.innerHeight * 0.546) / 396;   /* tallest book ≈ 55% of the viewport height */
-    var byWidth = (window.innerWidth * 0.84) / 888;       /* shelf ≤ 84% of the viewport width */
+    var byHeight = (window.innerHeight * 0.546) / 396;   /* the ordinary books stand ≈ 55% of the viewport; Publications is taller */
+    var byWidth = (window.innerWidth * 0.84) / 918;       /* shelf ≤ 84% of the viewport width */
     var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.68));
     html.style.setProperty('--u', u.toFixed(3));
     relocateLeftPages();
@@ -69,9 +69,10 @@
     book.style.top = top + 'px';
 
     var vw = window.innerWidth, vh = window.innerHeight, mobile = vw < 760;
+    var wide = book.classList.contains('two-page');       /* the publications spread uses nearly the whole screen */
     var s = mobile
       ? Math.min((vh * 0.88) / H, (vw * 0.94) / W)
-      : Math.min((vh * 0.86) / H, (vw * 0.92) / (2 * W), 2.8);
+      : Math.min((vh * (wide ? 0.97 : 0.86)) / H, (vw * (wide ? 0.97 : 0.92)) / (2 * W), 2.8);
     book.style.setProperty('--s', s.toFixed(4));
     book.style.setProperty('--tx', (vw / 2 - (left + W / 2)).toFixed(2) + 'px');
     book.style.setProperty('--ty', (vh / 2 - (top + H / 2)).toFixed(2) + 'px');
