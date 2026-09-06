@@ -26,10 +26,12 @@
 
   var active = null;       /* the book that is off the shelf */
   var state = 'shelf';     /* shelf | cover | open */
-  var T = reduced ? { open: 0, close: 0, settle: 20 } : { open: 480, close: 520, settle: 900 };
+  var T = reduced ? { open: 0, close: 0, settle: 20 } : { open: 380, close: 520, settle: 900 };
 
   function setUnit() {
-    var u = Math.max(0.56, Math.min(1, (window.innerWidth - 48) / 900));
+    var byWidth = (window.innerWidth - 48) / 900;         /* the whole shelf is ~888 units wide */
+    var byHeight = (window.innerHeight - 340) / 396;      /* tallest book is 396 units; leave room for header and footer */
+    var u = Math.max(0.56, Math.min(byWidth, byHeight, 2.2));
     html.style.setProperty('--u', u.toFixed(3));
   }
 
@@ -50,8 +52,8 @@
 
     var vw = window.innerWidth, vh = window.innerHeight, mobile = vw < 760;
     var s = mobile
-      ? Math.min((vh * 0.86) / H, (vw * 0.94) / W)
-      : Math.min((vh * 0.86) / H, (vw * 0.92) / (2 * W), 2.8);
+      ? Math.min((vh * 0.88) / H, (vw * 0.94) / W)
+      : Math.min((vh * 0.9) / H, (vw * 0.94) / (2 * W), 2.8);
     book.style.setProperty('--s', s.toFixed(4));
     book.style.setProperty('--tx', (vw / 2 - (left + W / 2)).toFixed(2) + 'px');
     book.style.setProperty('--ty', (vh / 2 - (top + H / 2)).toFixed(2) + 'px');
@@ -124,7 +126,7 @@
     book.addEventListener('click', function (e) {
       if (active !== book) {
         if (e.target.closest && e.target.closest('a')) return;
-        extract(book, false);
+        extract(book, true);
         return;
       }
       if (state === 'cover') open(book);
@@ -155,8 +157,11 @@
   }
   window.addEventListener('hashchange', function () { openFromHash(0); });
 
-  var resizeRaf = 0;
+  var resizeRaf = 0, resizeEnd = 0;
   window.addEventListener('resize', function () {
+    html.classList.add('no-anim');                 /* resize every face at once, no tweening */
+    clearTimeout(resizeEnd);
+    resizeEnd = setTimeout(function () { html.classList.remove('no-anim'); }, 180);
     if (resizeRaf) return;
     resizeRaf = requestAnimationFrame(function () {
       resizeRaf = 0;

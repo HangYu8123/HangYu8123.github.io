@@ -26,7 +26,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scrollbar-gutter: stable; }
+html { scrollbar-gutter: stable; overflow-x: hidden; }
+html.no-anim .book, html.no-anim .volume, html.no-anim .hinge { transition: none !important; }
 html, body { margin: 0; padding: 0; }
 html.is-reading { overflow: hidden; }
 body {
@@ -73,15 +74,13 @@ a:hover { text-decoration: underline; }
    Header: headshot + bio (top-left), volume index (top-right)
    -------------------------------------------------------------------------- */
 .wall-header {
-  max-width: 1420px; margin: 0 auto;
-  padding: 34px 28px 6px;
-  display: flex; gap: 32px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;
+  padding: 24px 32px 0;
 }
 .card {
   position: relative;
-  display: flex; gap: 24px; align-items: flex-start;
-  max-width: 780px;
-  padding: 24px 28px 22px 24px;
+  display: flex; gap: 24px; align-items: center;
+  width: 100%;
+  padding: 14px 26px 14px 20px;
   background:
     var(--tile-weave),
     linear-gradient(180deg, #faf5ea, #f3ecdb);
@@ -98,64 +97,47 @@ a:hover { text-decoration: underline; }
 }
 .card::before { left: 34px; transform: rotate(-5deg); }
 .card::after { right: 40px; transform: rotate(4deg); }
-.portrait { flex: 0 0 auto; width: 152px; position: relative; margin-top: 2px; }
+.portrait { flex: 0 0 auto; width: 104px; position: relative; }
 .portrait img {
   display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover;
-  border: 8px solid #fff; border-bottom-width: 24px;
+  border: 6px solid #fff; border-bottom-width: 16px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, .2);
   transform: rotate(-2.4deg);
   background: #fff;
 }
 .portrait .tape {
-  position: absolute; left: 50%; top: -10px; width: 64px; height: 20px; margin-left: -32px;
+  position: absolute; left: 50%; top: -8px; width: 52px; height: 16px; margin-left: -26px;
   background: rgba(214, 196, 160, .6);
   border-left: 1px dashed rgba(255, 255, 255, .5); border-right: 1px dashed rgba(255, 255, 255, .5);
   transform: rotate(2deg);
 }
-.bio { min-width: 0; }
+.bio { min-width: 0; flex: 1 1 auto; }
+.bio-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 4px; }
 .bio h1 {
-  font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 1.3rem + 1.3vw, 2.35rem);
-  letter-spacing: .01em; line-height: 1.05; margin: 0 0 4px;
+  font-family: var(--serif); font-weight: 600; font-size: clamp(1.45rem, 1.1rem + 1vw, 1.9rem);
+  letter-spacing: .01em; line-height: 1.05; margin: 0;
 }
 .bio h1 .cn { font-weight: 500; color: var(--muted); font-size: .72em; margin-left: .35em; }
 .bio .role {
-  margin: 0 0 10px; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); font-weight: 600;
+  margin: 0; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); font-weight: 600;
 }
-.bio p.text { margin: 0; font-size: .95rem; color: #2a2925; max-width: 60ch; }
-.social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.bio p.text { margin: 0; font-size: .88rem; line-height: 1.45; color: #2a2925; }
+.social { flex: 0 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .pill {
-  font-size: .8rem; padding: 5px 11px; letter-spacing: .04em;
+  font-size: .76rem; padding: 4px 10px; letter-spacing: .04em; text-align: center; white-space: nowrap;
   border: 1px solid rgba(27, 26, 23, .28); color: var(--ink); background: rgba(255, 255, 255, .45);
   border-radius: 2px;
 }
 .pill:hover { background: #fff; text-decoration: none; border-color: var(--ink); }
 
-.index { flex: 0 1 auto; transition: opacity .35s ease; }
-html.is-reading .index { opacity: 0; pointer-events: none; }
-.index-title {
-  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); opacity: .75;
-  margin: 0 0 8px; font-weight: 600;
-}
-.index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
-.index a {
-  display: flex; align-items: baseline; gap: 12px;
-  padding: 5px 12px 5px 10px; min-width: 190px;
-  color: var(--ink); background: rgba(246, 240, 226, .82);
-  border-left: 3px solid var(--book-tone, var(--blue));
-  box-shadow: 0 2px 6px rgba(30, 40, 60, .12);
-  font-size: .86rem; letter-spacing: .06em; text-transform: uppercase;
-  transition: transform .25s var(--ease-out), background .25s;
-}
-.index a:hover, .index a.is-current { background: #fff; text-decoration: none; transform: translateX(4px); }
-.index a .n { font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* --------------------------------------------------------------------------
    Shelf
    -------------------------------------------------------------------------- */
-.shelf-wrap { padding: 44px 20px 70px; }
+.shelf-wrap { padding: 28px 24px 40px; }
 .shelf {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
-  row-gap: calc(64px * var(--u)); max-width: 1420px; margin: 0 auto;
+  row-gap: calc(64px * var(--u)); margin: 0 auto;
 }
 .shelf-row {
   position: relative;
@@ -179,7 +161,7 @@ html.is-reading .index { opacity: 0; pointer-events: none; }
   background: linear-gradient(180deg, transparent, rgba(40, 50, 70, .16));
 }
 .shelf-tag {
-  text-align: center; margin: 26px auto 0; font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
+  text-align: center; margin: 16px auto 0; font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
   color: rgba(27, 26, 23, .7); font-weight: 600;
 }
 .shelf-tag small { display: block; letter-spacing: .12em; text-transform: none; font-weight: 400; margin-top: 4px; opacity: .8; }
@@ -425,7 +407,7 @@ button.face { cursor: pointer; }
   position: absolute; inset: 0;
   overflow-y: auto; overflow-x: hidden;
   padding: 8% 8% 9% 11%;
-  font-size: calc(16px / var(--s, 1));
+  font-size: calc(17px / var(--s, 1));
   line-height: 1.55;
   outline: none;
 }
@@ -538,7 +520,7 @@ html.is-reading .stage-ui { opacity: 1; pointer-events: auto; transform: none; }
    Footer
    -------------------------------------------------------------------------- */
 .footer {
-  text-align: center; padding: 10px 20px 36px; font-size: .78rem; letter-spacing: .06em;
+  text-align: center; padding: 4px 20px 16px; font-size: .74rem; letter-spacing: .06em;
   color: rgba(27, 26, 23, .72);
 }
 .footer a { color: inherit; }
@@ -547,15 +529,15 @@ html.is-reading .stage-ui { opacity: 1; pointer-events: auto; transform: none; }
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
-  .wall-header { padding: 26px 18px 0; gap: 22px; }
-  .index ol { display: flex; flex-wrap: wrap; gap: 6px; }
-  .index a { min-width: 0; padding: 5px 10px; font-size: .74rem; }
-  .index a .n { display: none; }
+  .wall-header { padding: 22px 18px 0; }
+  .card { flex-wrap: wrap; }
+  .social { grid-template-columns: repeat(5, auto); width: 100%; justify-content: start; }
 }
 @media (max-width: 640px) {
-  .card { flex-direction: column; gap: 14px; padding: 20px 20px 18px; max-width: none; width: 100%; }
-  .portrait { width: 124px; }
-  .bio p.text { font-size: .92rem; }
+  .card { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 18px 16px; }
+  .portrait { width: 96px; }
+  .social { grid-template-columns: repeat(3, auto); }
+  .bio p.text { font-size: .9rem; }
   .shelf-wrap { padding: 36px 8px 60px; }
   .stage-ui { top: 10px; right: 10px; }
   .stage-ui .hint { display: none; }
