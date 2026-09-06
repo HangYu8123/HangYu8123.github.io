@@ -291,7 +291,7 @@ button.face { cursor: pointer; }
 .two-page .page-left { padding: 4% 7% 3.5% 5%; }
 @media (max-height: 930px) { .two-page .page-inner { font-size: calc(13.5px / var(--s, 1)); } }
 @media (max-height: 820px) { .two-page .page-inner { font-size: calc(12.5px / var(--s, 1)); } }
-.two-page .folio { display: none; }
+.two-page .page-inner .folio { display: none; }   /* both pages are content; no running heads */
 .two-page .page-inner h2 { font-size: 1.75em; margin: 0 0 .15em; }
 .two-page .page-inner h3 { font-size: 1.15em; margin: .55em 0 .3em; }
 .two-page .page-left h3:first-of-type { margin-top: .1em; }
