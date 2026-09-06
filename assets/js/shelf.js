@@ -28,13 +28,29 @@
   var state = 'shelf';     /* shelf | cover | open */
   var T = reduced ? { open: 0, close: 0, settle: 20 } : { open: 380, close: 520, settle: 900 };
 
+  /* Two-page books show their left page only on wide screens; on phones that content
+     moves into the single visible page (and back again when the window grows). */
+  function relocateLeftPages() {
+    var mobile = window.innerWidth < 760;
+    books.forEach(function (book) {
+      var left = book.querySelector('.page-left');
+      if (!left) return;
+      var right = book.querySelector('.page:not(.cover-inside) .page-inner') || book.querySelector('.face.page .page-inner');
+      var inside = book.querySelector('.cover-inside');
+      if (!right || !inside) return;
+      if (mobile && left.parentElement === inside) right.insertBefore(left, right.firstChild);
+      else if (!mobile && left.parentElement !== inside) inside.appendChild(left);
+    });
+  }
+
   function setUnit() {
     /* Proportions after the reference shelf: the tallest book (396 units) stands about half the
        viewport tall, and the whole shelf (~888 units) spans at most 80% of the width. */
-    var byHeight = (window.innerHeight * 0.52) / 396;
-    var byWidth = (window.innerWidth * 0.80) / 888;
-    var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.6));
+    var byHeight = (window.innerHeight * 0.364) / 396;   /* 70% of the earlier half-height shelf */
+    var byWidth = (window.innerWidth * 0.56) / 888;
+    var u = Math.max(0.56, Math.min(byWidth, byHeight, 1.12));
     html.style.setProperty('--u', u.toFixed(3));
+    relocateLeftPages();
   }
 
   function clearTimers(book) { (book._timers || []).forEach(clearTimeout); book._timers = []; }

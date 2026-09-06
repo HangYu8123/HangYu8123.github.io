@@ -78,9 +78,9 @@ a:hover { text-decoration: underline; }
 }
 .card {
   position: relative;
-  display: flex; gap: 24px; align-items: center;
-  width: 100%;
-  padding: 14px 26px 14px 20px;
+  display: flex; gap: 26px; align-items: flex-start;
+  width: min(100%, max(50%, 640px));
+  padding: 20px 24px 18px 22px;
   background:
     var(--tile-weave),
     linear-gradient(180deg, #faf5ea, #f3ecdb);
@@ -97,24 +97,24 @@ a:hover { text-decoration: underline; }
 }
 .card::before { left: 34px; transform: rotate(-5deg); }
 .card::after { right: 40px; transform: rotate(4deg); }
-.portrait { flex: 0 0 auto; width: 104px; position: relative; }
+.portrait { flex: 0 0 auto; width: 176px; position: relative; margin-top: 4px; }
 .portrait img {
   display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover;
-  border: 6px solid #fff; border-bottom-width: 16px;
+  border: 8px solid #fff; border-bottom-width: 26px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, .2);
   transform: rotate(-2.4deg);
   background: #fff;
 }
 .portrait .tape {
-  position: absolute; left: 50%; top: -8px; width: 52px; height: 16px; margin-left: -26px;
+  position: absolute; left: 50%; top: -10px; width: 68px; height: 20px; margin-left: -34px;
   background: rgba(214, 196, 160, .6);
   border-left: 1px dashed rgba(255, 255, 255, .5); border-right: 1px dashed rgba(255, 255, 255, .5);
   transform: rotate(2deg);
 }
 .bio { min-width: 0; flex: 1 1 auto; }
-.bio-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 4px; }
+.bio-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 .bio h1 {
-  font-family: var(--serif); font-weight: 600; font-size: clamp(1.45rem, 1.1rem + 1vw, 1.9rem);
+  font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 1.2rem + 1.1vw, 2.2rem);
   letter-spacing: .01em; line-height: 1.05; margin: 0;
 }
 .bio h1 .cn { font-weight: 500; color: var(--muted); font-size: .72em; margin-left: .35em; }
@@ -122,9 +122,9 @@ a:hover { text-decoration: underline; }
   margin: 0; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); font-weight: 600;
 }
 .bio p.text { margin: 0; font-size: .88rem; line-height: 1.45; color: #2a2925; }
-.social { flex: 0 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.social { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .pill {
-  font-size: .76rem; padding: 4px 10px; letter-spacing: .04em; text-align: center; white-space: nowrap;
+  font-size: .72rem; padding: 3px 9px; letter-spacing: .04em; text-align: center; white-space: nowrap;
   border: 1px solid rgba(27, 26, 23, .28); color: var(--ink); background: rgba(255, 255, 255, .45);
   border-radius: 2px;
 }
@@ -279,6 +279,26 @@ button.face { cursor: pointer; }
 .edge-top::before, .edge-bottom::before, .fore::before { opacity: .3; }
 .page::before, .cover-inside::before { background-image: var(--tile-weave); background-size: 4px 4px; opacity: .35; }
 .cover-inside::before { display: none; }
+.two-page .cover-inside {
+  background:
+    linear-gradient(270deg, rgba(60, 40, 20, .2), rgba(60, 40, 20, .06) 4%, transparent 9%),
+    linear-gradient(180deg, #f9f4e8, #f3ecdb);
+}
+.two-page .cover-inside::after { display: none; }
+.two-page .page-inner { font-size: calc(14px / var(--s, 1)); padding: 7% 7% 7% 9%; }
+.two-page .page-left { padding: 7% 9% 7% 7%; }
+.two-page .page-inner h2 { font-size: 2em; margin-bottom: .3em; }
+.two-page .page-inner h3 { font-size: 1.25em; margin: .9em 0 .35em; }
+.two-page .page-inner h3:first-of-type { margin-top: .4em; }
+.two-page .pub { grid-template-columns: 24% 1fr; gap: .7em; padding: .55em 0; }
+.two-page .pub h4 { font-size: 1em; line-height: 1.25; }
+.two-page .pub .authors { font-size: .88em; line-height: 1.35; }
+.two-page .pub .venue { font-size: .84em; margin-bottom: .2em; }
+.two-page .pub .links { font-size: .76em; }
+.two-page .folio { margin-bottom: 1em; }
+/* when the left page has been folded into the right page (phones) it flows inline */
+.page-inner .page-left { position: static; padding: 0 0 1em; overflow: visible; font-size: inherit; }
+.page-inner .page-left .folio { display: none; }
 
 /* Board surfaces (spine, cover, back) */
 .spine, .cover, .back {
@@ -530,13 +550,11 @@ html.is-reading .stage-ui { opacity: 1; pointer-events: auto; transform: none; }
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   .wall-header { padding: 22px 18px 0; }
-  .card { flex-wrap: wrap; }
-  .social { grid-template-columns: repeat(5, auto); width: 100%; justify-content: start; }
+  .card { width: 100%; }
 }
 @media (max-width: 640px) {
   .card { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 18px 16px; }
-  .portrait { width: 96px; }
-  .social { grid-template-columns: repeat(3, auto); }
+  .portrait { width: 132px; }
   .bio p.text { font-size: .9rem; }
   .shelf-wrap { padding: 36px 8px 60px; }
   .stage-ui { top: 10px; right: 10px; }
