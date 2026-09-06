@@ -1,4 +1,38 @@
+# robots.txt for https://hangyu8123.github.io/
+# Personal academic website of Hang Yu (Ph.D. candidate, Tufts University; HRI & Robot Learning).
+# Everything on this site is public and may be crawled, indexed, and summarized.
+#
+# Machine-readable resources for LLM agents and scripts:
+#   https://hangyu8123.github.io/llms.txt          (short summary, llmstxt.org format)
+#   https://hangyu8123.github.io/llms-full.txt     (full site content as Markdown)
+#   https://hangyu8123.github.io/resume.json       (JSON Resume)
+#   https://hangyu8123.github.io/publications.bib  (BibTeX)
+#   https://hangyu8123.github.io/hang-yu.vcf       (vCard)
+#   https://hangyu8123.github.io/feed.xml          (RSS feed of news)
+
 User-agent: *
+Allow: /
+
+# AI / LLM crawlers and agents are explicitly welcome.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: cohere-ai
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: DuckAssistBot
+User-agent: YouBot
+User-agent: Bytespider
 Allow: /
 
 Sitemap: https://hangyu8123.github.io/sitemap.xml

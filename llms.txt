@@ -1,0 +1,18 @@
+# Hang Yu (余航)
+
+> Hang Yu, Ph.D. candidate at Tufts University researching Human–Robot Interaction (HRI), Robot Learning, VLAs, and Agentic Robotics. Publications, datasets, code, and CV.
+
+This is Hang Yu's academic website. The HTML page is the source of truth; the text and JSON-LD copies are generated from it. Dates and roles reflect the page as written.
+
+## Profile and research
+
+- [Full profile and publications](https://hangyu8123.github.io/llms-full.txt): Plain-text biography, education, all listed publications and resource links, service, and contact information.
+- [Structured data](https://hangyu8123.github.io/profile.jsonld): Schema.org JSON-LD with person, profile, and publication records.
+- [Academic homepage](https://hangyu8123.github.io/): Interactive website with the same public information.
+- [Curriculum vitae](https://hangyu8123.github.io/assets/cv.pdf): Downloadable PDF.
+
+## Profiles
+
+- [Google Scholar](https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao)
+- [GitHub](https://github.com/HangYu8123)
+- [LinkedIn](https://www.linkedin.com/in/hang-yu-0343b2273/)

@@ -1,0 +1,17 @@
+/* TEAM */
+  Author & researcher: Hang Yu (余航)
+  Role: Ph.D. Candidate in Computer Science, Tufts University (Human-Robot Interaction & Robot Learning)
+  Contact: hyu08@tufts.edu
+  Site: https://hangyu8123.github.io/
+  GitHub: https://github.com/HangYu8123
+  Scholar: https://scholar.google.com/citations?user=j0qxKQIAAAAJ
+  Location: Tufts University, Medford, Massachusetts, USA
+
+/* SITE */
+  Last update: 2026/09/06
+  Language: English
+  Standards: HTML5, CSS3, vanilla JavaScript (ES2015+)
+  Components: none (no framework, no build step)
+  Software: hand-written; the background wall is painted in the browser with Canvas, after Monet's water gardens
+  Hosting: GitHub Pages
+  Machine-readable: /llms.txt, /llms-full.txt, /resume.json, /publications.bib, /hang-yu.vcf, /feed.xml, /sitemap.xml

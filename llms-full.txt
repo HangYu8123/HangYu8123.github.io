@@ -1,0 +1,235 @@
+# Hang Yu 余航
+
+Source: https://hangyu8123.github.io/
+
+Ph.D. Candidate · Tufts University · HRI & Robot Learning
+
+I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the Assistive Agent and Behavior Learning lab. My work focus on Human-Robot Interaction, Robot Learning, VLAs, and Agentic Robotics. Most of my datasets are open-sourced and were collected in public spaces with real-world, non-expert users. Right now I am a research intern at ABB Robotics, working on building new VLA models for bimanual manipulation and exploring agentic robotics for industrial robotics.
+
+[Email](mailto:hyu08@tufts.edu)   [Google Scholar](https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao)   [GitHub](https://github.com/HangYu8123)   [LinkedIn](https://www.linkedin.com/in/hang-yu-0343b2273/)   [CV (PDF)](https://hangyu8123.github.io/assets/cv.pdf)
+
+## About
+
+I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the  [Assistive Agent and Behavior Learning lab (AABL)](https://aabl.cs.tufts.edu/) . I work on improving robot learning from multi-modular human teaching, including human feedback, human demonstrations, and outputs from VLM/LLM. Most of my data is open-sourced and collected from public spaces with real-world non-expert users.
+
+Actively open to research collaborations in HRI, RLHF for robots, and human data collection methodology.
+
+### Research Interests
+
+Topics
+
+Interactive RL • Learning from Human Feedback • Learning from Demonstrations • Human modeling for robot learning • Evaluation & datasets for HRI
+
+Keywords
+
+HRI, RLHF/RLAIF, IntRL, Preference learning, Human factors
+
+![Human teaching a robot using kinesthetic teaching demonstrations for imitation learning](https://hangyu8123.github.io/assets/img/interests-1.png)
+
+![Interface for robot learning from rich human feedback showing scalar and directional inputs](https://hangyu8123.github.io/assets/img/interests-2.jpg)
+
+## News
+
+- Present Internship I am a Research Intern at ABB Robotics , working on VLA for bimanual manipulation.
+
+- Present Talk I gave a talk at Yale University .
+
+- Aug 2025 Mentoring Co-authored three papers with my mentees at IEEE RO-MAN 2025 .
+
+- May 2025 Award Selected for the Doctoral Consortium : "Enabling Robust Learning from Non-Experts" at IEEE ICRA 2025 .
+
+- Aug 2024 Award Recipient of the Student Travel Award at IEEE RO-MAN 2024 .
+
+- Oct 2023 Paper Published "From 'Thumbs Up' to '10 out of 10'" at IEEE/RSJ IROS 2023 .
+
+## Education
+
+Tufts University
+
+#### Ph.D. in Computer Science (Human–Robot Interaction)
+
+GPA 4.0/4.0 — Expected Mar. 2026
+Advisor: Dr. Elaine Schaertl Short
+
+Tufts University
+
+#### M.S.E. in Computer Science
+
+GPA 3.95/4.0 — Jan. 2021
+Advisor: Dr. Elaine Schaertl Short
+
+## Publications
+
+### Conference Papers
+
+![CHARM framework diagram showing human attribute modeling for reinforcement learning](https://hangyu8123.github.io/assets/img/papers/charm.png)
+
+#### CHARM: Considering Human Attributes for Reinforcement Modeling
+
+Qidi Fang*, Hang Yu* , Shijie Fang, Jindan Huang, Qiuyu Chen, Reuben M. Aronson, Elaine S. Short.
+
+IEEE RO-MAN 2025 , Eindhoven, NL.
+
+[arXiv](https://arxiv.org/abs/2506.13079)  [PDF](https://arxiv.org/pdf/2506.13079)  [Code](https://github.com/AABL-Lab/CHARM)
+
+![Visual examples of systematic non-optimality in human demonstrations from the Sidetracks dataset](https://hangyu8123.github.io/assets/img/papers/sidetrack.jpg)
+
+#### Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations
+
+Shijie Fang*, Hang Yu* , Qidi Fang, Reuben M. Aronson, Elaine S. Short.
+
+IEEE RO-MAN 2025 , Eindhoven, NL.
+
+[arXiv](https://arxiv.org/abs/2506.11262)  [PDF](https://arxiv.org/pdf/2506.11262)  [Dataset / Code](https://github.com/AABL-Lab/Human-Demonstration-Sidetracks)
+
+![Cozmo robot face display designs testing expressiveness and clarity for HRI](https://hangyu8123.github.io/assets/img/papers/eyes.png)
+
+#### See What I Mean? Expressiveness and Clarity in Robot Display Design
+
+Matthew Ebisu, Hang Yu , Reuben M. Aronson, Elaine S. Short.
+
+IEEE RO-MAN 2025 , Eindhoven, NL.
+
+[arXiv](https://arxiv.org/abs/2506.16643)  [PDF](https://arxiv.org/pdf/2506.16643)  [Code](https://github.com/mattufts/huamn_Cozmo_interaction)
+
+![Human feedback signal interface showing progress bars for teaching robots](https://hangyu8123.github.io/assets/img/papers/progress.jpg)
+
+#### How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots
+
+Hang Yu , Qidi Fang, Shijie Fang, Reuben M. Aronson, Elaine S. Short.
+
+IEEE RO-MAN 2024 , Pasadena, USA.
+
+[arXiv](https://arxiv.org/abs/2407.06459)  [PDF](https://aabl.cs.tufts.edu/papers/roman2024_hang.pdf)  [Dataset](https://github.com/TeachingwithProgress/Non-Expert_Demonstrations)
+
+![Comparison of scalar feedback versus '10 out of 10' feedback scales in interactive reinforcement learning](https://hangyu8123.github.io/assets/img/papers/steady.png)
+
+#### From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning
+
+Hang Yu , Reuben M. Aronson, Katherine H. Allen, Elaine S. Short.
+
+IEEE/RSJ IROS 2023 , Detroit, USA.
+
+[arXiv](https://arxiv.org/abs/2311.10284)  [PDF](https://arxiv.org/pdf/2311.10284)
+
+### Journal Publications
+
+![Diagram illustrating Top-K Interesting Preference Rules Mining Based on MaxClique](https://hangyu8123.github.io/assets/img/papers/top-k.png)
+
+#### Top-K Interesting Preference Rules Mining Based on MaxClique
+
+Zheng Tan, Jing-lei Liu, Hang Yu , Wei Wei.
+
+Expert Systems with Applications  143 (2020) 113043.
+
+[DOI](https://doi.org/10.1016/j.eswa.2019.113043)  [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0957417419307602)
+
+![Framework for Contextual Preference Collaborative Measure Based on Belief System](https://hangyu8123.github.io/assets/img/papers/belief.png)
+
+#### Contextual Preference Collaborative Measure Framework Based on Belief System
+
+Hang Yu , Wei Wei, Zheng Tan, Jing-lei Liu.
+
+Computer Science (计算机科学)  47(4):74–84, 2020.
+
+[Journal](https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1)
+
+![MaxClique based Conditional Preference Mining diagram](https://hangyu8123.github.io/assets/img/papers/maxclique.png)
+
+#### Conditional Preference Mining Based on MaxClique
+
+Zheng Tan, Jing-lei Liu, Hang Yu .
+
+Journal of Computer Applications (计算机应用)  37(11):3107–3114, 2017.
+
+[Journal](https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732)
+
+### Workshops & Doctoral Consortium
+
+![Diagram for Human-Robot Interaction via Expressive Human Feedback](https://hangyu8123.github.io/assets/img/papers/icra_dc.jpg)
+
+#### Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback
+
+ICRA 2025 Doctoral Consortium
+
+![PHIRL framework for Progress-Heuristicized Inverse Reinforcement Learning](https://hangyu8123.github.io/assets/img/papers/phirl.png)
+
+#### PHIRL: Progress-Heuristicized Inverse Reinforcement Learning
+
+RSS Workshop 2025
+
+![Active Feedback Learning interface](https://hangyu8123.github.io/assets/img/papers/active.jpg)
+
+#### Active Feedback Learning with Rich Feedback
+
+HRI ’21 Companion  ·  [ACM DL](https://dl.acm.org/doi/10.1145/3434074.3447207)
+
+## Experience & Service
+
+Research
+
+- Research Intern , ABB Robotics — VLA for bimanual manipulation (present)
+
+- Graduate Researcher , AABL Lab, Tufts University — advised by Dr. Elaine Schaertl Short
+
+Teaching Assistant
+
+- Ethics for AI, Robotics, and HRI — Spring 2024, Spring 2025
+
+- Human–Robot Interaction — Fall 2022
+
+- Human–Computer Interaction — Spring 2021
+
+- C++ Programming — Fall 2016
+
+Reviewer / Program Committee
+
+- HRI (2021–2024)
+
+- ICRA (2023–2025)
+
+- CoRL (2025)
+
+- AAAI (2026 PC)
+
+- AAMAS (2026 PC)
+
+Honors & Awards
+
+- 2025: ICRA Doctoral Consortium
+
+- 2024: RO-MAN Travel Grant
+
+- 2017: Yantai University Outstanding Student Scholarship
+
+- 2016: Lanqiao Programming Competition National First Prize
+
+## A Little More about Me
+
+Photographs and a short film from outside the lab.
+
+[Short film](https://hangyu8123.github.io/assets/img/life/video.mp4)
+
+![Outside research photo 1](https://hangyu8123.github.io/assets/img/life/img1.jpg)
+
+![Outside research photo 2](https://hangyu8123.github.io/assets/img/life/img2.jpg)
+
+![Outside research photo 3](https://hangyu8123.github.io/assets/img/life/img3.jpg)
+
+![Outside research photo 4](https://hangyu8123.github.io/assets/img/life/img4.jpg)
+
+## Contact
+
+- Email [hyu08@tufts.edu](mailto:hyu08@tufts.edu)
+
+- Scholar [Google Scholar profile](https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao)
+
+- GitHub [github.com/HangYu8123](https://github.com/HangYu8123)
+
+- LinkedIn [hang-yu-0343b2273](https://www.linkedin.com/in/hang-yu-0343b2273/)
+
+- CV [Download (PDF)](https://hangyu8123.github.io/assets/cv.pdf)
+
+- Lab [AABL, Tufts University](https://aabl.cs.tufts.edu/)
+
+Open to research collaborations in HRI, RLHF for robots, and human data collection methodology.

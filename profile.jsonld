@@ -1,0 +1,509 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://hangyu8123.github.io/#website",
+      "url": "https://hangyu8123.github.io/",
+      "name": "Hang Yu",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://hangyu8123.github.io/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://hangyu8123.github.io/#profile",
+      "url": "https://hangyu8123.github.io/",
+      "name": "Hang Yu | Tufts University | HRI & Robot Learning",
+      "description": "Hang Yu, Ph.D. candidate at Tufts University researching Human–Robot Interaction (HRI), Robot Learning, VLAs, and Agentic Robotics. Publications, datasets, code, and CV.",
+      "inLanguage": "en",
+      "mainEntity": {
+        "@id": "https://hangyu8123.github.io/#person"
+      },
+      "isPartOf": {
+        "@id": "https://hangyu8123.github.io/#website"
+      },
+      "hasPart": [
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#about",
+          "name": "About"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#news",
+          "name": "News"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#education",
+          "name": "Education"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#publications",
+          "name": "Publications"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#experience",
+          "name": "Experience & Service"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#life",
+          "name": "Life"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://hangyu8123.github.io/#contact",
+          "name": "Contact"
+        }
+      ],
+      "mentions": [
+        {
+          "@id": "https://hangyu8123.github.io/#publication-top-k"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-belief"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-maxclique"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-icra_dc"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-phirl"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-active"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-charm"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-sidetrack"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-eyes"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-progress"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#publication-steady"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hangyu8123.github.io/#person",
+      "name": "Hang Yu",
+      "alternateName": "余航",
+      "url": "https://hangyu8123.github.io/",
+      "image": "https://hangyu8123.github.io/assets/img/profile.jpg",
+      "description": "I am a Ph.D. candidate in Computer Science at Tufts University, advised by Dr. Elaine Short in the Assistive Agent and Behavior Learning lab. My work focus on Human-Robot Interaction, Robot Learning, VLAs, and Agentic Robotics. Most of my datasets are open-sourced and were collected in public spaces with real-world, non-expert users. Right now I am a research intern at ABB Robotics, working on building new VLA models for bimanual manipulation and exploring agentic robotics for industrial robotics.",
+      "jobTitle": "Ph.D. Candidate",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Tufts University"
+      },
+      "email": "mailto:hyu08@tufts.edu",
+      "sameAs": [
+        "https://scholar.google.com/citations?user=j0qxKQIAAAAJ&hl=en&oi=ao",
+        "https://github.com/HangYu8123",
+        "https://www.linkedin.com/in/hang-yu-0343b2273/"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "subjectOf": {
+        "@type": "DigitalDocument",
+        "name": "Hang Yu — Curriculum Vitae",
+        "url": "https://hangyu8123.github.io/assets/cv.pdf",
+        "encodingFormat": "application/pdf"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-top-k",
+      "name": "Top-K Interesting Preference Rules Mining Based on MaxClique",
+      "url": "https://doi.org/10.1016/j.eswa.2019.113043",
+      "image": "https://hangyu8123.github.io/assets/img/papers/top-k.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "Expert Systems with Applications 143 (2020) 113043."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Zheng Tan"
+        },
+        {
+          "@type": "Person",
+          "name": "Jing-lei Liu"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Wei Wei"
+        }
+      ],
+      "datePublished": "2020",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.1016/j.eswa.2019.113043"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-belief",
+      "name": "Contextual Preference Collaborative Measure Framework Based on Belief System",
+      "url": "https://computerjournals.net/cn/simple_view_abstract.aspx?aid=1510D19A1395533AD2A8D5AF0923A594&jid=64A12D73428C8B8DBFB978D04DFEB3C1",
+      "image": "https://hangyu8123.github.io/assets/img/papers/belief.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "Computer Science (计算机科学) 47(4):74–84, 2020."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Wei Wei"
+        },
+        {
+          "@type": "Person",
+          "name": "Zheng Tan"
+        },
+        {
+          "@type": "Person",
+          "name": "Jing-lei Liu"
+        }
+      ],
+      "datePublished": "2020"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-maxclique",
+      "name": "Conditional Preference Mining Based on MaxClique",
+      "url": "https://computerjournals.net/cn/simple_view_abstract.aspx?aid=F1F705A1C719906AB225E536701F0222&jid=831E194C147C78FAAFCC50BC7ADD1732",
+      "image": "https://hangyu8123.github.io/assets/img/papers/maxclique.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "Journal of Computer Applications (计算机应用) 37(11):3107–3114, 2017."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Zheng Tan"
+        },
+        {
+          "@type": "Person",
+          "name": "Jing-lei Liu"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        }
+      ],
+      "datePublished": "2017"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-icra_dc",
+      "name": "Doctoral Consortium: Human-Robot Interaction via Expressive Human Feedback",
+      "url": "https://hangyu8123.github.io/#publications",
+      "image": "https://hangyu8123.github.io/assets/img/papers/icra_dc.jpg",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "ICRA 2025 Doctoral Consortium"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "datePublished": "2025"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-phirl",
+      "name": "PHIRL: Progress-Heuristicized Inverse Reinforcement Learning",
+      "url": "https://hangyu8123.github.io/#publications",
+      "image": "https://hangyu8123.github.io/assets/img/papers/phirl.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "RSS Workshop 2025"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "datePublished": "2025"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-active",
+      "name": "Active Feedback Learning with Rich Feedback",
+      "url": "https://dl.acm.org/doi/10.1145/3434074.3447207",
+      "image": "https://hangyu8123.github.io/assets/img/papers/active.jpg",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "HRI ’21 Companion · ACM DL"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.1145/3434074.3447207"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-charm",
+      "name": "CHARM: Considering Human Attributes for Reinforcement Modeling",
+      "url": "https://arxiv.org/abs/2506.13079",
+      "image": "https://hangyu8123.github.io/assets/img/papers/charm.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "IEEE RO-MAN 2025, Eindhoven, NL."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Qidi Fang"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Shijie Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Jindan Huang"
+        },
+        {
+          "@type": "Person",
+          "name": "Qiuyu Chen"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ],
+      "datePublished": "2025",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://arxiv.org/pdf/2506.13079",
+        "encodingFormat": "application/pdf"
+      },
+      "subjectOf": [
+        {
+          "@type": "WebPage",
+          "name": "Code",
+          "url": "https://github.com/AABL-Lab/CHARM"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-sidetrack",
+      "name": "Demonstration Sidetracks: Categorizing Systematic Non-Optimality in Human Demonstrations",
+      "url": "https://arxiv.org/abs/2506.11262",
+      "image": "https://hangyu8123.github.io/assets/img/papers/sidetrack.jpg",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "IEEE RO-MAN 2025, Eindhoven, NL."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Shijie Fang"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Qidi Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ],
+      "datePublished": "2025",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://arxiv.org/pdf/2506.11262",
+        "encodingFormat": "application/pdf"
+      },
+      "subjectOf": [
+        {
+          "@type": "WebPage",
+          "name": "Dataset / Code",
+          "url": "https://github.com/AABL-Lab/Human-Demonstration-Sidetracks"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-eyes",
+      "name": "See What I Mean? Expressiveness and Clarity in Robot Display Design",
+      "url": "https://arxiv.org/abs/2506.16643",
+      "image": "https://hangyu8123.github.io/assets/img/papers/eyes.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "IEEE RO-MAN 2025, Eindhoven, NL."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Matthew Ebisu"
+        },
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ],
+      "datePublished": "2025",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://arxiv.org/pdf/2506.16643",
+        "encodingFormat": "application/pdf"
+      },
+      "subjectOf": [
+        {
+          "@type": "WebPage",
+          "name": "Code",
+          "url": "https://github.com/mattufts/huamn_Cozmo_interaction"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-progress",
+      "name": "How Much Progress Did I Make? An Unexplored Human Feedback Signal for Teaching Robots",
+      "url": "https://arxiv.org/abs/2407.06459",
+      "image": "https://hangyu8123.github.io/assets/img/papers/progress.jpg",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "IEEE RO-MAN 2024, Pasadena, USA."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Qidi Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Shijie Fang"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ],
+      "datePublished": "2024",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://aabl.cs.tufts.edu/papers/roman2024_hang.pdf",
+        "encodingFormat": "application/pdf"
+      },
+      "subjectOf": [
+        {
+          "@type": "WebPage",
+          "name": "Dataset",
+          "url": "https://github.com/TeachingwithProgress/Non-Expert_Demonstrations"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://hangyu8123.github.io/#publication-steady",
+      "name": "From “Thumbs Up” to “10 out of 10”: Reconsidering Scalar Feedback in Interactive Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2311.10284",
+      "image": "https://hangyu8123.github.io/assets/img/papers/steady.png",
+      "isPartOf": {
+        "@type": "CreativeWork",
+        "name": "IEEE/RSJ IROS 2023, Detroit, USA."
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hangyu8123.github.io/#profile"
+      },
+      "author": [
+        {
+          "@id": "https://hangyu8123.github.io/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Reuben M. Aronson"
+        },
+        {
+          "@type": "Person",
+          "name": "Katherine H. Allen"
+        },
+        {
+          "@type": "Person",
+          "name": "Elaine S. Short"
+        }
+      ],
+      "datePublished": "2023",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://arxiv.org/pdf/2311.10284",
+        "encodingFormat": "application/pdf"
+      }
+    }
+  ]
+}
