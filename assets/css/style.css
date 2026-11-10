@@ -1,7 +1,8 @@
 /* ==========================================================================
    Hang Yu — a shelf of books on a Monet wall
-   Vanilla CSS. Books are CSS 3D boxes; the wall is a procedurally painted
-   canvas (assets/js/monet.js); interactions live in assets/js/shelf.js.
+   Vanilla CSS. Books are CSS 3D boxes; the wall, the book jackets and the
+   plank are painted in the browser (assets/js/monet.js); interactions live in
+   assets/js/shelf.js; the welcome animation in assets/js/intro.js.
    ========================================================================== */
 
 :root {
@@ -16,9 +17,10 @@
   --sage: #7d9a7a;
   --ochre: #c9a24e;
   --lilac: #a99cc4;
-  --tile-brush: none;                  /* set by monet.js */
-  --tile-weave: none;                  /* set by monet.js */
-  --painting: none;                    /* set by monet.js */
+  --tile-paper: none;                  /* paper grain, set by monet.js */
+  --tile-paper-size: 128px;            /* its exact size in device pixels, set by monet.js */
+  --tile-wood: none;                   /* the painted plank, set by monet.js */
+  --painting: none;                    /* the wall again, for the endpapers; set by monet.js */
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --ease-inout: cubic-bezier(.65, 0, .35, 1);
   --serif: "Cormorant Garamond", "EB Garamond", Georgia, "Times New Roman", serif;
@@ -28,6 +30,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scrollbar-gutter: stable; overflow-x: hidden; }
 html.no-anim .book, html.no-anim .volume, html.no-anim .hinge { transition: none !important; }
+.book.is-snapping, .book.is-snapping .volume, .book.is-snapping .hinge { transition: none !important; }
+html.intro-on { overflow: hidden; }
 html, body { margin: 0; padding: 0; }
 html.is-reading { overflow: hidden; }
 body {
@@ -49,7 +53,7 @@ a:hover { text-decoration: underline; }
 ::selection { background: rgba(201, 123, 127, .35); }
 
 /* --------------------------------------------------------------------------
-   The wall: painted canvas + canvas weave + registration marks
+   The wall: painted canvas (at the screen's own resolution) + registration marks
    -------------------------------------------------------------------------- */
 .painting {
   position: fixed; inset: 0; z-index: -2;
@@ -58,12 +62,6 @@ a:hover { text-decoration: underline; }
   opacity: 0; transition: opacity 1.4s ease;
 }
 .painting.is-ready { opacity: 1; }
-.wall-grain {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background-image: var(--tile-weave);
-  background-size: 4px 4px;
-  opacity: .3;
-}
 .mark {
   position: fixed; width: 22px; height: 22px; opacity: .45; pointer-events: none; z-index: 1;
 }
@@ -85,9 +83,9 @@ a:hover { text-decoration: underline; }
   width: min(100%, max(70%, 640px));
   padding: 26px 30px 24px 26px;
   background:
-    var(--tile-weave),
+    var(--tile-paper),
     linear-gradient(180deg, #faf5ea, #f3ecdb);
-  background-size: 4px 4px, auto;
+  background-size: var(--tile-paper-size) var(--tile-paper-size), auto;
   box-shadow: 0 14px 34px rgba(30, 40, 60, .22), 0 1px 0 rgba(255, 255, 255, .7) inset;
   transform: rotate(-.35deg);
 }
@@ -139,11 +137,11 @@ a:hover { text-decoration: underline; }
    -------------------------------------------------------------------------- */
 .shelf-wrap {
   margin-top: auto;                    /* keep the books and shelf at the bottom, above the footer */
-  padding: clamp(64px, 11vh, 130px) 24px 40px;
+  padding: clamp(64px, 11vh, 130px) 24px 30px;
 }
 .shelf {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
-  row-gap: calc(64px * var(--u)); margin: 0 auto;
+  row-gap: calc(70px * var(--u)); margin: 0 auto;
 }
 .shelf-row {
   position: relative;
@@ -151,26 +149,51 @@ a:hover { text-decoration: underline; }
   gap: calc(16px * var(--u));
   padding: 0 calc(22px * var(--u));
 }
-.shelf-row::after {              /* the plank */
-  content: ""; position: absolute; left: calc(-6px * var(--u)); right: calc(-6px * var(--u));
-  bottom: calc(-15px * var(--u)); height: calc(15px * var(--u));
+.shelf-row::after {              /* the plank: painted wood, lit from above */
+  content: ""; position: absolute; left: calc(-10px * var(--u)); right: calc(-10px * var(--u));
+  bottom: calc(-18px * var(--u)); height: calc(18px * var(--u));
   z-index: -1;
+  border-radius: calc(1.5px * var(--u));
   background:
-    var(--tile-brush),
-    linear-gradient(180deg, #d5b78a 0%, #b9955f 36%, #9c7a48 70%, #7f6138 100%);
-  background-size: 128px 128px, auto;
-  box-shadow: 0 10px 22px rgba(30, 30, 40, .28), 0 1px 0 rgba(255, 255, 255, .35) inset;
+    linear-gradient(180deg, rgba(255, 246, 220, .62) 0, rgba(255, 246, 220, 0) 14%, rgba(46, 28, 10, 0) 55%, rgba(46, 28, 10, .42) 100%),
+    var(--tile-wood) 0 0 / auto 100% repeat-x,
+    linear-gradient(180deg, #cfae79 0%, #b58f58 50%, #94713f 100%);
+  box-shadow:
+    0 calc(12px * var(--u)) calc(22px * var(--u)) rgba(24, 30, 46, .34),
+    0 calc(2px * var(--u)) calc(3px * var(--u)) rgba(24, 30, 46, .32);
 }
 .shelf-row::before {             /* wall shadow above plank */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: calc(30px * var(--u));
   z-index: -1;
   background: linear-gradient(180deg, transparent, rgba(40, 50, 70, .16));
 }
+/* The caption: a paper label pinned under the shelf. Its top margin grows with the shelf,
+   so it always sits clear of the plank and the plank's shadow. */
 .shelf-tag {
-  text-align: center; margin: 16px auto 0; font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(27, 26, 23, .7); font-weight: 600;
+  position: relative;
+  width: fit-content; max-width: calc(100% - 12px);
+  margin: calc(18px * var(--u) + 34px) auto 0;
+  padding: 10px 30px 11px;
+  text-align: center; font-size: .7rem; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(27, 26, 23, .86); font-weight: 600;
+  background:
+    var(--tile-paper),
+    linear-gradient(180deg, #faf5ea, #f1e9d7);
+  background-size: var(--tile-paper-size) var(--tile-paper-size), auto;
+  box-shadow: 0 7px 18px rgba(24, 30, 46, .28), 0 1px 0 rgba(255, 255, 255, .7) inset;
+  transform: rotate(.25deg);
 }
-.shelf-tag small { display: block; letter-spacing: .12em; text-transform: none; font-weight: 400; margin-top: 4px; opacity: .8; }
+.shelf-tag::before, .shelf-tag::after {          /* two brass pins */
+  content: ""; position: absolute; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f3dc9c, #b8923f 60%, #7c5f24);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+}
+.shelf-tag::before { left: 11px; }
+.shelf-tag::after { right: 11px; }
+.shelf-tag small {
+  display: block; letter-spacing: .1em; text-transform: none; font-weight: 400; margin-top: 4px;
+  font-size: .95em; color: var(--muted);
+}
 
 .slot {
   position: relative;
@@ -183,7 +206,17 @@ a:hover { text-decoration: underline; }
   content: ""; position: absolute; left: -8%; right: -8%; bottom: calc(-6px * var(--u)); height: calc(10px * var(--u));
   background: radial-gradient(ellipse at center, rgba(20, 30, 50, .42), transparent 68%);
   filter: blur(2px); z-index: 1; pointer-events: none;
+  transition: opacity .5s ease;
 }
+.slot .cast {                   /* the book's shadow on the wall (added by shelf.js); light falls from the upper left */
+  position: absolute; left: 0; right: 0; top: 1.5%; bottom: 0; z-index: 0; pointer-events: none;
+  background: rgba(22, 30, 50, .3);
+  box-shadow:
+    calc(9px * var(--u)) calc(3px * var(--u)) calc(16px * var(--u)) calc(1px * var(--u)) rgba(22, 30, 50, .4),
+    calc(-2px * var(--u)) 0 calc(7px * var(--u)) rgba(22, 30, 50, .16);
+  transition: opacity .5s ease;
+}
+.slot.is-empty .cast, .slot.is-empty::after { opacity: 0; }
 .slot.has-sheet::before {        /* translucent backing sheet behind the book */
   content: ""; position: absolute; left: -14%; right: -12%; top: -5%; bottom: 0;
   background: rgba(244, 241, 232, .45);
@@ -206,11 +239,19 @@ a:hover { text-decoration: underline; }
 .book .face { pointer-events: auto; }
 .slot:hover .book:not(.is-out) { transform: translate3d(0, calc(-16px * var(--u)), 0) scale(1); }
 .book:has(.spine:focus-visible):not(.is-out) { transform: translate3d(0, calc(-16px * var(--u)), 0) scale(1); }
-.book.is-fixed { position: fixed; }
-.book.has-depth { perspective: calc(1500px * var(--u)); }
+/* Off the shelf. The book is rebuilt at reading size (shelf.js sets --bw/--bh/--bd in whole device
+   pixels) and merely drawn small at first, so the open pages are never a magnified miniature. */
+.book.is-fixed { position: fixed; z-index: 45; }
+.book.has-depth { perspective: calc(1500px * var(--u) * var(--s, 1)); }
+.book.is-flat { perspective: none; }           /* the settled spread lies exactly in the plane of the screen */
+.slot .book.is-fixed:not(.is-out) {            /* pinned in its place on the shelf */
+  transform: translate3d(0, var(--lift, 0px), 0) scale(calc(1 / var(--s, 1)));
+  transition: transform .85s var(--ease-inout);
+}
+.slot .book.is-settling:not(.is-out) { transform: translate3d(0, 0, 0) scale(1); }
 .book.is-out {
   z-index: 50;
-  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(var(--s, 1));
+  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0) scale(1);
   transition: transform .85s var(--ease-inout);
   cursor: default;
 }
@@ -229,6 +270,12 @@ a:hover { text-decoration: underline; }
 .book:has(.spine:focus-visible):not(.is-out) .volume {
   transform: rotateZ(var(--tilt, 0deg)) translateX(0px) translateZ(calc(var(--bw) * -.5)) rotateX(0deg) rotateY(80deg);
 }
+.slot .book.is-fixed:not(.is-out) .volume {
+  transform: rotateZ(var(--tilt, 0deg)) translateX(0px) translateZ(calc(var(--bw) * -.5)) rotateX(0deg) rotateY(var(--yaw, 90deg));
+}
+.slot .book.is-settling:not(.is-out) .volume {
+  transform: rotateZ(var(--tilt, 0deg)) translateX(0px) translateZ(calc(var(--bw) * -.5)) rotateX(0deg) rotateY(90deg);
+}
 .book.is-out .volume {
   transform: rotateZ(0deg) translateX(0px) translateZ(calc(var(--bd) * -.5)) rotateX(-3deg) rotateY(-8deg);
 }
@@ -242,12 +289,6 @@ a:hover { text-decoration: underline; }
   margin: 0; padding: 0; border: 0; font: inherit; color: inherit; text-align: left; background: none;
 }
 button.face { cursor: pointer; }
-.face::before {                      /* oil-paint brush grain on every board */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: var(--tile-brush), var(--tile-weave);
-  background-size: 256px 256px, 4px 4px;
-  opacity: .8;
-}
 .spine, .fore {
   left: calc((var(--bw) - var(--bd)) / 2); top: 0;
   width: var(--bd); height: var(--bh);
@@ -284,19 +325,21 @@ button.face { cursor: pointer; }
     repeating-linear-gradient(90deg, rgba(120, 100, 70, .14) 0 1px, transparent 1px 3px),
     linear-gradient(180deg, #e2d8c2, #f2ebda 45%, #d9cfb7);
 }
-.edge-top::before, .edge-bottom::before, .fore::before { opacity: .3; }
-.page::before, .cover-inside::before { background-image: var(--tile-weave); background-size: 4px 4px; opacity: .35; }
-.cover-inside::before { display: none; }
+.page::before, .two-page .cover-inside::before {     /* paper grain on the reading pages */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--tile-paper);
+  background-size: var(--tile-paper-size) var(--tile-paper-size);
+}
 .two-page .cover-inside {
   background:
     linear-gradient(270deg, rgba(60, 40, 20, .2), rgba(60, 40, 20, .06) 4%, transparent 9%),
     linear-gradient(180deg, #f9f4e8, #f3ecdb);
 }
 .two-page .cover-inside::after { display: none; }
-.two-page .page-inner { font-size: calc(14.5px / var(--s, 1)); padding: 4% 5% 3.5% 7%; line-height: 1.3; }
+.two-page .page-inner { font-size: 14.5px; padding: 4% 5% 3.5% 7%; line-height: 1.3; }
 .two-page .page-left { padding: 4% 7% 3.5% 5%; }
-@media (max-height: 930px) { .two-page .page-inner { font-size: calc(13.5px / var(--s, 1)); } }
-@media (max-height: 820px) { .two-page .page-inner { font-size: calc(12.5px / var(--s, 1)); } }
+@media (max-height: 930px) { .two-page .page-inner { font-size: 13.5px; } }
+@media (max-height: 820px) { .two-page .page-inner { font-size: 12.5px; } }
 .two-page .page-inner .folio { display: none; }   /* both pages are content; no running heads */
 .two-page .page-inner h2 { font-size: 1.75em; margin: 0 0 .15em; }
 .two-page .page-inner h3 { font-size: 1.15em; margin: .55em 0 .3em; }
@@ -321,46 +364,64 @@ button.face { cursor: pointer; }
 .page-inner .page-left { position: static; padding: 0 0 1em; overflow: visible; font-size: inherit; }
 .page-inner .page-left .folio { display: none; }
 
-/* Board surfaces (spine, cover, back) */
+/* Board surfaces (spine, cover, back).
+   Each book wears one oil-painted jacket (--jacket, from monet.js): the spine is its first
+   --bd of width, the front board the rest. Until it is painted, a flat base + band stands in.
+   The gradients on top are only light and shape: a rounded spine, the joints, the gutter. */
 .spine, .cover, .back {
   color: var(--ink-c, var(--ink));
-  background:
-    linear-gradient(180deg, transparent calc(100% - var(--band-h, 0%)), var(--band, transparent) calc(100% - var(--band-h, 0%))),
-    var(--surface, none),
-    var(--base);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .06) inset;
+  background-color: var(--base);
+  background-repeat: no-repeat;
 }
 .spine {
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, .22), rgba(255, 255, 255, .08) 18%, rgba(255, 255, 255, .16) 46%, rgba(0, 0, 0, .04) 78%, rgba(0, 0, 0, .3)),
-    linear-gradient(180deg, transparent calc(100% - var(--band-h, 0%)), var(--band, transparent) calc(100% - var(--band-h, 0%))),
-    var(--surface, none),
-    var(--base);
+  border-radius: calc(var(--bh) * .008) calc(var(--bh) * .008) calc(var(--bh) * .003) calc(var(--bh) * .003);
+  background-image:
+    /* the round of the spine */
+    linear-gradient(90deg, rgba(10, 16, 30, .38) 0, rgba(10, 16, 30, .12) 7%, rgba(255, 255, 255, .2) 24%, rgba(255, 255, 255, .04) 46%, rgba(10, 16, 30, .06) 72%, rgba(10, 16, 30, .3) 95%, rgba(10, 16, 30, .46) 100%),
+    /* light catching the head, shade gathering at the foot */
+    linear-gradient(180deg, rgba(255, 255, 255, .28) 0, rgba(255, 255, 255, 0) 2.4%, rgba(10, 16, 30, 0) 88%, rgba(10, 16, 30, .24) 100%),
+    /* the joints where the boards meet the spine */
+    linear-gradient(90deg, transparent 5.5%, rgba(10, 16, 30, .17) 5.5%, rgba(255, 255, 255, .15) calc(5.5% + 1px), transparent calc(5.5% + 2px), transparent calc(94.5% - 2px), rgba(255, 255, 255, .12) calc(94.5% - 1px), rgba(10, 16, 30, .19) 94.5%, transparent calc(94.5% + 1px)),
+    var(--jacket, linear-gradient(180deg, transparent calc(100% - var(--band-h, 0%)), var(--band, transparent) calc(100% - var(--band-h, 0%))));
+  background-size: 100% 100%, 100% 100%, 100% 100%, calc(var(--bd) + var(--bw)) var(--bh);
+  background-position: 0 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .08) inset;
 }
 .cover {
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .04) 6%, transparent 12%),
-    linear-gradient(180deg, transparent calc(100% - var(--band-h, 0%)), var(--band, transparent) calc(100% - var(--band-h, 0%))),
-    var(--surface, none),
-    var(--base);
+  border-radius: 0 calc(var(--bh) * .007) calc(var(--bh) * .007) 0;
+  background-image:
+    /* the gutter beside the hinge */
+    linear-gradient(90deg, rgba(10, 16, 30, .3) 0, rgba(10, 16, 30, .06) 2.2%, rgba(255, 255, 255, .16) 3.6%, rgba(10, 16, 30, .14) 5%, rgba(10, 16, 30, 0) 8%),
+    linear-gradient(112deg, rgba(255, 255, 255, .14) 0, rgba(255, 255, 255, 0) 42%, rgba(10, 16, 30, .1) 100%),
+    var(--jacket, linear-gradient(180deg, transparent calc(100% - var(--band-h, 0%)), var(--band, transparent) calc(100% - var(--band-h, 0%))));
+  background-size: 100% 100%, 100% 100%, calc(var(--bd) + var(--bw)) var(--bh);
+  background-position: 0 0, 0 0, calc(-1 * var(--bd)) 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1) inset, 0 0 calc(var(--bh) * .03) rgba(10, 16, 30, .14) inset;
 }
 .back {
-  background:
-    linear-gradient(270deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .04) 6%, transparent 12%),
-    var(--surface, none),
-    var(--base);
+  border-radius: calc(var(--bh) * .007) 0 0 calc(var(--bh) * .007);
+  background-image:
+    linear-gradient(270deg, rgba(10, 16, 30, .3) 0, rgba(10, 16, 30, .06) 2.2%, rgba(255, 255, 255, .14) 3.6%, rgba(10, 16, 30, .12) 5%, rgba(10, 16, 30, 0) 8%),
+    var(--jacket, none);
+  background-size: 100% 100%, calc(var(--bd) + var(--bw)) var(--bh);
+  background-position: 0 0, calc(-1 * var(--bd)) 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1) inset;
 }
 
-/* Materials */
-.m-paper  { --surface: linear-gradient(180deg, rgba(255, 255, 255, .28), rgba(180, 160, 120, .08)); }
-.m-vellum { --surface: repeating-linear-gradient(0deg, rgba(255, 255, 255, .18) 0 2px, rgba(170, 180, 200, .08) 2px 5px); }
-.m-matte  { --surface: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(0, 0, 0, .1)); }
-.m-cloth  {
-  --surface:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, .08) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(0deg, rgba(0, 0, 0, .1) 0 1px, transparent 1px 3px);
+/* Bindings */
+.m-cloth .spine::before {            /* blocked double rules at head and tail, as on a cloth binding */
+  content: ""; position: absolute; left: 11%; right: 11%; top: 2.6%; bottom: 2.6%; pointer-events: none;
+  --t: max(1px, calc(var(--bh) * .0028));
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 100% var(--t) no-repeat,
+    linear-gradient(currentColor, currentColor) 0 calc(var(--t) * 3.5) / 100% var(--t) no-repeat,
+    linear-gradient(currentColor, currentColor) 0 100% / 100% var(--t) no-repeat,
+    linear-gradient(currentColor, currentColor) 0 calc(100% - var(--t) * 3.5) / 100% var(--t) no-repeat;
+  opacity: .5;
 }
-.m-cloth .face::before { opacity: .7; }
+.m-vellum .spine {                   /* a glassine wrapper: one soft streak of light down the paper */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .08) inset, calc(var(--bd) * .16) 0 calc(var(--bd) * .18) calc(var(--bd) * -.12) rgba(255, 255, 255, .7) inset;
+}
 
 /* Spine typography */
 .spine .num {
@@ -376,6 +437,8 @@ button.face { cursor: pointer; }
   font-size: min(calc(var(--bd) * .3), calc(var(--bh) * .05));
   padding-top: calc(var(--bh) * .08);
 }
+.spine .num, .spine .label { text-shadow: 0 1px 0 rgba(255, 255, 255, .28); }
+[data-book="publications"] .spine .num, [data-book="publications"] .spine .label { text-shadow: 0 1px 2px rgba(6, 12, 26, .55); }
 .spine .rule {
   position: absolute; left: 50%; top: 13%; width: 1px; height: 6%;
   background: currentColor; opacity: .5;
@@ -397,16 +460,16 @@ button.face { cursor: pointer; }
 
 /* Cover layout (visible when the book is out) */
 .cover { display: flex; flex-direction: column; justify-content: space-between; }
-.cover .c-num { position: absolute; top: 6%; right: 8%; font-size: calc(15px / var(--s, 1)); letter-spacing: .12em; opacity: .85; }
+.cover .c-num { position: absolute; top: 6%; right: 8%; font-size: 15px; letter-spacing: .12em; opacity: .85; }
 .cover .c-body { padding: 13% 10% 10% 13%; display: flex; flex-direction: column; height: 100%; }
 .cover .c-title {
   display: block;
-  font-family: var(--serif); font-weight: 600; font-size: calc(46px / var(--s, 1)); line-height: 1.02; margin: 0 0 .35em;
+  font-family: var(--serif); font-weight: 600; font-size: 46px; line-height: 1.02; margin: 0 0 .35em;
   letter-spacing: .005em; max-width: 9ch;
 }
-.cover .c-copy { font-size: calc(15.5px / var(--s, 1)); line-height: 1.5; opacity: .88; max-width: 26ch; margin: 0; }
+.cover .c-copy { font-size: 15.5px; line-height: 1.5; opacity: .88; max-width: 26ch; margin: 0; }
 .cover .c-hint {
-  margin-top: auto; font-size: calc(11px / var(--s, 1)); letter-spacing: .22em; text-transform: uppercase; opacity: .75;
+  margin-top: auto; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .75;
   display: flex; align-items: center; gap: .8em;
 }
 .cover .c-hint::before { content: ""; width: 3em; height: 1px; background: currentColor; }
@@ -427,7 +490,7 @@ button.face { cursor: pointer; }
   padding: 7% 8% 8%;
   background: var(--paper);
   box-shadow: 0 3px 10px rgba(0, 0, 0, .22);
-  font-size: calc(14px / var(--s, 1));
+  font-size: 14px;
   transform: rotate(-.6deg);
 }
 .title-page .tp-num { font-size: .78em; letter-spacing: .2em; color: var(--muted); }
@@ -448,7 +511,7 @@ button.face { cursor: pointer; }
   position: absolute; inset: 0;
   overflow-y: auto; overflow-x: hidden;
   padding: 8% 8% 9% 11%;
-  font-size: calc(17px / var(--s, 1));
+  font-size: 17px;
   line-height: 1.55;
   outline: none;
 }
@@ -561,10 +624,57 @@ html.is-reading .stage-ui { opacity: 1; pointer-events: auto; transform: none; }
    Footer
    -------------------------------------------------------------------------- */
 .footer {
-  text-align: center; padding: 4px 20px 16px; font-size: .74rem; letter-spacing: .06em;
-  color: rgba(27, 26, 23, .72);
+  text-align: center; padding: 8px 20px 18px; font-size: .74rem; letter-spacing: .06em;
+  color: rgba(252, 249, 240, .95);                /* light on the deep water at the foot of the painting */
+  text-shadow: 0 1px 2px rgba(18, 28, 46, .65), 0 0 10px rgba(18, 28, 46, .4);
 }
 .footer a { color: inherit; }
+
+/* --------------------------------------------------------------------------
+   Welcome: three seconds of Giverny in oils, then the wall (assets/js/intro.js)
+   -------------------------------------------------------------------------- */
+.intro {
+  position: fixed; inset: 0; z-index: 200; overflow: hidden;
+  display: grid; place-items: center;
+  background: linear-gradient(180deg, #dfe2ee 0%, #f1ecdc 50%, #c5d2b6 100%);
+  cursor: pointer;
+  transition: opacity .65s ease, transform .65s ease;
+  animation: intro-bail .6s ease 6s forwards;     /* if the script never arrives, step aside anyway */
+}
+.intro.is-leaving { opacity: 0; transform: scale(1.04); pointer-events: none; animation: none; }
+@keyframes intro-bail { to { opacity: 0; visibility: hidden; } }
+.intro canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.intro-text {
+  position: relative; z-index: 2; text-align: center; padding: 0 18px; margin-top: -5vh;
+  color: #22304a;
+}
+.intro-kicker {
+  margin: 0 0 .9em; font-family: var(--sans); font-weight: 600; font-size: clamp(.72rem, .58rem + .55vw, 1.02rem);
+  letter-spacing: .36em; text-indent: .36em; text-transform: uppercase; color: #3e5f86;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .5s ease, transform .7s var(--ease-out);
+}
+.intro-title {
+  margin: 0; font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: clamp(2.5rem, 1rem + 7vw, 7rem); line-height: 1.02; letter-spacing: -.005em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .75), 0 0 26px rgba(250, 246, 234, .95), 0 0 60px rgba(250, 246, 234, .7);
+}
+.intro-title .w {
+  display: inline-block; opacity: 0; transform: translateY(.38em) rotate(-2.5deg);
+  transition: opacity .55s ease, transform .85s var(--ease-out);
+}
+.intro-title .w:nth-child(2) { transition-delay: .13s; }
+.intro-title .w:nth-child(3) { transition-delay: .26s; }
+.intro-title .doc { color: #b5443a; }
+.intro-flourish { display: block; width: min(74%, 30rem); height: auto; margin: .7em auto 0; overflow: visible; }
+.intro-flourish path {
+  fill: none; stroke: #c9a24e; stroke-width: 5; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset .9s var(--ease-inout) .5s;
+}
+.intro-flourish path + path { stroke: #e3c987; stroke-width: 2; transition-delay: .62s; }
+.intro.is-on .intro-kicker, .intro.is-on .intro-title .w { opacity: 1; transform: none; }
+.intro.is-on .intro-flourish path { stroke-dashoffset: 0; }
 
 /* --------------------------------------------------------------------------
    Responsive
@@ -597,5 +707,7 @@ html.is-reading .stage-ui { opacity: 1; pointer-events: auto; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .book, .volume, .hinge, .veil, .stage-ui, .painting, .index a { transition-duration: .01ms !important; }
+  .book, .volume, .hinge, .veil, .stage-ui, .painting, .cast, .slot::after { transition-duration: .01ms !important; }
+  .intro-kicker, .intro-title .w, .intro-flourish path { transition: none !important; }
+  .intro.is-leaving { transform: none; }
 }

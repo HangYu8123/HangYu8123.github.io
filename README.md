@@ -10,7 +10,8 @@ Personal academic website of **Hang Yu (余航)**, Ph.D. candidate in Computer S
 |------|------------|
 | `index.html` | The whole site: a single page with About, News, Education, Publications, Experience & Service, Life, and Contact. |
 | `assets/css/style.css` | Styles for the bookshelf layout. |
-| `assets/js/monet.js` | Paints the background wall in the browser (Canvas). |
+| `assets/js/monet.js` | Paints the wall, the book jackets, the plank and the paper grain in the browser (Canvas), at the screen's own pixel density. |
+| `assets/js/intro.js` | The welcome animation ("I am a Doctor now!"): an oil-painted garden, 3 seconds, skippable. Change the length with `data-seconds` on `#intro` in `index.html`; delete that element to remove it. |
 | `assets/js/shelf.js` | Book open/close interaction. Without JavaScript the page degrades to a plain document. |
 | `assets/img/` | Photos, paper figures, favicons, and the social-card image. |
 | `assets/cv.pdf` | Curriculum vitae. |

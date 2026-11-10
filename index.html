@@ -65,7 +65,7 @@
   <noscript>
     <style>
       /* Without JavaScript the shelf becomes a plain, readable document. */
-      .painting, .wall-grain, .veil, .stage-ui, .spine, .fore, .edge-top, .edge-bottom, .back, .cover, .cover-inside, .slot::after, .slot::before, .shelf-row::after, .shelf-row::before { display: none !important; }
+      .intro, .painting, .veil, .stage-ui, .spine, .fore, .edge-top, .edge-bottom, .back, .cover, .cover-inside, .slot::after, .slot::before, .shelf-row::after, .shelf-row::before { display: none !important; }
       .shelf, .shelf-row { display: block !important; padding: 0 !important; }
       .slot, .book, .volume, .hinge, .face.page, .page-inner { position: static !important; width: auto !important; height: auto !important; transform: none !important; perspective: none !important; overflow: visible !important; }
       .face.page { max-width: 820px; margin: 24px auto; padding: 32px; box-shadow: 0 10px 30px rgba(30,40,60,.2); }
@@ -798,9 +798,22 @@
   </script>
 </head>
 <body>
-  <!-- The wall: painted in the browser by assets/js/monet.js -->
+  <!-- Welcome: three seconds of oil-painted flowers (assets/js/intro.js), then the wall. Click or press a key to skip. -->
+  <div class="intro" id="intro">
+    <canvas class="intro-paint" aria-hidden="true"></canvas>
+    <canvas class="intro-petals" aria-hidden="true"></canvas>
+    <div class="intro-text" role="status">
+      <p class="intro-kicker">Dr. Hang Yu</p>
+      <p class="intro-title"><span class="w">I am a</span> <span class="w doc">Doctor</span> <span class="w">now!</span></p>
+      <svg class="intro-flourish" viewBox="0 0 400 26" aria-hidden="true" focusable="false">
+        <path pathLength="1" d="M6 15 C 70 3, 128 24, 198 12 S 330 4, 394 13"/>
+        <path pathLength="1" d="M40 22 C 110 14, 190 26, 262 19 S 340 16, 372 20"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- The wall: painted in the browser by assets/js/monet.js, at the screen's own resolution -->
   <canvas class="painting" width="1800" height="1100" aria-hidden="true"></canvas>
-  <div class="wall-grain" aria-hidden="true"></div>
   <span class="mark tl" aria-hidden="true"></span>
   <span class="mark br" aria-hidden="true"></span>
 
@@ -1369,6 +1382,7 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
   <script src="assets/js/monet.js" defer></script>
+  <script src="assets/js/intro.js" defer></script>
   <script src="assets/js/shelf.js" defer></script>
 </body>
 </html>
